@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+    <!-- 操作日志 -->
+    <bean id="top.cardone.log.dao.OperateLogDao"
+          class="top.cardone.log.dao.impl.OperateLogDaoImpl">
+        <property name="configTable">
+            <map>
+                <entry key="config">
+                    <map>
+                        <entry key="sqlFileRoot" value="/cardone/log/operateLog/"/>
+                        <entry key="pks" value="operateLogId"/>
+                        <entry key="codes" value="operateLogId"/>
+                    </map>
+                </entry>
+                <entry key="insert">
+                    <map>
+                        <entry key="operateLogId" value="getRandomUUIDFunc"/>
+                        <entry key="creator" value="getLoginUserIdFunc"/>
+                        <entry key="createDate" value="getNowDateFunc"/>
+                    </map>
+                </entry>
+                <entry key="update">
+                    <map>
+                        <entry key="modifier" value="getLoginUserIdFunc"/>
+                        <entry key="modifyDate" value="getNowDateFunc"/>
+                    </map>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 操作日志 -->
+    <bean id="top.cardone.log.service.OperateLogService"
+          class="top.cardone.log.service.impl.OperateLogServiceImpl">
+        <property name="dao" ref="top.cardone.log.dao.OperateLogDao"/>
+    </bean>
+
+    <bean parent="messageListenerContainerParnet">
+        <property name="messageListener">
+            <bean  parent="exceptionParnet">
+                <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
+                <property name="service" ref="top.cardone.log.service.OperateLogService"/>
+            </bean>
+        </property>
+        <property name="destination">
+            <bean class="org.apache.activemq.command.ActiveMQQueue">
+                <constructor-arg value="top.cardone.log.service.OperateLogService"/>
+            </bean>
+        </property>
+    </bean>
+</beans>
