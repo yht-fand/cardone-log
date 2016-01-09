@@ -12,7 +12,7 @@ public class OperateLog implements java.io.Serializable {
     /**
      * 版本号
      */
-    private static final long serialVersionUID = 351776930676710174L;
+    private static final long serialVersionUID = 432751147749320542L;
 
     /**
      * 创建人代码
