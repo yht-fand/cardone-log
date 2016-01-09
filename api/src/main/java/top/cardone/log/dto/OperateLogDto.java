@@ -12,5 +12,5 @@ public class OperateLogDto extends OperateLog {
     /**
      * 版本号
      */
-    private static final long serialVersionUID = 780626583880395342L;
+    private static final long serialVersionUID = 753757430032832858L;
 }

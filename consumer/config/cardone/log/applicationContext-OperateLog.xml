@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+    <!-- 操作日志 -->
+    <bean name="top.cardone.log.service.OperateLogService" parent="consumerParent">
+        <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
+        <property name="queue">
+            <bean class="org.apache.activemq.command.ActiveMQQueue">
+                <constructor-arg value="top.cardone.log.service.OperateLogService"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

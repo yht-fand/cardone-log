@@ -25,12 +25,7 @@
 
         <dependency>
             <groupId>top.cardone</groupId>
-            <artifactId>cardone-data-jdbc-implements-default</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>top.cardone</groupId>
-            <artifactId>cardone-template-implements-default</artifactId>
+            <artifactId>cardone-cache-implements-default</artifactId>
         </dependency>
 
         <dependency>
@@ -39,13 +34,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
         </dependency>
 
         <dependency>
@@ -62,5 +52,19 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-pool</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -1,1 +1,0 @@
-UPDATE t_operate_log SET END_DATE = NOW() WHERE INSTR(:ids, ID) > 0
