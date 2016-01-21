@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="top.cardone.data.support.DataOperationsSupport"
+          class="top.cardone.data.support.impl.DataOperationsSupportImpl"/>
+
+    <bean id="top.cardone.data.support.PageableSupport" class="top.cardone.data.support.impl.PageableSupportImpl"/>
+
+    <bean id="top.cardone.data.support.PageSupport" class="top.cardone.data.support.impl.PageSupportImpl"/>
+</beans>

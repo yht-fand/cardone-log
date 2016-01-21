@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <mvc:annotation-driven enable-matrix-variables="true" conversion-service="conversionService">
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
+                <property name="gson" ref="com.google.gson.Gson"/>
+            </bean>
+        </mvc:message-converters>
+        <mvc:async-support default-timeout="60000"/>
+    </mvc:annotation-driven>
+
+    <!-- 自定义类型转换支持 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="top.cardone.core.convert.support.DateToStringConverter"/>
+                <bean class="top.cardone.core.convert.support.StringToDateConverter"/>
+            </list>
+        </property>
+    </bean>
+</beans>

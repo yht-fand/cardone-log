@@ -13,7 +13,7 @@
     <groupId>top.cardone.log</groupId>
     <artifactId>cardone-log-implements-default</artifactId>
     <version>${project.parent.version}</version>
-    <name>cardone log implements default</name>
+    <name>${project.artifactId}</name>
     <description>cardone log implements default</description>
     <packaging>jar</packaging>
 

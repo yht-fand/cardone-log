@@ -13,7 +13,7 @@
     <groupId>top.cardone.log</groupId>
     <artifactId>cardone-log-api</artifactId>
     <version>${project.parent.version}</version>
-    <name>cardone log api</name>
+    <name>${project.artifactId}</name>
     <description>cardone log api</description>
     <packaging>jar</packaging>
 

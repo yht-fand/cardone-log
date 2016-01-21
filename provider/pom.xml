@@ -13,7 +13,7 @@
     <groupId>top.cardone.log</groupId>
     <artifactId>cardone-log-provider</artifactId>
     <version>${project.parent.version}</version>
-    <name>cardone log provider</name>
+    <name>${project.artifactId}</name>
     <description>cardone log provider</description>
     <packaging>jar</packaging>
 
@@ -30,12 +30,17 @@
 
         <dependency>
             <groupId>top.cardone</groupId>
-            <artifactId>cardone-mapper-api</artifactId>
+            <artifactId>cardone-template-implements-default</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-beans-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-mapper-api</artifactId>
         </dependency>
 
         <dependency>
@@ -54,8 +59,13 @@
         </dependency>
 
         <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
 

@@ -13,7 +13,7 @@
     <groupId>top.cardone.log</groupId>
     <artifactId>cardone-log-implements</artifactId>
     <version>${project.parent.version}</version>
-    <name>cardone log implements</name>
+    <name>${project.artifactId}</name>
     <description>cardone log implements</description>
     <packaging>pom</packaging>
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--<mvc:interceptors>-->
+    <!--<mvc:interceptor>-->
+    <!--<mvc:mapping path="/"/>-->
+    <!--<mvc:mapping path="/**/*.html"/>-->
+    <!--<mvc:mapping path="/**/*.json"/>-->
+    <!--<mvc:mapping path="/**/*.txt"/>-->
+    <!--<bean class="com.work.rm.interceptor.RmHandlerInterceptor"/>-->
+    <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+    <bean class="top.cardone.web.servlet.HandlerExceptionResolver"/>
+</beans>

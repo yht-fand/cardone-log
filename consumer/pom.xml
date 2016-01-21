@@ -13,7 +13,7 @@
     <groupId>top.cardone.log</groupId>
     <artifactId>cardone-log-consumer</artifactId>
     <version>${project.parent.version}</version>
-    <name>cardone log consumer</name>
+    <name>${project.artifactId}</name>
     <description>cardone log consumer</description>
     <packaging>jar</packaging>
 
@@ -31,6 +31,11 @@
         <dependency>
             <groupId>top.cardone</groupId>
             <artifactId>cardone-cache-implements-default</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-beans-api</artifactId>
         </dependency>
 
         <dependency>
@@ -59,8 +64,23 @@
         </dependency>
 
         <dependency>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-template-implements-default</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-data-commons-implements-default</artifactId>
         </dependency>
     </dependencies>
 

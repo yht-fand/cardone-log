@@ -9,9 +9,9 @@ import java.util.Map;
  * 操作日志 - 索引
  */
 @Component("/log/operateLog/index.json")
-public class IndexFunc implements Func1<Map<String, Object>, Map<String, Object>> {
+public class IndexFunc implements Func1<Object, Map<String, Object>> {
     @Override
-    public Map<String, Object> func(Map<String, Object> map) {
+    public Object func(Map<String, Object> map) {
         return null;
     }
 }

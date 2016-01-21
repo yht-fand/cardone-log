@@ -1,27 +1,23 @@
 package top.cardone;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.web.*;
+import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * 主执行端
  *
  * @author yao hai tao
  */
-@Log4j2
+@ImportResource({"file:/${app.root}/config/applicationContext.xml"})
 @Import({
-        DispatcherServletAutoConfiguration.class,
-        EmbeddedServletContainerAutoConfiguration.class,
-        ErrorMvcAutoConfiguration.class,
-        HttpEncodingAutoConfiguration.class,
-        HttpMessageConvertersAutoConfiguration.class,
-        MultipartAutoConfiguration.class,
         ServerPropertiesAutoConfiguration.class,
-        WebMvcAutoConfiguration.class
+        DispatcherServletAutoConfiguration.class,
+        EmbeddedServletContainerAutoConfiguration.class
 })
 @ComponentScan
 public class ConsumerApplication {
@@ -32,6 +28,6 @@ public class ConsumerApplication {
      * @throws Exception 异常
      */
     public static void main(String[] args) throws Exception {
-        new FileSystemXmlApplicationContext(new String[]{"${spring.configLocation}"}, true, SpringApplication.run(ConsumerApplication.class, args));
+        SpringApplication.run(ConsumerApplication.class, args);
     }
 }

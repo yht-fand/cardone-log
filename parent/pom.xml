@@ -13,12 +13,27 @@
     <groupId>top.cardone.log</groupId>
     <artifactId>cardone-log-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cardone log parent</name>
+    <name>${project.artifactId}</name>
     <description>cardone log parent</description>
     <packaging>pom</packaging>
-	
+
     <!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
     <repositories>
+        <repository>
+            <id>nexus-1</id>
+            <name>Team Nexus Repository</name>
+            <url>http://127.0.0.1/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+		
+        <repository>
+            <id>nexus-2</id>
+            <name>Team Nexus Repository</name>
+            <url>http://124.232.153.166:9191/nexus/content/groups/public</url>
+        </repository>
+	
         <repository>
             <id>oschina</id>
             <name>oschina</name>
@@ -54,33 +69,24 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+    </repositories>
 
-        <repository>
-            <id>nexus-3</id>
-            <name>Team Nexus Repository</name>
-            <url>http://124.232.153.166:9191/nexus/content/groups/public</url>
-        </repository>
-
-        <repository>
+    <pluginRepositories>
+        <pluginRepository>
             <id>nexus-1</id>
-            <name>Team Nexus Repository</name>
-            <url>http://168.168.168.25/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>nexus-2</id>
             <name>Team Nexus Repository</name>
             <url>http://127.0.0.1/nexus/content/groups/public</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-        </repository>
-    </repositories>
+        </pluginRepository>
 
-    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus-2</id>
+            <name>Team Nexus Repository</name>
+            <url>http://124.232.153.166:9191/nexus/content/groups/public</url>
+        </pluginRepository>
+	
         <pluginRepository>
             <id>oschina</id>
             <name>oschina</name>
@@ -121,30 +127,6 @@
             <id>spring-releases</id>
             <name>Spring Releases</name>
             <url>http://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-
-        <pluginRepository>
-            <id>nexus-3</id>
-            <name>Team Nexus Repository</name>
-            <url>http://124.232.153.166:9191/nexus/content/groups/public</url>
-        </pluginRepository>
-
-        <pluginRepository>
-            <id>nexus-1</id>
-            <name>Team Nexus Repository</name>
-            <url>http://168.168.168.25/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-
-        <pluginRepository>
-            <id>nexus-2</id>
-            <name>Team Nexus Repository</name>
-            <url>http://127.0.0.1/nexus/content/groups/public</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
