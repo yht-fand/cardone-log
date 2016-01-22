@@ -29,6 +29,14 @@ ${prefixName} `OPERATE_LOG_ID`
 ${prefixName} `ORG_CODE`
 <#assign prefixName = ','>
 </#if>
+<#if (insert_siteCode??) && (insert_siteCode_value??)>
+${prefixName} `SITE_CODE`
+<#assign prefixName = ','>
+</#if>
+<#if (insert_systemInfoCode??) && (insert_systemInfoCode_value??)>
+${prefixName} `SYSTEM_INFO_CODE`
+<#assign prefixName = ','>
+</#if>
 <#if (insert_typeCode??) && (insert_typeCode_value??)>
 ${prefixName} `TYPE_CODE`
 <#assign prefixName = ','>
@@ -62,6 +70,14 @@ ${prefixName} :insert_operateLogId_value
 </#if>
 <#if (insert_orgCode??) && (insert_orgCode_value??)>
 ${prefixName} :insert_orgCode_value
+<#assign prefixName = ','>
+</#if>
+<#if (insert_siteCode??) && (insert_siteCode_value??)>
+${prefixName} :insert_siteCode_value
+<#assign prefixName = ','>
+</#if>
+<#if (insert_systemInfoCode??) && (insert_systemInfoCode_value??)>
+${prefixName} :insert_systemInfoCode_value
 <#assign prefixName = ','>
 </#if>
 <#if (insert_typeCode??) && (insert_typeCode_value??)>

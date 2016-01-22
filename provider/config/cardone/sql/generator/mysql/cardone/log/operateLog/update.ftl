@@ -42,6 +42,18 @@ ${prefixName} `ORG_CODE` = :update_orgCode_value
 </#if>
 <#assign prefixName = ','>
 </#if>
+<#if (update_siteCode??)>
+<#if (update_siteCode_value??)>
+${prefixName} `SITE_CODE` = :update_siteCode_value
+</#if>
+<#assign prefixName = ','>
+</#if>
+<#if (update_systemInfoCode??)>
+<#if (update_systemInfoCode_value??)>
+${prefixName} `SYSTEM_INFO_CODE` = :update_systemInfoCode_value
+</#if>
+<#assign prefixName = ','>
+</#if>
 <#if (update_typeCode??)>
 <#if (update_typeCode_value??)>
 ${prefixName} `TYPE_CODE` = :update_typeCode_value

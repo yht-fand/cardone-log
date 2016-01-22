@@ -12,7 +12,7 @@ public class OperateLog implements java.io.Serializable {
     /**
      * 版本号
      */
-    private static final long serialVersionUID = 593509598203680959L;
+    private static final long serialVersionUID = 517257545651264624L;
 
     /**
      * 创建人代码
@@ -62,6 +62,20 @@ public class OperateLog implements java.io.Serializable {
     @lombok.Getter
     @lombok.Setter
     protected String orgCode;
+
+    /**
+     * 站点代码
+     */
+    @lombok.Getter
+    @lombok.Setter
+    protected String siteCode;
+
+    /**
+     * 系统信息代码
+     */
+    @lombok.Getter
+    @lombok.Setter
+    protected String systemInfoCode;
 
     /**
      * 类别代码

@@ -28,6 +28,14 @@ ${prefixName} `OPERATE_LOG_ID`
 ${prefixName} `ORG_CODE`
 <#assign prefixName = ','>
 </#if>
+<#if (select_siteCode??)>
+${prefixName} `SITE_CODE`
+<#assign prefixName = ','>
+</#if>
+<#if (select_systemInfoCode??)>
+${prefixName} `SYSTEM_INFO_CODE`
+<#assign prefixName = ','>
+</#if>
 <#if (select_typeCode??)>
 ${prefixName} `TYPE_CODE`
 <#assign prefixName = ','>
@@ -40,6 +48,8 @@ ${prefixName} `TYPE_CODE`
 , `OPERATE_LOG_CODE`
 , `OPERATE_LOG_ID`
 , `ORG_CODE`
+, `SITE_CODE`
+, `SYSTEM_INFO_CODE`
 , `TYPE_CODE`
 </#if>
 FROM t_operate_log
@@ -71,6 +81,14 @@ ${prefixName} `OPERATE_LOG_ID` ${order_by_operateLogId_value!}
 </#if>
 <#if (order_by_orgCode??)>
 ${prefixName} `ORG_CODE` ${order_by_orgCode_value!}
+<#assign prefixName = ','>
+</#if>
+<#if (order_by_siteCode??)>
+${prefixName} `SITE_CODE` ${order_by_siteCode_value!}
+<#assign prefixName = ','>
+</#if>
+<#if (order_by_systemInfoCode??)>
+${prefixName} `SYSTEM_INFO_CODE` ${order_by_systemInfoCode_value!}
 <#assign prefixName = ','>
 </#if>
 <#if (order_by_typeCode??)>

@@ -21,6 +21,12 @@ OPERATE_LOG_ID AS operateLogId
 <#case "orgCode">
 ORG_CODE AS orgCode
 <#break>
+<#case "siteCode">
+SITE_CODE AS siteCode
+<#break>
+<#case "systemInfoCode">
+SYSTEM_INFO_CODE AS systemInfoCode
+<#break>
 <#case "typeCode">
 TYPE_CODE AS typeCode
 <#break>
