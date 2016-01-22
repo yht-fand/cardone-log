@@ -10,6 +10,10 @@
         <relativePath>../parent</relativePath>
     </parent>
 
+    <properties>
+        <maven.deploy.enabled>true</maven.deploy.enabled>
+    </properties>
+
     <groupId>top.cardone.log</groupId>
     <artifactId>cardone-log-consumer</artifactId>
     <version>${project.parent.version}</version>
