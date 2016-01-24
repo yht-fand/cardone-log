@@ -14,7 +14,7 @@
     <artifactId>cardone-log-root</artifactId>
     <version>${project.parent.version}</version>
     <name>${project.artifactId}</name>
-    <description>cardone log root</description>
+    <description>top.cardone.log cardone-log-root</description>
     <packaging>pom</packaging>
 
     <modules>

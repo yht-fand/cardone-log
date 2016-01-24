@@ -20,6 +20,7 @@
         <property name="cacheManagerList">
             <list>
                 <ref bean="org.springframework.cache.guava.GuavaCacheManager"/>
+                <!--<ref bean="top.cardone.cache.impl.MemcachedCacheManager"/>-->
             </list>
         </property>
     </bean>
@@ -35,4 +36,38 @@
             </bean>
         </property>
     </bean>
+
+    <!--    <bean id="top.cardone.cache.impl.MemcachedCacheManager"
+              class="top.cardone.cache.impl.MemcachedCacheManagerImpl">
+            <property name="spyMemcachedClient" ref="spyMemcachedClient"/>
+            <property name="defaultExpire" value="3600" />
+            <property name="expireMap">
+                <map>
+                    <entry key="**.*.ShiroDbRealm.authorizationCache" value="7200" />
+                    <entry key="**.*.ShiroDbRealm.authenticationCache" value="7200" />
+                    <entry key="**.*.SiteService" value="1296000" />
+                    <entry key="**.*.SiteUtils" value="1296000" />
+                    <entry key="**.*.DictionaryService" value="86400" />
+                </map>
+            </property>
+        </bean>
+
+        <bean id="spyMemcachedClient" class="top.cardone.cache.impl.SpyMemcachedClientImpl">
+            <property name="memcachedClient">
+                <bean class="net.spy.memcached.spring.MemcachedClientFactoryBean">
+                    <property name="servers" value="${cache.memcacheHost}"/>
+                    <property name="protocol" value="BINARY"/>
+                    <property name="transcoder">
+                        <bean class="net.spy.memcached.transcoders.SerializingTranscoder">
+                            <property name="compressionThreshold" value="1024"/>
+                        </bean>
+                    </property>
+                    <property name="opTimeout" value="1000"/>
+                    <property name="timeoutExceptionThreshold" value="1998"/>
+                    <property name="locatorType" value="CONSISTENT"/>
+                    <property name="failureMode" value="Redistribute"/>
+                    <property name="useNagleAlgorithm" value="false"/>
+                </bean>
+            </property>
+        </bean>-->
 </beans>

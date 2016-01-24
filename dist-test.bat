@@ -9,12 +9,12 @@ mkdir dist\test\provider
 xcopy provider\config dist\test\provider\config /Y/E/C/R/I
 xcopy provider\config-test dist\test\provider\config /Y/E/C/R/I
 xcopy provider\run*.bat dist\test\provider /Y/C/R/I
-xcopy provider\target\cardone*-provider-*.jar dist\test\provider /Y/C/R/I
+xcopy provider\target\cardone-log-provider-*.jar dist\test\provider /Y/C/R/I
 mkdir dist\test\consumer
 xcopy consumer\webapp dist\test\consumer\webapp /Y/E/C/R/I
 xcopy consumer\views dist\test\consumer\views /Y/E/C/R/I
 xcopy consumer\config dist\test\consumer\config /Y/E/C/R/I
 xcopy consumer\config-test dist\test\consumer\config /Y/E/C/R/I
 xcopy consumer\run*.bat dist\test\consumer /Y/C/R/I
-xcopy consumer\target\cardone*-consumer-*.jar dist\test\consumer /Y/C/R/I
+xcopy consumer\target\cardone-log-consumer-*.jar dist\test\consumer /Y/C/R/I
 pause

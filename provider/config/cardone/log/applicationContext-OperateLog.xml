@@ -47,7 +47,7 @@
         </property>
         <property name="destination">
             <bean class="org.apache.activemq.command.ActiveMQQueue">
-                <constructor-arg value="top.cardone.log.service.OperateLogService"/>
+                <constructor-arg value="cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
             </bean>
         </property>
     </bean>

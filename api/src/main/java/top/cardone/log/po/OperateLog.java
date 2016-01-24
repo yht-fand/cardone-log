@@ -9,10 +9,6 @@ import java.util.Date;
  */
 @lombok.ToString(callSuper = true)
 public class OperateLog implements java.io.Serializable {
-    /**
-     * 版本号
-     */
-    private static final long serialVersionUID = 517257545651264624L;
 
     /**
      * 创建人代码

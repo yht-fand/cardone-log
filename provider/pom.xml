@@ -18,7 +18,7 @@
     <artifactId>cardone-log-provider</artifactId>
     <version>${project.parent.version}</version>
     <name>${project.artifactId}</name>
-    <description>cardone log provider</description>
+    <description>top.cardone.log cardone-log-provider</description>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -30,6 +30,11 @@
         <dependency>
             <groupId>top.cardone</groupId>
             <artifactId>cardone-cache-implements-default</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-cache-implements-memcached</artifactId>
         </dependency>
 
         <dependency>
