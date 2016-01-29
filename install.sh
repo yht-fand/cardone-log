@@ -1,3 +1,8 @@
 #!/bin/bash
-echo "[INFO] Install to local repository."
-mvn clean install -Dmaven.test.skip=true
+
+if [ -e 'parent' ]; then
+cd parent
+mvn clean install
+cd ..
+fi
+mvn clean install

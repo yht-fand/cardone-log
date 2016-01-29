@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ImportResource;
  *
  * @author yao hai tao
  */
-@ImportResource({"file:/${app.root}/config/applicationContext.xml"})
+@ImportResource({"file://${app.root}/config/applicationContext.xml"})
 @Import({
         ServerPropertiesAutoConfiguration.class,
         DispatcherServletAutoConfiguration.class,

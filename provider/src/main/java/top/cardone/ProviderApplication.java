@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ImportResource;
  * @author yao hai tao
  */
 @Log4j2
-@ImportResource({"file:/${app.root}/config/applicationContext.xml"})
+@ImportResource({"file://${app.root}/config/applicationContext.xml"})
 @ComponentScan
 public class ProviderApplication {
     /**
