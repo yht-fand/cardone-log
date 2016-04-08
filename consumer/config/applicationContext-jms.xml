@@ -13,6 +13,7 @@
                 <property name="brokerURL" value="${jms.broker_url}"/>
                 <!-- 对PERSISTENT的消息进行异步发送(NON_PERSISTENT消息默认异步发送) -->
                 <property name="useAsyncSend" value="true"/>
+                <property name="trustAllPackages" value="true"/>
             </bean>
         </property>
         <property name="maxConnections" value="100"/>

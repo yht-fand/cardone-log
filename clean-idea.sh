@@ -1,5 +1,5 @@
-@echo off
-echo clean-idea
-call clean.bat
-rd /s/q .idea
-del /s/q *.iml
+#!/bin/bash
+
+sh clean.sh
+rm -rfv .idea
+find . -name '*.iml' -exec rm -fv {} \;

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean name="consumerParent" class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean" abstract="true">
+    <bean name="invokerProxyFactoryParnet" class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean" abstract="true">
         <property name="connectionFactory" ref="advancedConnectionFactory"/>
+        <property name="remoteInvocationFactory">
+            <bean class="org.apache.shiro.spring.remoting.SecureRemoteInvocationFactory"/>
+        </property>
     </bean>
 </beans>

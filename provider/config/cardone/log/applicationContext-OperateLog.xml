@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-lazy-init="true">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- 操作日志 -->
     <bean id="top.cardone.log.dao.OperateLogDao"
           class="top.cardone.log.dao.impl.OperateLogDaoImpl">
@@ -17,7 +16,7 @@
                 </entry>
                 <entry key="insert">
                     <map>
-                        <entry key="operateLogId" value="getRandomUUIDFunc"/>
+                        <entry key="operateLogId" value="readRandomUUIDFunc"/>
                         <entry key="createdByCode" value="readCreatedByCodeFunc"/>
                         <entry key="createdDate" value="readCreatedDateFunc"/>
                     </map>
@@ -40,7 +39,7 @@
 
     <bean parent="messageListenerContainerParnet">
         <property name="messageListener">
-            <bean  parent="exceptionParnet">
+            <bean  parent="remoteInvocationExecutorParnet">
                 <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
                 <property name="service" ref="top.cardone.log.service.OperateLogService"/>
             </bean>

@@ -7,4 +7,14 @@
     <bean id="top.cardone.data.support.PageableSupport" class="top.cardone.data.support.impl.PageableSupportImpl"/>
 
     <bean id="top.cardone.data.support.PageSupport" class="top.cardone.data.support.impl.PageSupportImpl"/>
+
+    <bean id="readRandomUUIDFunc" class="top.cardone.data.func.ReadRandomUUIDFunc"/>
+
+    <bean id="readCreatedByCodeFunc" class="top.cardone.security.shiro.func.ReadPrincipalFunc"/>
+
+    <bean id="readCreatedDateFunc" class="top.cardone.data.func.ReadDateFunc"/>
+
+    <bean id="readLastModifiedByCodeFunc" class="top.cardone.security.shiro.func.ReadPrincipalFunc"/>
+
+    <bean id="readLastModifiedDateFunc" class="top.cardone.data.func.ReadDateFunc"/>
 </beans>

@@ -1,5 +1,5 @@
 INSERT
-INTO t_operate_log
+INTO c1_operate_log
 (<#assign prefixName = ' '>
 <#if (insert_createdByCode??) && (insert_createdByCode_value??)>
 ${prefixName} `CREATED_BY_CODE`

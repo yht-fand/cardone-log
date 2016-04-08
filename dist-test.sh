@@ -1,2 +1,1 @@
-@echo off
-call dist.bat test
+sh dist.sh test

@@ -91,6 +91,11 @@
             <groupId>top.cardone</groupId>
             <artifactId>cardone-data-commons-implements-default</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-security-implements-shiro-oauth2-web</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

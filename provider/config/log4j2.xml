@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="error">
+<configuration status="WARN" monitorInterval="30">
     <!--先定义所有的appender-->
     <appenders>
         <!--这个输出控制台的配置-->
@@ -11,9 +11,9 @@
         </Console>
 
         <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <RollingFile name="RollingFile" fileName="logs/error/log.log"
-                     filePattern="logs/error/${date:yyyy-MM}/log-%d{MM-dd-yyyy}-%i.log.gz">
-            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+        <RollingFile name="RollingFile" fileName="logs/WARN/log.log"
+                     filePattern="logs/WARN/${date:yyyy-MM}/log-%d{MM-dd-yyyy}-%i.log.gz">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
             <SizeBasedTriggeringPolicy size="50MB"/>
         </RollingFile>
@@ -21,7 +21,7 @@
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
         <!--建立一个默认的root的logger-->
-        <root level="error">
+        <root level="WARN">
             <appender-ref ref="RollingFile"/>
             <appender-ref ref="Console"/>
         </root>

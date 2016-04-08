@@ -19,10 +19,10 @@
     <!-- 自定义类型转换支持 -->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
-            <list>
+            <set>
                 <bean class="top.cardone.core.convert.support.DateToStringConverter"/>
                 <bean class="top.cardone.core.convert.support.StringToDateConverter"/>
-            </list>
+            </set>
         </property>
     </bean>
 </beans>

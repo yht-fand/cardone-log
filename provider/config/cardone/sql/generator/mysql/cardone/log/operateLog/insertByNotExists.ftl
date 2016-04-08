@@ -1,6 +1,6 @@
 INSERT
 INTO
-t_operate_log
+c1_operate_log
 (<#assign prefixName = ' '>
 <#if (insert_createdByCode??) && (insert_createdByCode_value??)>
 ${prefixName} `CREATED_BY_CODE`
@@ -85,7 +85,7 @@ ${prefixName} :insert_systemInfoCode_value
 ${prefixName} :insert_typeCode_value
 <#assign prefixName = ','>
 </#if>
-FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM t_operate_log E
+FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM c1_operate_log E
 <#assign prefixName = 'WHERE'>
 <#if (where_and_eq_createdByCode??)>
 <#if (where_and_eq_createdByCode_value??)>

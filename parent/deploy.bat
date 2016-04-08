@@ -1,5 +1,3 @@
-@echo off
-echo deploy
 IF EXIST parent (
 cd parent
 call mvn clean install source:jar deploy

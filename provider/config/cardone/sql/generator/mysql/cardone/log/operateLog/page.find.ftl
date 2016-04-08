@@ -52,7 +52,7 @@ ${prefixName} `TYPE_CODE`
 , `SYSTEM_INFO_CODE`
 , `TYPE_CODE`
 </#if>
-FROM t_operate_log
+FROM c1_operate_log
 <#include "where.ftl">
 <#assign prefixName = 'ORDER BY'>
 <#if (order_by_createdByCode??)>

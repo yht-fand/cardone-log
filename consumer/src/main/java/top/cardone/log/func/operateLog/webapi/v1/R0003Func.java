@@ -22,7 +22,7 @@ public class R0003Func implements Func1<Object, Map<String, Object>> {
     public Object func(Map<String, Object> map) {
         Page<OperateLogDto> operateLogDtoPage = ApplicationContextHolder.getBean(OperateLogService.class).page(OperateLogDto.class, map);
 
-        return ApplicationContextHolder.func(PageSupport.class, pageSupport -> pageSupport.newMap(this.toMapList(operateLogDtoPage.getContent()), map, operateLogDtoPage.getTotalElements()));
+        return ApplicationContextHolder.getBean(PageSupport.class).newMap(this.toMapList(operateLogDtoPage.getContent()), map, operateLogDtoPage.getTotalElements());
     }
 
     private List<Map<String, Object>> toMapList(List<OperateLogDto> operateLogDtoList) {

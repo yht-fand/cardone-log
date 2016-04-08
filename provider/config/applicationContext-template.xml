@@ -8,8 +8,8 @@
           class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
         <property name="templateLoaderPaths">
             <list>
-                <value>file:/${app.root}/config/cardone/sql/generator/mysql/</value>
-                <value>file:/${app.root}/config/cardone/sql/custom/mysql/</value>
+                <value>${app.root}/config/cardone/sql/generator/mysql/</value>
+                <value>${app.root}/config/cardone/sql/custom/mysql/</value>
             </list>
         </property>
         <property name="freemarkerSettings">

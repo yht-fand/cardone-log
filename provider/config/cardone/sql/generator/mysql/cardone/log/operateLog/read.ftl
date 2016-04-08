@@ -33,5 +33,5 @@ TYPE_CODE AS typeCode
 <#default>
 COUNT(1) AS COUNT_
 </#switch>
-FROM t_operate_log
+FROM c1_operate_log
 <#include "where.ftl">

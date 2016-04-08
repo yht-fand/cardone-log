@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
     <!-- 操作日志 -->
-    <bean name="top.cardone.log.service.OperateLogService" parent="consumerParent">
+    <bean name="top.cardone.log.service.OperateLogService" parent="invokerProxyFactoryParnet">
         <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
         <property name="queue">
             <bean class="org.apache.activemq.command.ActiveMQQueue">

@@ -1,10 +1,3 @@
-@echo off
-echo dist-%1
-set myself=%~dp0
-IF EXIST jdk (
-set JAVA_HOME=%myself%\jdk
-set path=%JAVA_HOME%\bin
-)
 IF EXIST parent (
 cd parent
 call mvn clean package
