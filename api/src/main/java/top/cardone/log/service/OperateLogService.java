@@ -140,4 +140,20 @@ public interface OperateLogService extends PageService {
      */
     @CacheEvict(value = "top.cardone.log.service.OperateLogService", allEntries = true)
     int[] updateListCache(List<Object> updateList);
+
+    /**
+     * 发送测试信息
+     */
+    void sendTestInfo();
+
+    /**
+     * 记录测试信息
+     * @param testInfo
+     */
+    void recordTestInfo(String testInfo);
+
+    /**
+     * 记录测试信息
+     */
+    void recordTestInfos();
 }

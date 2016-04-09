@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    <description>Quartz的本地Cron式执行任务配置</description>
+
+    <!--Quartz本地Schduler -->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!-- Triggers集成 -->
+        <property name="triggers">
+            <list>
+                <bean class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+                    <property name="jobDetail">
+                        <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                            <property name="targetObject" ref="top.cardone.log.service.OperateLogService"/>
+                            <property name="targetMethod" value="recordTestInfos"/>
+                        </bean>
+                    </property>
+                    <property name="cronExpression" value="0 1/60 * * * ?"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+</beans>

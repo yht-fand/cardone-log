@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
     <bean id="dataSourceParent" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"
           abstract="true">
         <property name="timeBetweenLogStatsMillis" value="300000"/>
@@ -42,6 +44,17 @@
         <property name="maxOpenPreparedStatements" value="${dataSource.master_1.maxOpenPreparedStatements}"/>
     </bean>
 
+    <bean id="top.cardone.dataSource.master_2" parent="dataSourceParent">
+        <property name="name" value="master_2"/>
+        <property name="url" value="${dataSource.master_2.url}"/>
+        <property name="username" value="${dataSource.master_2.user}"/>
+        <property name="password" value="${dataSource.master_2.password}"/>
+        <property name="maxActive" value="${dataSource.master_2.maxActive}"/>
+        <property name="minIdle" value="${dataSource.master_2.minIdle}"/>
+        <property name="removeAbandonedTimeout" value="${dataSource.master_2.removeAbandonedTimeout}"/>
+        <property name="maxOpenPreparedStatements" value="${dataSource.master_2.maxOpenPreparedStatements}"/>
+    </bean>
+
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="top.cardone.dataSource.master_1"/>
     </bean>
@@ -54,6 +67,16 @@
     <bean name="org.springframework.jdbc.core.JdbcOperations"
           class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="top.cardone.dataSource.master_1"></constructor-arg>
+    </bean>
+
+    <bean name="org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations.2"
+          class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="top.cardone.dataSource.master_2"></constructor-arg>
+    </bean>
+
+    <bean name="org.springframework.jdbc.core.JdbcOperations.2"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="top.cardone.dataSource.master_2"></constructor-arg>
     </bean>
 
     <bean id="org.springframework.jdbc.support.lob.LobHandler"

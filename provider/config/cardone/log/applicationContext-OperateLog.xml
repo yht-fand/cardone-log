@@ -33,7 +33,7 @@
 
     <!-- 操作日志 -->
     <bean id="top.cardone.log.service.OperateLogService"
-          class="top.cardone.log.service.impl.OperateLogServiceImpl">
+          class="top.cardone.log.service.impl.OperateLogServiceImpl" init-method="sendTestInfo">
         <property name="dao" ref="top.cardone.log.dao.OperateLogDao"/>
     </bean>
 
