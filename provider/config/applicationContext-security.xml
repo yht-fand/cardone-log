@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    <description>Shiro安全配置</description>
+
+    <bean name="shiroCacheManager" class="top.cardone.security.shiro.cache.impl.CacheManagerImpl"/>
+
+    <bean id="shiroDbRealm" class="top.cardone.security.shiro.realm.impl.OAuth2RealmImpl">
+        <property name="cacheManager" ref="shiroCacheManager"/>
+        <property name="cachingEnabled" value="true"/>
+        <property name="authenticationCachingEnabled" value="true"/>
+        <property name="authenticationCacheName" value="authenticationCache"/>
+        <property name="authorizationCachingEnabled" value="true"/>
+        <property name="authorizationCacheName" value="authorizationCache"/>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.mgt.DefaultSecurityManager">
+        <property name="realm" ref="shiroDbRealm"/>
+        <property name="sessionManager">
+            <bean class="org.apache.shiro.session.mgt.DefaultSessionManager">
+                <property name="globalSessionTimeout" value="1800000"/>
+                <property name="deleteInvalidSessions" value="false"/>
+                <property name="sessionValidationSchedulerEnabled" value="false"/>
+                <property name="sessionDAO">
+                    <bean class="top.cardone.security.shiro.session.mgt.eis.impl.SessionDaoImpl">
+                        <property name="sessionIdGenerator">
+                            <bean class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+        <property name="cacheManager" ref="shiroCacheManager"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="arguments" ref="securityManager"/>
+    </bean>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <bean id="readPrincipalFunc" class="top.cardone.security.shiro.func.ReadPrincipalFunc"/>
+</beans>
