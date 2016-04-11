@@ -39,7 +39,7 @@
 
     <bean parent="messageListenerContainerParnet">
         <property name="messageListener">
-            <bean  parent="remoteInvocationExecutorParnet">
+            <bean parent="remoteInvocationExecutorParnet">
                 <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
                 <property name="service" ref="top.cardone.log.service.OperateLogService"/>
             </bean>

@@ -1,6 +1,7 @@
 package top.cardone.log.service.impl;
 
 import com.google.common.collect.Maps;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.domain.Page;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -8,10 +9,8 @@ import org.springframework.jms.core.JmsMessageOperations;
 import org.springframework.scheduling.support.TaskUtils;
 import org.springframework.transaction.annotation.Transactional;
 import top.cardone.context.ApplicationContextHolder;
-import top.cardone.data.jdbc.support.NamedParameterJdbcOperationsSupport;
 import top.cardone.data.service.impl.PageServiceImpl;
 import top.cardone.log.dao.OperateLogDao;
-import org.springframework.jms.core.JmsMessagingTemplate;
 
 import java.util.Date;
 import java.util.List;
@@ -24,6 +23,7 @@ import java.util.UUID;
  * @author yao hai tao
  */
 @Transactional(readOnly = true)
+@Log4j2
 public class OperateLogServiceImpl extends PageServiceImpl<OperateLogDao> implements top.cardone.log.service.OperateLogService {
     @Override
     public Page<Map<String, Object>> pageCache(Object page) {
@@ -141,7 +141,7 @@ public class OperateLogServiceImpl extends PageServiceImpl<OperateLogDao> implem
         return this.updateList(updateList);
     }
 
-    private String jmsMessageOperationsBeandId = JmsMessageOperations.class.getName() + ".sendTestInfo";
+    private String jmsMessageOperationsSendTestInfoBeandId = JmsMessageOperations.class.getName() + ".sendTestInfo";
 
     private String insertSql = "INSERT INTO c1_send_test (`ID`, `CREATED_DATE`) VALUES (:ID, :CREATED_DATE)";
 
@@ -152,7 +152,7 @@ public class OperateLogServiceImpl extends PageServiceImpl<OperateLogDao> implem
 
         sendMap.put("ID", id);
 
-        ApplicationContextHolder.getBean(JmsMessageOperations.class, jmsMessageOperationsBeandId).convertAndSend(sendMap);
+        ApplicationContextHolder.getBean(JmsMessageOperations.class, jmsMessageOperationsSendTestInfoBeandId).convertAndSend(sendMap);
 
         sendMap.put("CREATED_DATE", new Date());
 
@@ -169,17 +169,37 @@ public class OperateLogServiceImpl extends PageServiceImpl<OperateLogDao> implem
 
         ApplicationContextHolder.getBean(NamedParameterJdbcOperations.class, NamedParameterJdbcOperations.class.getName() + ".2").getJdbcOperations().execute(createTableSql);
 
+        int count = 0;
+
         while (true) {
-            ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(sendTestInfoRunnable, null, true));
+            try {
+                ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(sendTestInfoRunnable, null, true));
+
+                if (count++ >= 4999) {
+                    count = 0;
+
+                    System.out.println("发送测试信息");
+
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                log.error(e);
+            }
         }
     }
 
     @Override
     public void recordTestInfo(String testInfo) {
-        Runnable recordTestInfoRunnable = () -> {
-            System.out.println("记录测试信息更新到内存数据库");
+        String updateSql = "UPDATE c1_send_test SET `UPDATE_DATE` = :UPDATE_DATE WHERE `ID` = :ID";
 
-            System.out.println("更新id:" + testInfo);
+        Runnable recordTestInfoRunnable = () -> {
+            Map<String, Object> sendMap = Maps.newHashMap();
+
+            sendMap.put("ID", testInfo);
+
+            sendMap.put("UPDATE_DATE", new Date());
+
+            ApplicationContextHolder.getBean(NamedParameterJdbcOperations.class, NamedParameterJdbcOperations.class.getName() + ".2").update(updateSql, sendMap);
         };
 
         ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(recordTestInfoRunnable, null, true));

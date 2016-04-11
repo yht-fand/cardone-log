@@ -38,21 +38,16 @@
         <property name="defaultDestinationName" value="cardone-log-${cardone-log-version}:sendTestInfo"/>
     </bean>
 
-    <!-- 记录测试信息 -->
-    <bean id="org.springframework.jms.core.JmsMessageOperations.recordTestInfo"
-          class="org.springframework.jms.core.JmsMessagingTemplate">
-        <constructor-arg>
-            <bean class="org.springframework.jms.core.JmsTemplate">
-                <property name="connectionFactory" ref="advancedConnectionFactory"/>
-                <!-- 使 deliveryMode, priority, timeToLive设置生效-->
-                <property name="explicitQosEnabled" value="true"/>
-                <!-- 设置NON_PERSISTENT模式, 默认为PERSISTENT -->
-                <property name="deliveryPersistent" value="false"/>
-                <!-- 设置优先级, 默认为4 -->
-                <property name="priority" value="9"/>
-                <property name="defaultDestinationName" value="cardone-log-${cardone-log-version}:recordTestInfo"/>
-            </bean>
-        </constructor-arg>
-        <property name="defaultDestinationName" value="cardone-log-${cardone-log-version}:recordTestInfo"/>
-    </bean>
+<!--    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="advancedConnectionFactory"/>
+        <property name="destinationName" ref="cardone-log-${cardone-log-version}:sendTestInfo"/>
+        <property name="messageListener">
+            <bean class="top.cardone.log.message.TestInfoMessageListener"/>
+        </property>
+        &lt;!&ndash; 初始5个Consumer, 可动态扩展到10 &ndash;&gt;
+        <property name="concurrentConsumers" value="5"/>
+        <property name="maxConcurrentConsumers" value="2000"/>
+        &lt;!&ndash; 设置消息确认模式为Client &ndash;&gt;
+        <property name="sessionAcknowledgeModeName" value="CLIENT_ACKNOWLEDGE"/>
+    </bean>-->
 </beans>
