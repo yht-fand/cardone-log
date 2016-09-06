@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 	
     <parent>
-		<groupId>top.cardone.log</groupId>
+		<groupId>top.cardone</groupId>
         <artifactId>cardone-log-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../parent</relativePath>
@@ -14,16 +14,16 @@
         <maven.deploy.enabled>true</maven.deploy.enabled>
     </properties>
 
-    <groupId>top.cardone.log</groupId>
+    <groupId>top.cardone</groupId>
     <artifactId>cardone-log-provider</artifactId>
     <version>${project.parent.version}</version>
     <name>${project.artifactId}</name>
-    <description>top.cardone.log cardone-log-provider</description>
+    <description>top.cardone cardone-log-provider</description>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-			<groupId>top.cardone.log</groupId>
+			<groupId>top.cardone</groupId>
 			<artifactId>cardone-log-implements-default</artifactId>
         </dependency>
 
@@ -53,6 +53,21 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-broker</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
@@ -63,13 +78,41 @@
         </dependency>
 
         <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-validation</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- 使用eureka -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+
+        <!-- 使用hystrix -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
     </dependencies>
 

@@ -39,13 +39,6 @@ public class OperateLog implements java.io.Serializable {
     protected String message;
 
     /**
-     * 操作日志代码
-     */
-    @lombok.Getter
-    @lombok.Setter
-    protected String operateLogCode;
-
-    /**
      * 操作日志标识
      */
     @lombok.Getter

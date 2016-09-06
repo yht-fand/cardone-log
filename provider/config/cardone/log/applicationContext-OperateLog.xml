@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
     <!-- 操作日志 -->
     <bean id="top.cardone.log.dao.OperateLogDao"
           class="top.cardone.log.dao.impl.OperateLogDaoImpl">
@@ -30,24 +31,9 @@
             </map>
         </property>
     </bean>
-
-    <!-- 操作日志 -->
+	
     <bean id="top.cardone.log.service.OperateLogService"
-          class="top.cardone.log.service.impl.OperateLogServiceImpl" init-method="sendTestInfo">
-        <property name="dao" ref="top.cardone.log.dao.OperateLogDao"/>
-    </bean>
-
-    <bean parent="messageListenerContainerParnet">
-        <property name="messageListener">
-            <bean parent="remoteInvocationExecutorParnet">
-                <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
-                <property name="service" ref="top.cardone.log.service.OperateLogService"/>
-            </bean>
-        </property>
-        <property name="destination">
-            <bean class="org.apache.activemq.command.ActiveMQQueue">
-                <constructor-arg value="cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
-            </bean>
-        </property>
-    </bean>
+          class="top.cardone.log.service.impl.OperateLogServiceImpl">
+		<property name="dao" ref="top.cardone.log.dao.OperateLogDao"/>
+	</bean>
 </beans>

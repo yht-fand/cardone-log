@@ -1,6 +1,7 @@
 package top.cardone.log.message;
 
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import top.cardone.context.ApplicationContextHolder;
 import top.cardone.log.service.OperateLogService;
 
@@ -21,6 +22,10 @@ public class TestInfoMessageListener implements MessageListener {
 
             try {
                 String id = mapMessage.getString("ID");
+
+                if (StringUtils.isBlank(id)) {
+                    id = mapMessage.getStringProperty("ID");
+                }
 
                 ApplicationContextHolder.getBean(OperateLogService.class).recordTestInfo(id);
             } catch (JMSException e) {

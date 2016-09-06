@@ -12,9 +12,6 @@ DEPARTMENT_CODE AS departmentCode
 <#case "message">
 MESSAGE AS message
 <#break>
-<#case "operateLogCode">
-OPERATE_LOG_CODE AS operateLogCode
-<#break>
 <#case "operateLogId">
 OPERATE_LOG_ID AS operateLogId
 <#break>

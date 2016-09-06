@@ -1,0 +1,38 @@
+{
+  "createdByCode": {
+    "newName": "createdByCode",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "createdDate": {
+    "newName": "createdDate",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "departmentCode": {
+    "newName": "departmentCode",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "message": {
+    "newName": "message",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "operateLogId": {
+    "newName": "operateLogId",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "orgCode": {
+    "newName": "orgCode",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "siteCode": {
+    "newName": "siteCode",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "systemInfoCode": {
+    "newName": "systemInfoCode",
+    "funcBeanIds": "escapeSqlFunc"
+  },
+  "typeCode": {
+    "newName": "typeCode",
+    "funcBeanIds": "escapeSqlFunc"
+  }
+}

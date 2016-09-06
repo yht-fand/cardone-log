@@ -4,17 +4,17 @@
     <modelVersion>4.0.0</modelVersion>
 	
     <parent>
-		<groupId>top.cardone.log</groupId>
+		<groupId>top.cardone</groupId>
         <artifactId>cardone-log-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../parent</relativePath>
     </parent>
 
-    <groupId>top.cardone.log</groupId>
+    <groupId>top.cardone</groupId>
     <artifactId>cardone-log-implements</artifactId>
     <version>${project.parent.version}</version>
     <name>${project.artifactId}</name>
-    <description>top.cardone.log cardone-log-implements</description>
+    <description>top.cardone cardone-log-implements</description>
     <packaging>pom</packaging>
 
     <modules>

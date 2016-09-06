@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 	
     <parent>
-		<groupId>top.cardone.log</groupId>
+		<groupId>top.cardone</groupId>
         <artifactId>cardone-log-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../parent</relativePath>
@@ -14,16 +14,16 @@
         <maven.deploy.enabled>true</maven.deploy.enabled>
     </properties>
 
-    <groupId>top.cardone.log</groupId>
+    <groupId>top.cardone</groupId>
     <artifactId>cardone-log-consumer</artifactId>
     <version>${project.parent.version}</version>
     <name>${project.artifactId}</name>
-    <description>top.cardone.log cardone-log-consumer</description>
+    <description>top.cardone cardone-log-consumer</description>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-			<groupId>top.cardone.log</groupId>
+			<groupId>top.cardone</groupId>
 			<artifactId>cardone-log-api</artifactId>
         </dependency>
 
@@ -78,11 +78,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
@@ -96,6 +91,33 @@
             <groupId>top.cardone</groupId>
             <artifactId>cardone-security-implements-shiro-oauth2-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+		<!-- 使用eureka -->
+		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+		
+        <!-- 使用hystrix -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-client</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -103,6 +125,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/vx/**</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -16,10 +16,6 @@ ${prefixName} `DEPARTMENT_CODE`
 ${prefixName} `MESSAGE`
 <#assign prefixName = ','>
 </#if>
-<#if (select_operateLogCode??)>
-${prefixName} `OPERATE_LOG_CODE`
-<#assign prefixName = ','>
-</#if>
 <#if (select_operateLogId??)>
 ${prefixName} `OPERATE_LOG_ID`
 <#assign prefixName = ','>
@@ -45,7 +41,6 @@ ${prefixName} `TYPE_CODE`
 , `CREATED_DATE`
 , `DEPARTMENT_CODE`
 , `MESSAGE`
-, `OPERATE_LOG_CODE`
 , `OPERATE_LOG_ID`
 , `ORG_CODE`
 , `SITE_CODE`
@@ -69,10 +64,6 @@ ${prefixName} `DEPARTMENT_CODE` ${order_by_departmentCode_value!}
 </#if>
 <#if (order_by_message??)>
 ${prefixName} `MESSAGE` ${order_by_message_value!}
-<#assign prefixName = ','>
-</#if>
-<#if (order_by_operateLogCode??)>
-${prefixName} `OPERATE_LOG_CODE` ${order_by_operateLogCode_value!}
 <#assign prefixName = ','>
 </#if>
 <#if (order_by_operateLogId??)>

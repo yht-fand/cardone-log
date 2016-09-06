@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 操作日志 -->
+    <bean parent="messageListenerContainerParnet">
+        <property name="messageListener">
+            <bean  parent="remoteInvocationExecutorParnet">
+                <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
+                <property name="service" ref="top.cardone.log.service.OperateLogService"/>
+            </bean>
+        </property>
+        <property name="destination">
+            <bean class="org.apache.activemq.command.ActiveMQQueue">
+                <constructor-arg value="cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

@@ -11,43 +11,10 @@
         <property name="connectionFactory">
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
                 <property name="brokerURL" value="${jms.broker_url}"/>
-                <!-- 对PERSISTENT的消息进行异步发送(NON_PERSISTENT消息默认异步发送) -->
-                <property name="useAsyncSend" value="true"/>
+                <property name="alwaysSyncSend" value="true"/>
                 <property name="trustAllPackages" value="true"/>
             </bean>
         </property>
-        <property name="maxConnections" value="2000"/>
-        <property name="idleTimeout" value="60000"/>
+        <property name="maxConnections" value="100"/>
     </bean>
-
-    <!-- 发送测试信息 -->
-    <bean id="org.springframework.jms.core.JmsMessageOperations.sendTestInfo"
-          class="org.springframework.jms.core.JmsMessagingTemplate">
-        <constructor-arg>
-            <bean class="org.springframework.jms.core.JmsTemplate">
-                <property name="connectionFactory" ref="advancedConnectionFactory"/>
-                <!-- 使 deliveryMode, priority, timeToLive设置生效-->
-                <property name="explicitQosEnabled" value="true"/>
-                <!-- 设置NON_PERSISTENT模式, 默认为PERSISTENT -->
-                <property name="deliveryPersistent" value="false"/>
-                <!-- 设置优先级, 默认为4 -->
-                <property name="priority" value="9"/>
-                <property name="defaultDestinationName" value="cardone-log-${cardone-log-version}:testInfo"/>
-            </bean>
-        </constructor-arg>
-        <property name="defaultDestinationName" value="cardone-log-${cardone-log-version}:sendTestInfo"/>
-    </bean>
-
-<!--    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-        <property name="connectionFactory" ref="advancedConnectionFactory"/>
-        <property name="destinationName" ref="cardone-log-${cardone-log-version}:sendTestInfo"/>
-        <property name="messageListener">
-            <bean class="top.cardone.log.message.TestInfoMessageListener"/>
-        </property>
-        &lt;!&ndash; 初始5个Consumer, 可动态扩展到10 &ndash;&gt;
-        <property name="concurrentConsumers" value="5"/>
-        <property name="maxConcurrentConsumers" value="2000"/>
-        &lt;!&ndash; 设置消息确认模式为Client &ndash;&gt;
-        <property name="sessionAcknowledgeModeName" value="CLIENT_ACKNOWLEDGE"/>
-    </bean>-->
 </beans>

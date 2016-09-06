@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean name="remoteInvocationExecutorParnet" class="org.springframework.jms.remoting.JmsInvokerServiceExporter" abstract="true">
+    <bean name="invokerProxyFactoryParnet" class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean"
+          abstract="true">
+        <property name="connectionFactory" ref="advancedConnectionFactory"/>
+        <property name="remoteInvocationFactory">
+            <bean class="org.apache.shiro.spring.remoting.SecureRemoteInvocationFactory"/>
+        </property>
+    </bean>
+
+    <bean name="remoteInvocationExecutorParnet" class="org.springframework.jms.remoting.JmsInvokerServiceExporter"
+          abstract="true">
         <property name="remoteInvocationExecutor">
             <bean class="org.apache.shiro.spring.remoting.SecureRemoteInvocationExecutor"/>
         </property>
@@ -10,8 +19,8 @@
     <bean name="messageListenerContainerParnet" class="org.springframework.jms.listener.DefaultMessageListenerContainer"
           abstract="true" lazy-init="false">
         <property name="connectionFactory" ref="advancedConnectionFactory"/>
-        <!-- 初始2个Consumer, 可动态扩展到10 -->
-        <property name="concurrentConsumers" value="2"/>
-        <property name="maxConcurrentConsumers" value="10"/>
+        <!-- 初始6个Consumer, 可动态扩展到18 -->
+        <property name="concurrentConsumers" value="6"/>
+        <property name="maxConcurrentConsumers" value="18"/>
     </bean>
 </beans>

@@ -1,0 +1,29 @@
+{
+  "CREATED_BY_CODE": {
+    "newName": "createdByCode"
+  },
+  "CREATED_DATE": {
+    "newName": "createdDate"
+  },
+  "DEPARTMENT_CODE": {
+    "newName": "departmentCode"
+  },
+  "MESSAGE": {
+    "newName": "message"
+  },
+  "OPERATE_LOG_ID": {
+    "newName": "operateLogId"
+  },
+  "ORG_CODE": {
+    "newName": "orgCode"
+  },
+  "SITE_CODE": {
+    "newName": "siteCode"
+  },
+  "SYSTEM_INFO_CODE": {
+    "newName": "systemInfoCode"
+  },
+  "TYPE_CODE": {
+    "newName": "typeCode"
+  }
+}

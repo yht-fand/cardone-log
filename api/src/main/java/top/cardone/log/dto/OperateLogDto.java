@@ -9,4 +9,8 @@ import top.cardone.log.po.OperateLog;
  */
 @lombok.ToString(callSuper = true)
 public class OperateLogDto extends OperateLog {
+    /**
+     * 版本号
+     */
+    private static final long serialVersionUID = 103396336112939385L;
 }

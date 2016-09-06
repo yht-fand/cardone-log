@@ -18,10 +18,6 @@ ${prefixName} `DEPARTMENT_CODE`
 ${prefixName} `MESSAGE`
 <#assign prefixName = ','>
 </#if>
-<#if (insert_operateLogCode??) && (insert_operateLogCode_value??)>
-${prefixName} `OPERATE_LOG_CODE`
-<#assign prefixName = ','>
-</#if>
 <#if (insert_operateLogId??) && (insert_operateLogId_value??)>
 ${prefixName} `OPERATE_LOG_ID`
 <#assign prefixName = ','>
@@ -61,10 +57,6 @@ ${prefixName} :insert_departmentCode_value
 ${prefixName} :insert_message_value
 <#assign prefixName = ','>
 </#if>
-<#if (insert_operateLogCode??) && (insert_operateLogCode_value??)>
-${prefixName} :insert_operateLogCode_value
-<#assign prefixName = ','>
-</#if>
 <#if (insert_operateLogId??) && (insert_operateLogId_value??)>
 ${prefixName} :insert_operateLogId_value
 <#assign prefixName = ','>
@@ -93,9 +85,6 @@ ${prefixName} E.CREATED_BY_CODE = :where_and_eq_createdByCode_value
 <#else>
 ${prefixName} E.CREATED_BY_CODE IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_createdDate??)>
@@ -104,9 +93,6 @@ ${prefixName} E.CREATED_DATE = :where_and_eq_createdDate_value
 <#else>
 ${prefixName} E.CREATED_DATE IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_departmentCode??)>
@@ -115,9 +101,6 @@ ${prefixName} E.DEPARTMENT_CODE = :where_and_eq_departmentCode_value
 <#else>
 ${prefixName} E.DEPARTMENT_CODE IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_message??)>
@@ -126,20 +109,6 @@ ${prefixName} E.MESSAGE = :where_and_eq_message_value
 <#else>
 ${prefixName} E.MESSAGE IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
-<#assign prefixName = 'AND'>
-</#if>
-<#if (where_and_eq_operateLogCode??)>
-<#if (where_and_eq_operateLogCode_value??)>
-${prefixName} E.OPERATE_LOG_CODE = :where_and_eq_operateLogCode_value
-<#else>
-${prefixName} E.OPERATE_LOG_CODE IS NULL
-</#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_operateLogId??)>
@@ -148,9 +117,6 @@ ${prefixName} E.OPERATE_LOG_ID = :where_and_eq_operateLogId_value
 <#else>
 ${prefixName} E.OPERATE_LOG_ID IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_orgCode??)>
@@ -159,9 +125,6 @@ ${prefixName} E.ORG_CODE = :where_and_eq_orgCode_value
 <#else>
 ${prefixName} E.ORG_CODE IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_siteCode??)>
@@ -170,9 +133,6 @@ ${prefixName} E.SITE_CODE = :where_and_eq_siteCode_value
 <#else>
 ${prefixName} E.SITE_CODE IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_systemInfoCode??)>
@@ -181,9 +141,6 @@ ${prefixName} E.SYSTEM_INFO_CODE = :where_and_eq_systemInfoCode_value
 <#else>
 ${prefixName} E.SYSTEM_INFO_CODE IS NULL
 </#if>
-<#assign prefixName = ''>
-</#if>
-<#if (prefixName!) != 'WHERE'>
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_typeCode??)>
@@ -192,6 +149,6 @@ ${prefixName} E.TYPE_CODE = :where_and_eq_typeCode_value
 <#else>
 ${prefixName} E.TYPE_CODE IS NULL
 </#if>
-<#assign prefixName = ''>
+<#assign prefixName = 'AND'>
 </#if>
 ))

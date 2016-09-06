@@ -3,7 +3,7 @@ package top.cardone;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
  * 主执行端
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ImportResource;
  * @author yao hai tao
  */
 @Log4j2
-@ImportResource({"${app.root}/config/applicationContext.xml"})
 @ComponentScan
 public class ProviderApplication {
     /**
@@ -21,6 +20,6 @@ public class ProviderApplication {
      * @throws Exception 异常
      */
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(ProviderApplication.class, args);
+        new FileSystemXmlApplicationContext(new String[]{"${spring.configLocation}"}, true, SpringApplication.run(ProviderApplication.class, args));
     }
 }

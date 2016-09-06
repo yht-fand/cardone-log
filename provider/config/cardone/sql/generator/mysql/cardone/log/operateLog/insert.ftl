@@ -17,10 +17,6 @@ ${prefixName} `DEPARTMENT_CODE`
 ${prefixName} `MESSAGE`
 <#assign prefixName = ','>
 </#if>
-<#if (insert_operateLogCode??) && (insert_operateLogCode_value??)>
-${prefixName} `OPERATE_LOG_CODE`
-<#assign prefixName = ','>
-</#if>
 <#if (insert_operateLogId??) && (insert_operateLogId_value??)>
 ${prefixName} `OPERATE_LOG_ID`
 <#assign prefixName = ','>
@@ -58,10 +54,6 @@ ${prefixName} :insert_departmentCode_value
 </#if>
 <#if (insert_message??) && (insert_message_value??)>
 ${prefixName} :insert_message_value
-<#assign prefixName = ','>
-</#if>
-<#if (insert_operateLogCode??) && (insert_operateLogCode_value??)>
-${prefixName} :insert_operateLogCode_value
 <#assign prefixName = ','>
 </#if>
 <#if (insert_operateLogId??) && (insert_operateLogId_value??)>
