@@ -1,7 +1,7 @@
 package top.cardone.func.vx.log.operateLog;
 
-import top.cardone.ConsumerApplication;
 import com.google.common.base.Charsets;
+import top.cardone.ConsumerApplication;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
@@ -16,6 +16,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import top.cardone.context.ApplicationContextHolder;
+import top.cardone.core.util.func.Func1;
 
 import java.io.IOException;
 
@@ -24,7 +26,7 @@ import java.io.IOException;
 @WebIntegrationTest(value = {"spring.profiles.active=test"})
 @SpringApplicationConfiguration(classes = ConsumerApplication.class)
 public class C0002FuncTest {
-    @Value("http://localhost:${server.port:8765}/cardone-log/vx/log/operateLog/c0002.json")
+    @Value("http://localhost:${server.port:8765}/${server.context-path:}/vx/log/operateLog/c0002.json")
     private String funcUrl;
 
     @Value("${app.root}/src/test/java/top/cardone/func/vx/log/operateLog/C0002FuncTest.func.input.json")
@@ -40,7 +42,7 @@ public class C0002FuncTest {
         headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         headers.set("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
-        headers.set("token", org.apache.commons.codec.digest.DigestUtils.md5Hex("cardone.admin"));
+        headers.set("token", (String) ApplicationContextHolder.getBean(Func1.class, "readCredentialsForAesFunc").func("admin"));
         headers.set("username", "admin");
 
         if (!funcInputResource.exists()) {

@@ -1,1 +1,1 @@
-DELETE FROM t_operate_log WHERE INSTR(:ids, operateLogId) > 0
+DELETE FROM c1_operate_log WHERE INSTR(:operateLogIds, OPERATE_LOG_ID) > 0

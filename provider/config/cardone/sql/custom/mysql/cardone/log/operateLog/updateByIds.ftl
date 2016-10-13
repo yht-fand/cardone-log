@@ -1,1 +1,1 @@
-UPDATE t_operate_log SET END_DATE = NOW() WHERE INSTR(:ids, operateLogId) > 0
+UPDATE c1_operate_log SET END_DATE = NOW(), DATA_STATE_CODE = '0' WHERE INSTR(:operateLogIds, OPERATE_LOG_ID) > 0
