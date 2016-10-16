@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+    <bean name="top.cardone.validator.Validator" class="top.cardone.validator.ValidatorImpl"/>
+
+    <bean name="creditcardValidatorFunc" class="top.cardone.validator.func.CreditcardValidatorFunc"/>
+
+    <bean name="dateISOValidatorFunc" class="top.cardone.validator.func.DateISOValidatorFunc"/>
+
+    <bean name="dateValidatorFunc" class="top.cardone.validator.func.DateValidatorFunc"/>
+
+    <bean name="digitsValidatorFunc" class="top.cardone.validator.func.DigitsValidatorFunc"/>
+
+    <bean name="emailValidatorFunc" class="top.cardone.validator.func.EmailValidatorFunc"/>
+
+    <bean name="equalToValidatorFunc" class="top.cardone.validator.func.EqualToValidatorFunc"/>
+
+    <bean name="extensionValidatorFunc" class="top.cardone.validator.func.ExtensionValidatorFunc"/>
+
+    <bean name="maxlengthValidatorFunc" class="top.cardone.validator.func.MaxLengthValidatorFunc"/>
+
+    <bean name="maxValidatorFunc" class="top.cardone.validator.func.MaxValidatorFunc"/>
+
+    <bean name="minlengthValidatorFunc" class="top.cardone.validator.func.MinLengthValidatorFunc"/>
+
+    <bean name="minValidatorFunc" class="top.cardone.validator.func.MinValidatorFunc"/>
+
+    <bean name="numberValidatorFunc" class="top.cardone.validator.func.NumberValidatorFunc"/>
+
+    <bean name="rangelengthValidatorFunc" class="top.cardone.validator.func.RangeLengthValidatorFunc"/>
+
+    <bean name="rangeValidatorFunc" class="top.cardone.validator.func.RangeValidatorFunc"/>
+
+    <bean name="requiredValidatorFunc" class="top.cardone.validator.func.RequiredValidatorFunc"/>
+
+    <bean name="urlValidatorFunc" class="top.cardone.validator.func.UrlValidatorFunc"/>
+</beans>

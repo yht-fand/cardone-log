@@ -1,29 +1,11 @@
 {
-  "CREATED_BY_CODE": {
-    "newName": "createdByCode"
-  },
-  "CREATED_DATE": {
-    "newName": "createdDate"
-  },
-  "DEPARTMENT_CODE": {
-    "newName": "departmentCode"
-  },
-  "MESSAGE": {
-    "newName": "message"
-  },
-  "OPERATE_LOG_ID": {
-    "newName": "operateLogId"
-  },
-  "ORG_CODE": {
-    "newName": "orgCode"
-  },
-  "SITE_CODE": {
-    "newName": "siteCode"
-  },
-  "SYSTEM_INFO_CODE": {
-    "newName": "systemInfoCode"
-  },
-  "TYPE_CODE": {
-    "newName": "typeCode"
-  }
+  "createdByCode": "CREATED_BY_CODE",
+  "createdDate": "CREATED_DATE",
+  "departmentCode": "DEPARTMENT_CODE",
+  "message": "MESSAGE",
+  "operateLogId": "OPERATE_LOG_ID",
+  "orgCode": "ORG_CODE",
+  "siteCode": "SITE_CODE",
+  "systemInfoCode": "SYSTEM_INFO_CODE",
+  "typeCode": "TYPE_CODE"
 }

@@ -1,1 +1,13 @@
-{}
+{
+  "createdByCode": "createdByCode",
+  "createdDate": "createdDate",
+  "departmentCode": "departmentCode",
+  "message": "message",
+  "operateLogId": "operateLogId",
+  "orgCode": "orgCode",
+  "siteCode": "siteCode",
+  "systemInfoCode": "systemInfoCode",
+  "typeCode": "typeCode",
+  "pageSize": "pageSize",
+  "pageNumber": "pageNumber"
+}

@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "operateLogCode": {
+      "required": true
+    }
+  },
+  "messages": {
+    "operateLogCode": {
+      "required": "操作日志编号不能为空值!"
+    }
+  }
+}
