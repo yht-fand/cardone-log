@@ -1,11 +1,25 @@
 {
+  "beginDate": "BEGIN_DATE",
   "createdByCode": "CREATED_BY_CODE",
   "createdDate": "CREATED_DATE",
+  "dataStateCode": "DATA_STATE_CODE",
   "departmentCode": "DEPARTMENT_CODE",
+  "endDate": "END_DATE",
+  "flagCode": "FLAG_CODE",
+  "flagObjectCode": "FLAG_OBJECT_CODE",
+  "jsonData": "JSON_DATA",
+  "lastModifiedByCode": "LAST_MODIFIED_BY_CODE",
+  "lastModifiedDate": "LAST_MODIFIED_DATE",
   "message": "MESSAGE",
+  "objectCode": "OBJECT_CODE",
+  "objectId": "OBJECT_ID",
+  "objectTypeCode": "OBJECT_TYPE_CODE",
   "operateLogId": "OPERATE_LOG_ID",
+  "order": "ORDER_",
   "orgCode": "ORG_CODE",
   "siteCode": "SITE_CODE",
+  "stateCode": "STATE_CODE",
   "systemInfoCode": "SYSTEM_INFO_CODE",
-  "typeCode": "TYPE_CODE"
+  "typeCode": "TYPE_CODE",
+  "version": "VERSION_"
 }

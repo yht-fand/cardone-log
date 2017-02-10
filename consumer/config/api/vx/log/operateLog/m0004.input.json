@@ -1,11 +1,25 @@
 {
+  "beginDate": "beginDate",
   "createdByCode": "createdByCode",
   "createdDate": "createdDate",
+  "dataStateCode": "dataStateCode",
   "departmentCode": "departmentCode",
+  "endDate": "endDate",
+  "flagCode": "flagCode",
+  "flagObjectCode": "flagObjectCode",
+  "jsonData": "jsonData",
+  "lastModifiedByCode": "lastModifiedByCode",
+  "lastModifiedDate": "lastModifiedDate",
   "message": "message",
+  "objectCode": "objectCode",
+  "objectId": "objectId",
+  "objectTypeCode": "objectTypeCode",
   "operateLogId": "operateLogId",
+  "order": "order",
   "orgCode": "orgCode",
   "siteCode": "siteCode",
+  "stateCode": "stateCode",
   "systemInfoCode": "systemInfoCode",
-  "typeCode": "typeCode"
+  "typeCode": "typeCode",
+  "version": "version"
 }

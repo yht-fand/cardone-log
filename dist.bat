@@ -18,3 +18,5 @@ xcopy consumer\config-%1 dist\%1\consumer\config /Y/E/C/R/I
 xcopy consumer\run*.* dist\%1\consumer /Y/C/R/I
 xcopy consumer\target\cardone-log-consumer-*.jar dist\%1\consumer /Y/C/R/I
 rd /s/q dist\%1\consumer\config\api\vx
+del /s/q *.log
+del /s/q *.lock
