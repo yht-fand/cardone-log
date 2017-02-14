@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.core.io.Resource;
@@ -24,7 +24,7 @@ import java.io.IOException;
 @Log4j2
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebIntegrationTest(value = {"spring.profiles.active=test"})
-@SpringApplicationConfiguration(classes = ConsumerApplication.class)
+@SpringBootTest(classes = ConsumerApplication.class)
 public class U0001FuncTest {
     @Value("http://localhost:${server.port:8765}/${server.context-path:}/vx/log/operateLog/u0001.json")
     private String funcUrl;

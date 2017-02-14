@@ -4,7 +4,7 @@ import top.cardone.ProviderApplication;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.cardone.context.ApplicationContextHolder;
@@ -12,7 +12,7 @@ import top.cardone.context.ApplicationContextHolder;
 @Log4j2
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebIntegrationTest(value = {"spring.profiles.active=test"})
-@SpringApplicationConfiguration(classes = ProviderApplication.class)
+@SpringBootTest(classes = ProviderApplication.class)
 public class OperateLogServiceTest {
     @Test
     public void pageCache() throws Exception {
