@@ -17,10 +17,10 @@
     </bean>
 
     <bean name="messageListenerContainerParnet" class="org.springframework.jms.listener.DefaultMessageListenerContainer"
-          abstract="true" lazy-init="false">
+          abstract="true">
         <property name="connectionFactory" ref="advancedConnectionFactory"/>
-        <!-- 初始6个Consumer, 可动态扩展到18 -->
-        <property name="concurrentConsumers" value="6"/>
-        <property name="maxConcurrentConsumers" value="18"/>
+        <!-- 初始1个Consumer, 可动态扩展到10 -->
+        <property name="concurrentConsumers" value="5"/>
+        <property name="maxConcurrentConsumers" value="50"/>
     </bean>
 </beans>

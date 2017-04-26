@@ -1,1 +1,49 @@
-{}
+{
+  "input": {
+    "beginDate": "beginDate",
+    "createdByCode": "createdByCode",
+    "createdDate": "createdDate",
+    "dataStateCode": "dataStateCode",
+    "departmentCode": "departmentCode",
+    "endDate": "endDate",
+    "flagCode": "flagCode",
+    "flagObjectCode": "flagObjectCode",
+    "jsonData": "jsonData",
+    "lastModifiedByCode": "lastModifiedByCode",
+    "lastModifiedDate": "lastModifiedDate",
+    "message": "message",
+    "objectCode": "objectCode",
+    "objectId": "objectId",
+    "objectTypeCode": "objectTypeCode",
+    "operateLogId": "operateLogId",
+    "order": "order",
+    "orgCode": "orgCode",
+    "siteCode": "siteCode",
+    "stateCode": "stateCode",
+    "systemInfoCode": "systemInfoCode",
+    "typeCode": "typeCode",
+    "version": "version"
+  },
+  "validation": {
+    "rules": {
+      "operateLogId": {
+        "required": true
+      },
+      "name": {
+        "required": true,
+        "minlength": 4,
+        "maxlength": 255
+      }
+    },
+    "messages": {
+      "operateLogId": {
+        "required": "必填"
+      },
+      "name": {
+        "required": "名称不能为空值!",
+        "minlength": "需3个字符以上",
+        "maxlength": "需小于255个字符"
+      }
+    }
+  }
+}

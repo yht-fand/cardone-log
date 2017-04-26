@@ -1,1 +1,17 @@
-{}
+{
+  "input": {
+    "operateLogIds": "operateLogIds"
+  },
+  "validation": {
+    "rules": {
+      "operateLogIds": {
+        "required": true
+      }
+    },
+    "messages": {
+      "operateLogIds": {
+        "required": "操作日志标识集合不能为空值!"
+      }
+    }
+  }
+}

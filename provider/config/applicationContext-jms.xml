@@ -6,15 +6,8 @@
     <description>JMS高级应用配置(NON_PERSISTENT,DURIABLE,SELECTOR)</description>
 
     <!-- ActiveMQ 连接工厂 -->
-    <bean id="advancedConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
-          destroy-method="stop">
-        <property name="connectionFactory">
-            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-                <property name="brokerURL" value="${jms.broker_url}"/>
-                <property name="alwaysSyncSend" value="true"/>
-                <property name="trustAllPackages" value="true"/>
-            </bean>
-        </property>
-        <property name="maxConnections" value="100"/>
+    <bean id="advancedConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${jms.broker_url}"/>
+        <property name="trustAllPackages" value="true"/>
     </bean>
 </beans>

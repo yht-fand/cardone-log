@@ -1,12 +1,13 @@
 package top.cardone.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.cardone.context.ApplicationContextHolder;
 import top.cardone.core.CodeException;
-import top.cardone.web.support.FuncBindSupport;
+import top.cardone.web.support.WebSupport;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.Map;
 /**
  * Created by cardone-home-001 on 2016/1/4.
  */
+@Log4j2
 @Controller("top.cardone.controller.Controller")
 public class CommonController {
     @Value("${application.message:Hello World}")
@@ -30,7 +32,7 @@ public class CommonController {
     @RequestMapping(value = "/**/*.json")
     @ResponseBody
     public Object allJson(HttpServletRequest request) throws IOException {
-        return ApplicationContextHolder.getBean(FuncBindSupport.class).func(request);
+        return ApplicationContextHolder.getBean(WebSupport.class).func(request, !log.isDebugEnabled());
     }
 
     @RequestMapping("/")
