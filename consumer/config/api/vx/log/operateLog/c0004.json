@@ -1,5 +1,6 @@
 {
   "input": {
+    "batchNo": "batchNo",
     "beginDate": "beginDate",
     "createdByCode": "createdByCode",
     "createdDate": "createdDate",
@@ -16,8 +17,9 @@
     "objectId": "objectId",
     "objectTypeCode": "objectTypeCode",
     "operateLogId": "operateLogId",
-    "order": "order",
+    "orderBy": "orderBy",
     "orgCode": "orgCode",
+    "personalCode": "personalCode",
     "siteCode": "siteCode",
     "stateCode": "stateCode",
     "systemInfoCode": "systemInfoCode",

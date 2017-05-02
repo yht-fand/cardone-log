@@ -48,7 +48,7 @@ OBJECT_TYPE_CODE AS objectTypeCode
 <#case "operateLogId">
 OPERATE_LOG_ID AS operateLogId
 <#break>
-<#case "order">
+<#case "orderBy">
 ORDER_ AS order
 <#break>
 <#case "orgCode">

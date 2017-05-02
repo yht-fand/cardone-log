@@ -1,5 +1,9 @@
 SELECT
 <#assign prefixName = ' '>
+<#if (select_batchNo??)>
+${prefixName} batch_no
+<#assign prefixName = ','>
+</#if>
 <#if (select_beginDate??)>
 ${prefixName} begin_date
 <#assign prefixName = ','>
@@ -64,12 +68,16 @@ ${prefixName} object_type_code
 ${prefixName} operate_log_id
 <#assign prefixName = ','>
 </#if>
-<#if (select_order??)>
-${prefixName} order_
+<#if (select_orderBy??)>
+${prefixName} order_by_
 <#assign prefixName = ','>
 </#if>
 <#if (select_orgCode??)>
 ${prefixName} org_code
+<#assign prefixName = ','>
+</#if>
+<#if (select_personalCode??)>
+${prefixName} personal_code
 <#assign prefixName = ','>
 </#if>
 <#if (select_siteCode??)>
@@ -98,6 +106,10 @@ ${prefixName} version_
 FROM c1_operate_log
 <#include "where.ftl">
 <#assign prefixName = 'ORDER BY'>
+<#if (order_by_batchNo??)>
+${prefixName} batch_no ${order_by_batchNo_value!}
+<#assign prefixName = ','>
+</#if>
 <#if (order_by_beginDate??)>
 ${prefixName} begin_date ${order_by_beginDate_value!}
 <#assign prefixName = ','>
@@ -162,12 +174,16 @@ ${prefixName} object_type_code ${order_by_objectTypeCode_value!}
 ${prefixName} operate_log_id ${order_by_operateLogId_value!}
 <#assign prefixName = ','>
 </#if>
-<#if (order_by_order??)>
-${prefixName} order_ ${order_by_order_value!}
+<#if (order_by_orderBy??)>
+${prefixName} order_by_ ${order_by_orderBy_value!}
 <#assign prefixName = ','>
 </#if>
 <#if (order_by_orgCode??)>
 ${prefixName} org_code ${order_by_orgCode_value!}
+<#assign prefixName = ','>
+</#if>
+<#if (order_by_personalCode??)>
+${prefixName} personal_code ${order_by_personalCode_value!}
 <#assign prefixName = ','>
 </#if>
 <#if (order_by_siteCode??)>

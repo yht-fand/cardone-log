@@ -11,6 +11,7 @@
 
 字段名|可为空|类型及范围|说明
 ---|---|---|---
+batch_no|YES|String(255)|批次编号
 begin_date|YES|Date(13)|开始时间
 created_by_code|YES|String(255)|创建人代码
 created_date|YES|Date(13)|创建时间
@@ -27,8 +28,9 @@ object_code|YES|String(255)|对象代码
 object_id|YES|String(255)|对象标识
 object_type_code|YES|String(255)|对象类别代码(数据字典)
 operate_log_id|NO|String(255)|操作日志标识
-order_|YES|Long(19)|排序
+order_by_|YES|Long(19)|排序
 org_code|YES|String(255)|组织代码
+personal_code|YES|String(255)|个人代码
 site_code|YES|String(255)|站点代码
 state_code|YES|String(255)|状态代码(数据字典)
 system_info_code|YES|String(255)|系统信息代码
