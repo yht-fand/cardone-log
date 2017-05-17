@@ -40,8 +40,8 @@ public class InsertOperateLogFunc implements Func3<Object, ProceedingJoinPoint, 
 
 	@Override
 	public Object func(ProceedingJoinPoint proceedingJoinPoint, Map<String, Object> configMap, Map<String, Object> contextMap) {
-		String typeCode = StringUtils.defaultString(MapUtils.getString(configMap, "typeCode"), this.typeCode.get());
-		String message = StringUtils.defaultString(MapUtils.getString(configMap, "message"), this.message.get());
+		String typeCode = StringUtils.defaultIfBlank(MapUtils.getString(configMap, "typeCode"), this.typeCode.get());
+		String message = StringUtils.defaultIfBlank(MapUtils.getString(configMap, "message"), this.message.get());
 
 		Map<String, Object> insert = Maps.newHashMap();
 
