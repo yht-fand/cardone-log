@@ -27,7 +27,7 @@ OBJECT_CODE|YES|String(255)|对象代码
 OBJECT_ID|YES|String(255)|对象标识
 OBJECT_TYPE_CODE|YES|String(255)|对象类别代码(数据字典)
 OPERATE_LOG_ID|NO|String(255)|操作日志标识
-ORDER_|YES|Long(19)|排序
+ORDER_BY_|YES|Long(19)|排序
 ORG_CODE|YES|String(255)|组织代码
 SITE_CODE|YES|String(255)|站点代码
 STATE_CODE|YES|String(255)|状态代码(数据字典)

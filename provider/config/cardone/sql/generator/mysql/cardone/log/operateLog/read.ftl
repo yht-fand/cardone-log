@@ -49,7 +49,7 @@ OBJECT_TYPE_CODE AS objectTypeCode
 OPERATE_LOG_ID AS operateLogId
 <#break>
 <#case "orderBy">
-ORDER_ AS order
+ORDER_BY_ AS order
 <#break>
 <#case "orgCode">
 ORG_CODE AS orgCode

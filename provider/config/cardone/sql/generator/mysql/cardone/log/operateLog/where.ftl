@@ -128,10 +128,10 @@ ${prefixName} `OPERATE_LOG_ID` IS NULL
 <#assign prefixName = 'AND'>
 </#if>
 <#if (where_and_eq_order??)>
-<#if (where_and_eq_order_value??)>
-${prefixName} `ORDER_` = :where_and_eq_order_value
+<#if (where_and_eq_order_by_value??)>
+${prefixName} `ORDER_BY_` = :where_and_eq_order_by_value
 <#else>
-${prefixName} `ORDER_` IS NULL
+${prefixName} `ORDER_BY_` IS NULL
 </#if>
 <#assign prefixName = 'AND'>
 </#if>
