@@ -1,79 +1,79 @@
 SELECT
 <#switch (object_id!)>
 <#case "batchNo">
-batch_no AS batchNo
+"batch_no"
 <#break>
 <#case "beginDate">
-begin_date AS beginDate
+"begin_date"
 <#break>
 <#case "createdByCode">
-created_by_code AS createdByCode
+"created_by_code"
 <#break>
 <#case "createdDate">
-created_date AS createdDate
+"created_date"
 <#break>
 <#case "dataStateCode">
-data_state_code AS dataStateCode
+"data_state_code"
 <#break>
 <#case "departmentCode">
-department_code AS departmentCode
+"department_code"
 <#break>
 <#case "endDate">
-end_date AS endDate
+"end_date"
 <#break>
 <#case "flagCode">
-flag_code AS flagCode
+"flag_code"
 <#break>
 <#case "flagObjectCode">
-flag_object_code AS flagObjectCode
+"flag_object_code"
 <#break>
 <#case "jsonData">
-json_data AS jsonData
+"json_data"
 <#break>
 <#case "lastModifiedByCode">
-last_modified_by_code AS lastModifiedByCode
+"last_modified_by_code"
 <#break>
 <#case "lastModifiedDate">
-last_modified_date AS lastModifiedDate
+"last_modified_date"
 <#break>
 <#case "message">
-message AS message
+"message"
 <#break>
 <#case "objectCode">
-object_code AS objectCode
+"object_code"
 <#break>
 <#case "objectId">
-object_id AS objectId
+"object_id"
 <#break>
 <#case "objectTypeCode">
-object_type_code AS objectTypeCode
+"object_type_code"
 <#break>
 <#case "operateLogId">
-operate_log_id AS operateLogId
+"operate_log_id"
 <#break>
 <#case "orderBy">
-order_by_ AS orderBy
+"order_by_"
 <#break>
 <#case "orgCode">
-org_code AS orgCode
+"org_code"
 <#break>
 <#case "personalCode">
-personal_code AS personalCode
+"personal_code"
 <#break>
 <#case "siteCode">
-site_code AS siteCode
+"site_code"
 <#break>
 <#case "stateCode">
-state_code AS stateCode
+"state_code"
 <#break>
 <#case "systemInfoCode">
-system_info_code AS systemInfoCode
+"system_info_code"
 <#break>
 <#case "typeCode">
-type_code AS typeCode
+"type_code"
 <#break>
 <#case "version">
-version_ AS version
+"version_"
 <#break>
 <#default>
 COUNT(*) AS COUNT_

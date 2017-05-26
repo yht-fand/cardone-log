@@ -12,6 +12,7 @@
 target/
 test-output/
 bin/
+dist/
 *.ipr
 *.iml
 *.iws
