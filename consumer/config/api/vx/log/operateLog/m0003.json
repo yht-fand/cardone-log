@@ -42,13 +42,13 @@
     "messages": {
       "operateLogCode": {
         "required": "必填",
-        "minlength": "需3个字符以上",
-        "maxlength": "需小于255个字符"
+        "minlength": "需{0}个字符以上",
+        "maxlength": "需小于{0}个字符"
       },
       "name": {
         "required": "名称不能为空值!",
-        "minlength": "需3个字符以上",
-        "maxlength": "需小于255个字符"
+        "minlength": "需{0}个字符以上",
+        "maxlength": "需小于{0}个字符"
       }
     }
   },
