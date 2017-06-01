@@ -1,0 +1,42 @@
+{
+  "output": {
+    "permission_add": {
+      "authorityFunc": {
+        "code": "log:operateLog:add"
+      }
+    },
+    "permission_modify": {
+      "authorityFunc": {
+        "code": "log:operateLog:modify"
+      }
+    },
+    "permission_delete": {
+      "authorityFunc": {
+        "code": "log:operateLog:delete"
+      }
+    },
+    "permission_impData": {
+      "authorityFunc": {
+        "code": "log:operateLog:impData"
+      }
+    },
+    "permission_expData": {
+      "authorityFunc": {
+        "code": "log:operateLog:expData"
+      }
+    },
+    "startTime": {
+      "dateFormatFunc": {
+        "plusDays": -6,
+		"format": "yyyy-MM-dd",
+		"isNotNull": true
+      }
+    },
+    "endTime": {
+      "dateFormatFunc": {
+		"format": "yyyy-MM-dd",
+		"isNotNull": true
+      }
+    }
+  }
+}
