@@ -41,32 +41,14 @@
     },
     "messages": {
       "operateLogCode": {
-        "required": {
-          "code": "operateLogCode required",
-          "defaultMessage": "操作日志编号必填"
-        },
-        "minlength": {
-          "code": "operateLogCode minlength",
-          "defaultMessage": "操作日志编号需{0}个字符以上"
-        },
-        "maxlength": {
-          "code": "operateLogCode maxlength",
-          "defaultMessage": "操作日志编号需小于{0}个字符"
-        }
+        "required": "操作日志编号必填",
+        "minlength": "操作日志编号需{0}个字符以上",
+        "maxlength": "操作日志编号需小于{0}个字符"
       },
       "name": {
-        "required": {
-          "code": "name required",
-          "defaultMessage": "操作日志名称必填"
-        },
-        "minlength": {
-          "code": "name minlength",
-          "defaultMessage": "操作日志名称需{0}个字符以上"
-        },
-        "maxlength": {
-          "code": "name maxlength",
-          "defaultMessage": "操作日志名称需小于{0}个字符"
-        }
+        "required": "操作日志名称必填",
+        "minlength": "操作日志名称需{0}个字符以上",
+        "maxlength": "操作日志名称需小于{0}个字符"
       }
     }
   },
