@@ -6,7 +6,7 @@
     <parent>
         <groupId>top.cardone</groupId>
         <artifactId>cardone-parent</artifactId>
-        <version>Interior.SR1</version>
+        <version>Interior-SR1-SNAPSHOT</version>
         <relativePath/>
     </parent>
 
@@ -23,6 +23,10 @@
             <id>nexus-2</id>
             <name>Team Nexus Repository</name>
             <url>http://124.232.153.166:9191/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:10</updatePolicy>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -31,6 +35,10 @@
             <id>nexus-2</id>
             <name>Team Nexus Repository</name>
             <url>http://124.232.153.166:9191/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:10</updatePolicy>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
 
