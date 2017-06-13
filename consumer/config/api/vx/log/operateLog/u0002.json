@@ -33,7 +33,7 @@
       },
       "name": {
         "required": true,
-        "minlength": 1,
+        "minlength": 4,
         "maxlength": 255
       }
     },
