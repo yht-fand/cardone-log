@@ -6,7 +6,7 @@ import org.apache.shiro.SecurityUtils
 import java.time.LocalDateTime
 import java.time.ZoneId
 
-class index {
+class index implements java.io.Serializable {
     def input(input) {
         input
     }

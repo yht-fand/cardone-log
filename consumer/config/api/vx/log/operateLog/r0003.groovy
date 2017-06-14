@@ -9,7 +9,7 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 
-class r0003 {
+class r0003 implements java.io.Serializable {
     def input(input) {
         input.startTime = DateUtils.parseDate(input.startTime)
 

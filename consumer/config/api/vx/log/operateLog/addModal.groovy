@@ -5,7 +5,7 @@ import top.cardone.log.service.OperateLogService
 import top.cardone.context.ApplicationContextHolder
 import top.cardone.core.CodeException
 
-class addModal {
+class addModal implements java.io.Serializable {
     def input(input) {
         input
     }

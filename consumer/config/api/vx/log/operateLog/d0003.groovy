@@ -5,7 +5,7 @@ import top.cardone.log.service.OperateLogService
 import top.cardone.context.ApplicationContextHolder
 import top.cardone.core.CodeException
 
-class d0001 {
+class d0001 implements java.io.Serializable {
     def input(input) {
         def operateLogIds = input?.operateLogIds?.split(",")
 
