@@ -12,7 +12,6 @@
                     <map>
                         <entry key="sqlFileRoot" value="/cardone/log/operateLog/"/>
                         <entry key="pks" value="operateLogId"/>
-                        <entry key="codes" value="operateLogId"/>
                     </map>
                 </entry>
                 <entry key="insert">
@@ -20,6 +19,8 @@
                         <entry key="operateLogId" value="readRandomUUIDFunc"/>
                         <entry key="createdByCode" value="readCreatedByCodeFunc"/>
                         <entry key="createdDate" value="readCreatedDateFunc"/>
+                        <entry key="beginDate" value="readOneDateFunc"/>
+                        <entry key="endDate" value="endDateDefaultValueFunc"/>
                     </map>
                 </entry>
                 <entry key="update">
