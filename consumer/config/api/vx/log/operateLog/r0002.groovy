@@ -1,4 +1,4 @@
-package api.vx.log.operateLog
+package top.cardone.api.vx.log.operateLog
 
 import org.apache.commons.lang3.StringUtils
 import top.cardone.log.service.OperateLogService
@@ -21,7 +21,7 @@ class r0002 implements java.io.Serializable {
         def newOutput = []
 		
         for (def outputItem : output) {
-			newOutput.add(['label': outputItem['name'], 'value': outputItem['operateLog_code']])
+			newOutput.add(['label': outputItem['name'], 'value': outputItem['c1_operate_log_code']])
         }
 
         newOutput

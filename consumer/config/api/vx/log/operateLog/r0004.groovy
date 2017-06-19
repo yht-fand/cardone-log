@@ -1,4 +1,4 @@
-package api.vx.log.operateLog
+package top.cardone.api.vx.log.operateLog
 
 import top.cardone.configuration.service.DictionaryService
 import top.cardone.context.ApplicationContextHolder

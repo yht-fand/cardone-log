@@ -1,4 +1,4 @@
-package api.vx.log.operateLog
+package top.cardone.api.vx.log.operateLog
 
 import org.apache.commons.lang3.StringUtils
 import top.cardone.log.service.OperateLogService

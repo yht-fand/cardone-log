@@ -1,7 +1,4 @@
 {
-  "input": {
-    "operateLogId": "operateLogId"
-  },
   "validation": {
     "rules": {
       "operateLogId": {
@@ -13,32 +10,5 @@
         "required": "操作日志标识必填"
       }
     }
-  },
-  "output": {
-    "batchNo": "batch_no",
-    "beginDate": "begin_date",
-    "createdByCode": "created_by_code",
-    "createdDate": "created_date",
-    "dataStateCode": "data_state_code",
-    "departmentCode": "department_code",
-    "endDate": "end_date",
-    "flagCode": "flag_code",
-    "flagObjectCode": "flag_object_code",
-    "jsonData": "json_data",
-    "lastModifiedByCode": "last_modified_by_code",
-    "lastModifiedDate": "last_modified_date",
-    "message": "message",
-    "objectCode": "object_code",
-    "objectId": "object_id",
-    "objectTypeCode": "object_type_code",
-    "operateLogId": "operate_log_id",
-    "orderBy": "order_by_",
-    "orgCode": "org_code",
-    "personalCode": "personal_code",
-    "siteCode": "site_code",
-    "stateCode": "state_code",
-    "systemInfoCode": "system_info_code",
-    "typeCode": "type_code",
-    "version": "version_"
   }
 }

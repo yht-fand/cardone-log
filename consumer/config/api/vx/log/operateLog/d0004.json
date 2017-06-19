@@ -1,14 +1,4 @@
 {
-  "input": {
-    "operateLogIds": {
-      "stringToListFunc": {
-        "idName": "operateLogId",
-        "map": {
-          "dataStateCode": "0"
-        }
-      }
-    }
-  },
   "validation": {
     "rules": {
       "operateLogIds": {

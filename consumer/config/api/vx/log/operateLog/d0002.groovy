@@ -1,4 +1,4 @@
-package api.vx.log.operateLog
+package top.cardone.api.vx.log.operateLog
 
 import org.apache.commons.lang3.StringUtils
 import top.cardone.log.service.OperateLogService
@@ -26,10 +26,10 @@ class d0001 implements java.io.Serializable {
     }
 
     def func(input) {
-        ['deleteCounts': ApplicationContextHolder.getBean(OperateLogService.class).deleteListCache(input?.operateLogIds)]
+        ApplicationContextHolder.getBean(OperateLogService.class).updateListCache(input?.operateLogIds)
     }
 
     def output(output) {
-        output
+        ['deleteCounts': output]
     }
 }
