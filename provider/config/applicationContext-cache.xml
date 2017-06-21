@@ -5,9 +5,7 @@
    		http://www.springframework.org/schema/beans/spring-beans.xsd 
      	http://www.springframework.org/schema/cache 
      	http://www.springframework.org/schema/cache/spring-cache.xsd">
-    <bean id="top.cardone.cache.Cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true">
-        <property name="appGroupName" value="${app.group.name:cardone}"/>
-    </bean>
+    <bean id="top.cardone.cache.Cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true"/>
 
     <cache:annotation-driven cache-manager="top.cardone.cache.CardOneCacheManager"/>
 
@@ -16,6 +14,7 @@
 
     <bean id="top.cardone.cache.CardOneCacheResolver"
           class="top.cardone.cache.impl.CardOneCacheResolverImpl">
+        <property name="appGroupName" value="${app.group.name:cardone}"/>
         <property name="cacheManagerList">
             <list>
                 <ref bean="org.springframework.cache.guava.GuavaCacheManager"/>
