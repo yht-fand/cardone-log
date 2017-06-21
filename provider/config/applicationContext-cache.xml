@@ -5,17 +5,17 @@
    		http://www.springframework.org/schema/beans/spring-beans.xsd 
      	http://www.springframework.org/schema/cache 
      	http://www.springframework.org/schema/cache/spring-cache.xsd">
-    <bean id="top.cardone.cache.Cache"
-          class="top.cardone.cache.impl.CacheImpl">
-    </bean>
+    <bean id="top.cardone.cache.Cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true"/>
 
-    <cache:annotation-driven cache-manager="top.cardone.cache.CardOneCacheManager"/>
+    <cache:annotation-driven cache-manager="top.cardone.cache.CardOneCacheManager"
+                             cache-resolver="${app.group.name:cardone}CacheResolver"/>
 
     <bean id="top.cardone.cache.CardOneCacheManager"
           class="top.cardone.cache.impl.CardOneCacheManagerImpl">
+        <property name="cardOneCacheResolverName" value="${app.group.name:cardone}CacheResolver"/>
     </bean>
 
-    <bean id="top.cardone.cache.CardOneCacheResolver"
+    <bean name="${app.group.name:cardone}CacheResolver"
           class="top.cardone.cache.impl.CardOneCacheResolverImpl">
         <property name="cacheManagerList">
             <list>
