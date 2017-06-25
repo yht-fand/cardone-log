@@ -91,6 +91,6 @@ public class ModifyModalFuncTest {
             }, null, true));
         }
 
-        Thread.sleep(3000 * count);
+        Thread.sleep(500 * count * count);
     }
 }
