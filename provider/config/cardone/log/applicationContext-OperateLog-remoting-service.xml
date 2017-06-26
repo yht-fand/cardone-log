@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <!-- 操作日志 -->
-    <bean parent="messageListenerContainerParnet">
-        <property name="messageListener">
-            <bean  parent="remoteInvocationExecutorParnet">
-                <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
-                <property name="service" ref="top.cardone.log.service.OperateLogService"/>
-            </bean>
-        </property>
-        <property name="destination">
-            <bean class="org.apache.activemq.command.ActiveMQQueue">
-                <constructor-arg value="cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
-            </bean>
-        </property>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+    <rabbit:direct-exchange
+            name="exchange:cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService">
+        <rabbit:bindings>
+            <rabbit:binding
+                    queue="queue:cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"
+                    key="queue:cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <rabbit:queue
+            name="queue:cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
+
+    <bean id="top.cardone.log.service.OperateLogServiceExporter"
+          class="org.springframework.amqp.remoting.service.AmqpInvokerServiceExporter">
+        <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
+        <property name="service" ref="top.cardone.log.service.OperateLogService"/>
+        <property name="amqpTemplate" ref="org.springframework.amqp.core.AmqpTemplate"/>
     </bean>
+
+    <rabbit:listener-container acknowledge="none" max-concurrency="128" prefetch="10">
+        <rabbit:listener ref="top.cardone.log.service.OperateLogServiceExporter"
+                         queue-names="queue:cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
+    </rabbit:listener-container>
 </beans>

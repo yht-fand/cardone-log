@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean name="invokerProxyFactoryParnet" class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean"
+    <bean name="invokerProxyFactoryParnet" class="org.springframework.amqp.remoting.client.AmqpProxyFactoryBean"
           abstract="true">
-        <property name="connectionFactory" ref="advancedConnectionFactory"/>
         <property name="remoteInvocationFactory">
             <bean class="org.apache.shiro.spring.remoting.SecureRemoteInvocationFactory"/>
         </property>
     </bean>
 
-    <bean name="remoteInvocationExecutorParnet" class="org.springframework.jms.remoting.JmsInvokerServiceExporter"
+    <bean name="remoteInvocationExecutorParnet"
+          class="org.springframework.amqp.remoting.service.AmqpInvokerServiceExporter"
           abstract="true">
         <property name="remoteInvocationExecutor">
             <bean class="org.apache.shiro.spring.remoting.SecureRemoteInvocationExecutor"/>
         </property>
-    </bean>
-
-    <bean name="messageListenerContainerParnet" class="org.springframework.jms.listener.DefaultMessageListenerContainer"
-          abstract="true">
-        <property name="connectionFactory" ref="advancedConnectionFactory"/>
-        <!-- 初始1个Consumer, 可动态扩展到10 -->
-        <property name="concurrentConsumers" value="5"/>
-        <property name="maxConcurrentConsumers" value="50"/>
     </bean>
 </beans>
