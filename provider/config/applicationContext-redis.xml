@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   		http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="org.springframework.data.redis.core.RedisTemplate"
+          class="org.springframework.data.redis.core.RedisTemplate" lazy-init="true">
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="hashValueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <property name="connectionFactory">
+            <bean class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+                <constructor-arg>
+                    <bean class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+                        <property name="maxRedirects" value="${cache.redis.maxRedirects:3}"></property>
+                        <property name="clusterNodes">
+                            <set>
+                                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                                    <constructor-arg name="host"
+                                                     value="${cache.redis.clusterNode1.host:127.0.0.1}"></constructor-arg>
+                                    <constructor-arg name="port"
+                                                     value="${cache.redis.clusterNode1.port:7000}"></constructor-arg>
+                                </bean>
+                                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                                    <constructor-arg name="host"
+                                                     value="${cache.redis.clusterNode2.host:127.0.0.1}"></constructor-arg>
+                                    <constructor-arg name="port"
+                                                     value="${cache.redis.clusterNode2.port:7001}"></constructor-arg>
+                                </bean>
+                                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                                    <constructor-arg name="host"
+                                                     value="${cache.redis.clusterNode3.host:127.0.0.1}"></constructor-arg>
+                                    <constructor-arg name="port"
+                                                     value="${cache.redis.clusterNode3.port:7002}"></constructor-arg>
+                                </bean>
+                                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                                    <constructor-arg name="host"
+                                                     value="${cache.redis.clusterNode4.host:127.0.0.1}"></constructor-arg>
+                                    <constructor-arg name="port"
+                                                     value="${cache.redis.clusterNode4.port:7003}"></constructor-arg>
+                                </bean>
+                                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                                    <constructor-arg name="host"
+                                                     value="${cache.redis.clusterNode5.host:127.0.0.1}"></constructor-arg>
+                                    <constructor-arg name="port"
+                                                     value="${cache.redis.clusterNode5.port:7004}"></constructor-arg>
+                                </bean>
+                                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                                    <constructor-arg name="host"
+                                                     value="${cache.redis.clusterNode6.host:127.0.0.1}"></constructor-arg>
+                                    <constructor-arg name="port"
+                                                     value="${cache.redis.clusterNode6.port:7005}"></constructor-arg>
+                                </bean>
+                            </set>
+                        </property>
+                    </bean>
+                </constructor-arg>
+                <property name="poolConfig">
+                    <bean class="redis.clients.jedis.JedisPoolConfig">
+                        <property name="maxIdle" value="${cache.redis.maxIdle:80}"/>
+                        <property name="maxWaitMillis" value="${cache.redis.maxWaitMillis:300}"/>
+                        <property name="maxTotal" value="${cache.redis.maxTotal:1000}"/>
+                        <property name="testOnBorrow" value="${cache.redis.testOnBorrow:true}"/>
+                        <property name="testOnReturn" value="${cache.redis.testOnReturn:true}"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+</beans>
