@@ -63,6 +63,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>top.cardone</groupId>
             <artifactId>cardone-template-implements-default</artifactId>
         </dependency>
