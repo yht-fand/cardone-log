@@ -8,5 +8,7 @@
                                username="${rabbit.username:cardone}" password="${rabbit.password:cardone.123}"
                                virtual-host="${rabbit.virtualHost:cardone}"/>
 
-    <rabbit:template id="org.springframework.amqp.core.AmqpTemplate" connection-factory="rabbitConnectionFactory"/>
+    <bean id="protoMessageConverter" class="com.tracy.rabbitmq.converter.ProtobufMessageConverter"/>
+
+    <rabbit:template id="org.springframework.amqp.core.AmqpTemplate" connection-factory="rabbitConnectionFactory" message-converter="protoMessageConverter"/>
 </beans>
