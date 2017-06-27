@@ -23,17 +23,11 @@ class r0001 implements java.io.Serializable {
 
         input.endTime = DateUtils.parseDate(input.endTime)
 
-        if (Objects.isNull(input.endTime)) {
-            def dateTime = LocalDateTime.now()
+        def dateTime = Objects.isNull(input.endTime) ? LocalDateTime.now() : LocalDateTime.ofInstant(Instant.ofEpochMilli(input.endTime.getTime()), ZoneId.systemDefault())
 
-            dateTime = LocalDateTime.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth(), 0, 0, 0).plusDays(1)
+        dateTime = LocalDateTime.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth(), 0, 0, 0).plusDays(1)
 
-            input.endTime = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant())
-        } else {
-            def dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(input.endTime.getTime()), ZoneId.systemDefault()).plusDays(1)
-
-            input.endTime = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant())
-        }
+        input.endTime = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant())
 
         input
     }
