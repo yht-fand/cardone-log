@@ -4,13 +4,13 @@
        xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
-    <rabbit:connection-factory id="rabbitConnectionFactory" host="${rabbit.host:127.0.0.1}" port="${rabbit.port:5672}"
-                               username="${rabbit.username:cardone}" password="${rabbit.password:cardone.123}"
-                               virtual-host="${rabbit.virtualHost:cardone}"/>
+    <rabbit:connection-factory id="rabbitConnectionFactory" host="${spring.rabbitmq.host:127.0.0.1}" port="${spring.rabbitmq.port:5672}"
+                               username="${spring.rabbitmq.username:cardone}" password="${spring.rabbitmq.password:cardone.123}"
+                               virtual-host="${spring.rabbitmq.virtualHost:cardone}"/>
 
-    <bean id="protoMessageConverter" class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter"/>
+    <bean id="amqpMessageConverter" class="org.springframework.amqp.support.converter.SimpleMessageConverter"/>
 
-    <rabbit:template id="org.springframework.amqp.core.AmqpTemplate" connection-factory="rabbitConnectionFactory" message-converter="protoMessageConverter"/>
+    <rabbit:template id="org.springframework.amqp.core.AmqpTemplate" connection-factory="rabbitConnectionFactory" message-converter="amqpMessageConverter"/>
 
     <rabbit:admin connection-factory="rabbitConnectionFactory"/>
 </beans>
