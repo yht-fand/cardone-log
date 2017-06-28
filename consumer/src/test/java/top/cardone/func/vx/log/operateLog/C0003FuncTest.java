@@ -68,13 +68,17 @@ public class C0003FuncTest {
         Runnable runnable = () -> {
             val sw = new StopWatch();
 
-            sw.start("test");
+            sw.start(funcUrl);
 
             String output = new org.springframework.boot.test.web.client.TestRestTemplate().postForObject(funcUrl, httpEntity, String.class);
 
             sw.stop();
 
-            log.debug(sw.prettyPrint());
+            if (sw.getTotalTimeMillis() > 500) {
+                log.error(sw.prettyPrint());
+            } else if (log.isDebugEnabled()) {
+                log.debug(sw.prettyPrint());
+            }
 
             try {
                 FileUtils.write(funcOutputResource.getFile(), output, Charsets.UTF_8);
