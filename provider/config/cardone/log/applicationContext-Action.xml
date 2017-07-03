@@ -4,5 +4,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
     <!-- 操作日志 -->
-    <bean id="insertOperateLogFunc" class="top.cardone.log.func.InsertOperateLogFunc"/>
+    <bean id="insertOperateLogAction" class="top.cardone.log.action.InsertOperateLogAction"/>
 </beans>
