@@ -4,5 +4,8 @@ spring:
   profiles:
     active: dev
   cloud:
+    zookeeper:
+        enabled: true
+        connectString: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
     config:
-      uri: http://127.0.0.1:8888
+      enabled: false
