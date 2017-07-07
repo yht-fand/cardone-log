@@ -11,5 +11,4 @@ import top.cardone.log.dao.OperateLogDao;
  */
 @Transactional(readOnly = true)
 public class OperateLogServiceImpl extends PageServiceImpl<OperateLogDao> implements top.cardone.log.service.OperateLogService {
-
 }
