@@ -13,7 +13,7 @@
     <groupId>top.cardone</groupId>
     <artifactId>cardone-log-parent</artifactId>
     <version>1.1.1-SNAPSHOT</version>
-    <name>${project.artifactId}</name>
+    <name>top.cardone cardone-log-parent</name>
     <description>top.cardone cardone-log-parent</description>
     <packaging>pom</packaging>
 
@@ -66,18 +66,6 @@
             <dependency>
                 <groupId>top.cardone</groupId>
 				<artifactId>cardone-log-implements-default</artifactId>
-                <version>1.1.1-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
-                <groupId>top.cardone</groupId>
-				<artifactId>cardone-log-provider</artifactId>
-                <version>1.1.1-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
-                <groupId>top.cardone</groupId>
-				<artifactId>cardone-log-consumer</artifactId>
                 <version>1.1.1-SNAPSHOT</version>
             </dependency>
         </dependencies>

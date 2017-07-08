@@ -12,9 +12,9 @@
 
     <groupId>top.cardone</groupId>
     <artifactId>cardone-log-implements-default</artifactId>
-    <version>${project.parent.version}</version>
-    <name>${project.artifactId}</name>
-    <description>top.cardone cardone-log-implements default</description>
+    <version>1.1.1-SNAPSHOT</version>
+    <name>top.cardone cardone-log-implements-default</name>
+    <description>top.cardone cardone-log-implements-default</description>
     <packaging>jar</packaging>
 
     <dependencies>
