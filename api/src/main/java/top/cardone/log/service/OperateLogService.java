@@ -2,6 +2,7 @@ package top.cardone.log.service;
 
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
+import org.postgresql.util.PGobject;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import top.cardone.context.ApplicationContextHolder;
@@ -9,6 +10,7 @@ import top.cardone.context.event.SimpleErrorEvent;
 import top.cardone.context.event.SimpleEvent;
 import top.cardone.data.service.PageService;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 /**
@@ -30,7 +32,16 @@ public interface OperateLogService extends PageService {
         jsonData.put("input", simpleEvent.getArgs());
         jsonData.put("configs", simpleEvent.getConfigs());
 
-        insert.put("jsonData", ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
+        PGobject jsonObject = new PGobject();
+        jsonObject.setType("json");
+
+        try {
+            jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        insert.put("jsonData", jsonObject);
 
         ApplicationContextHolder.getBean(OperateLogService.class).insert(insert);
     }
@@ -49,7 +60,16 @@ public interface OperateLogService extends PageService {
         jsonData.put("configs", simpleErrorEvent.getConfigs());
         jsonData.put("throwable", simpleErrorEvent.getThrowable());
 
-        insert.put("jsonData", ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
+        PGobject jsonObject = new PGobject();
+        jsonObject.setType("json");
+
+        try {
+            jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        insert.put("jsonData", jsonObject);
 
         ApplicationContextHolder.getBean(OperateLogService.class).insert(insert);
     }
