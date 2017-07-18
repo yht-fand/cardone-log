@@ -5,5 +5,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
     <lang:groovy
-            script-source="${app.root}/cardone/groovy/top/cardone/controller/v1/log/OperateLogController.groovy"/>
+            script-source="${app.root}/config/cardone/groovy/top/cardone/controller/v1/log/OperateLogController.groovy"/>
 </beans>
