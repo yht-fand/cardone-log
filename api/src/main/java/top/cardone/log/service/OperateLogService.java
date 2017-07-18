@@ -19,7 +19,6 @@ import java.util.Map;
  * @author yao hai tao
  */
 public interface OperateLogService extends PageService {
-    //    @EventListener(condition="#simpleEvent.configs[0]=='dd'")
     @Async
     @EventListener
     default void eventListene(SimpleEvent simpleEvent) {
@@ -30,6 +29,7 @@ public interface OperateLogService extends PageService {
         Map<String, Object> jsonData = Maps.newHashMap();
 
         jsonData.put("input", simpleEvent.getArgs());
+        jsonData.put("flags", simpleEvent.getFlags());
         jsonData.put("configs", simpleEvent.getConfigs());
 
         PGobject jsonObject = new PGobject();
@@ -57,6 +57,7 @@ public interface OperateLogService extends PageService {
         Map<String, Object> jsonData = Maps.newHashMap();
 
         jsonData.put("input", simpleErrorEvent.getArgs());
+        jsonData.put("flags", simpleErrorEvent.getFlags());
         jsonData.put("configs", simpleErrorEvent.getConfigs());
         jsonData.put("throwable", simpleErrorEvent.getThrowable());
 
