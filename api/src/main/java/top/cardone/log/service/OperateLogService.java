@@ -29,8 +29,8 @@ public interface OperateLogService extends PageService {
 
         Map<String, Object> jsonData = Maps.newHashMap();
 
-        jsonData.put("input", simpleBeforeEvent.getArgs());
         jsonData.put("flags", simpleBeforeEvent.getFlags());
+        jsonData.put("input", simpleBeforeEvent.getArgs());
         jsonData.put("configs", simpleBeforeEvent.getConfigs());
 
         PGobject jsonObject = new PGobject();
@@ -56,8 +56,9 @@ public interface OperateLogService extends PageService {
 
         Map<String, Object> jsonData = Maps.newHashMap();
 
-        jsonData.put("input", simpleEvent.getArgs());
         jsonData.put("flags", simpleEvent.getFlags());
+        jsonData.put("input", simpleEvent.getArgs());
+        jsonData.put("output", simpleEvent.getOutput());
         jsonData.put("configs", simpleEvent.getConfigs());
 
         PGobject jsonObject = new PGobject();
@@ -84,8 +85,8 @@ public interface OperateLogService extends PageService {
 
         Map<String, Object> jsonData = Maps.newHashMap();
 
-        jsonData.put("input", simpleErrorEvent.getArgs());
         jsonData.put("flags", simpleErrorEvent.getFlags());
+        jsonData.put("input", simpleErrorEvent.getArgs());
         jsonData.put("configs", simpleErrorEvent.getConfigs());
         jsonData.put("throwable", simpleErrorEvent.getThrowable());
 
