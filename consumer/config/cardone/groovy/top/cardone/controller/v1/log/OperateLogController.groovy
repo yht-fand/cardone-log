@@ -23,7 +23,6 @@ import java.util.Map;
 /**
  * Created by yht
  */
-@Log4j2
 @Controller("top.cardone.controller.v1.log.OperateLogController")
 @RequestMapping("/v1/log/operateLog")
 public class OperateLogController {
