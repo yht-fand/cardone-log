@@ -38,8 +38,16 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
                 List<Object> newArgs = Lists.newArrayList();
 
                 for (Object arg : simpleEvent.getArgs()) {
-                    if (arg instanceof Serializable) {
+                    if (arg == null) {
+                        continue;
+                    }
+
+                    if (arg instanceof Class) {
+                        newArgs.add(arg.toString());
+                    } else if (arg instanceof Serializable) {
                         newArgs.add(arg);
+                    } else {
+                        newArgs.add(arg.toString());
                     }
                 }
 
