@@ -22,7 +22,7 @@
         <repository>
             <id>nexus-2</id>
             <name>Team Nexus Repository</name>
-            <url>http://maven.cardone.top/repository/maven-public/</url>
+            <url>http://39.108.9.136:9191/nexus/content/groups/public/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>interval:10</updatePolicy>
@@ -34,7 +34,7 @@
         <pluginRepository>
             <id>nexus-2</id>
             <name>Team Nexus Repository</name>
-            <url>http://maven.cardone.top/repository/maven-public/</url>
+            <url>http://39.108.9.136:9191/nexus/content/groups/public/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>interval:10</updatePolicy>
@@ -46,12 +46,12 @@
     <distributionManagement>
         <repository>
             <id>nexus-release</id>
-            <url>http://maven.cardone.top/repository/maven-release/</url>
+            <url>http://39.108.9.136:9191/nexus/content/repositories/release/</url>
         </repository>
 
         <snapshotRepository>
             <id>nexus-snapshots</id>
-            <url>http://maven.cardone.top/repository/maven-snapshots/</url>
+            <url>http://39.108.9.136:9191/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
