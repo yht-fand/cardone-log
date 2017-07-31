@@ -68,6 +68,8 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
                 jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
 
                 insert.put("jsonData", jsonObject);
+
+                Thread.sleep(100);
             } catch (Exception e) {
                 log.error(e);
             }
