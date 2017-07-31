@@ -23,6 +23,14 @@ ${prefixName?string('WHERE ', 'AND ')}("created_by_code" IS NULL OR "created_by_
 </#if>
 <#assign prefixName = false>
 </#if>
+<#if (where_and_eq_createdById??)>
+<#if (where_and_eq_createdById_value??)>
+${prefixName?string('WHERE ', 'AND ')}"created_by_id" = :where_and_eq_createdById_value
+<#else>
+${prefixName?string('WHERE ', 'AND ')}("created_by_id" IS NULL OR "created_by_id" = '')
+</#if>
+<#assign prefixName = false>
+</#if>
 <#if (where_and_eq_createdDate??)>
 <#if (where_and_eq_createdDate_value??)>
 ${prefixName?string('WHERE ', 'AND ')}"created_date" = :where_and_eq_createdDate_value
@@ -84,6 +92,14 @@ ${prefixName?string('WHERE ', 'AND ')}"json_data" IS NULL
 ${prefixName?string('WHERE ', 'AND ')}"last_modified_by_code" = :where_and_eq_lastModifiedByCode_value
 <#else>
 ${prefixName?string('WHERE ', 'AND ')}("last_modified_by_code" IS NULL OR "last_modified_by_code" = '')
+</#if>
+<#assign prefixName = false>
+</#if>
+<#if (where_and_eq_lastModifiedById??)>
+<#if (where_and_eq_lastModifiedById_value??)>
+${prefixName?string('WHERE ', 'AND ')}"last_modified_by_id" = :where_and_eq_lastModifiedById_value
+<#else>
+${prefixName?string('WHERE ', 'AND ')}("last_modified_by_id" IS NULL OR "last_modified_by_id" = '')
 </#if>
 <#assign prefixName = false>
 </#if>
@@ -156,6 +172,14 @@ ${prefixName?string('WHERE ', 'AND ')}("org_code" IS NULL OR "org_code" = '')
 ${prefixName?string('WHERE ', 'AND ')}"personal_code" = :where_and_eq_personalCode_value
 <#else>
 ${prefixName?string('WHERE ', 'AND ')}("personal_code" IS NULL OR "personal_code" = '')
+</#if>
+<#assign prefixName = false>
+</#if>
+<#if (where_and_eq_personalId??)>
+<#if (where_and_eq_personalId_value??)>
+${prefixName?string('WHERE ', 'AND ')}"personal_id" = :where_and_eq_personalId_value
+<#else>
+${prefixName?string('WHERE ', 'AND ')}("personal_id" IS NULL OR "personal_id" = '')
 </#if>
 <#assign prefixName = false>
 </#if>
