@@ -65,9 +65,9 @@
                 </constructor-arg>
                 <property name="poolConfig">
                     <bean class="redis.clients.jedis.JedisPoolConfig">
-                        <property name="maxIdle" value="${cache.redis.maxIdle:500}"/>
-                        <property name="maxWaitMillis" value="${cache.redis.maxWaitMillis:300}"/>
-                        <property name="maxTotal" value="${cache.redis.maxTotal:1000}"/>
+                        <property name="maxIdle" value="${cache.redis.maxIdle:60000}"/>
+                        <property name="maxWaitMillis" value="${cache.redis.maxWaitMillis:3000}"/>
+                        <property name="maxTotal" value="${cache.redis.maxTotal:60000}"/>
                         <property name="testOnBorrow" value="${cache.redis.testOnBorrow:true}"/>
                         <property name="testOnReturn" value="${cache.redis.testOnReturn:true}"/>
                     </bean>
