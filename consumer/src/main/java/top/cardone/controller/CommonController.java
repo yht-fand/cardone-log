@@ -29,7 +29,7 @@ public class CommonController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/**/*.json")
+    @RequestMapping(value = "/**/*")
     @ResponseBody
     public Object allJson(HttpServletRequest request) throws IOException {
         return ApplicationContextHolder.getBean(WebSupport.class).func(request, !log.isDebugEnabled(), request.getServletPath());
