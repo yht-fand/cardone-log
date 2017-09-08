@@ -7,7 +7,7 @@
 
     <bean id="shiroDbRealm" class="top.cardone.security.shiro.realm.impl.OAuth2RealmImpl">
         <property name="cacheManager" ref="shiroCacheManager"/>
-        <property name="cachingEnabled" value="true"/>
+        <property name="cachingEnabled" value="false"/>
         <property name="authenticationCachingEnabled" value="true"/>
         <property name="authenticationCacheName" value="authenticationCache"/>
         <property name="authorizationCachingEnabled" value="true"/>
@@ -21,7 +21,7 @@
         <property name="sessionManager">
             <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
                 <property name="globalSessionTimeout" value="1800000"/>
-                <property name="deleteInvalidSessions" value="false"/>
+                <property name="deleteInvalidSessions" value="true"/>
                 <property name="sessionValidationSchedulerEnabled" value="false"/>
                 <property name="sessionDAO">
                     <bean class="top.cardone.security.shiro.session.mgt.eis.impl.SessionDaoImpl">
