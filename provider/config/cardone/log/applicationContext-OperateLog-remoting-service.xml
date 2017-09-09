@@ -19,7 +19,6 @@
     <bean id="top.cardone.log.service.OperateLogServiceExporter" parent="remoteInvocationExecutorParnet">
         <property name="serviceInterface" value="top.cardone.log.service.OperateLogService"/>
         <property name="service" ref="top.cardone.log.service.OperateLogService"/>
-        <property name="amqpTemplate" ref="org.springframework.amqp.core.AmqpTemplate"/>
     </bean>
 
     <rabbit:listener-container acknowledge="none" max-concurrency="128" prefetch="10">

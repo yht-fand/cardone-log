@@ -12,6 +12,7 @@
     <bean name="remoteInvocationExecutorParnet"
           class="org.springframework.amqp.remoting.service.AmqpInvokerServiceExporter"
           abstract="true">
+        <property name="amqpTemplate" ref="org.springframework.amqp.core.AmqpTemplate"/>
         <property name="remoteInvocationExecutor">
             <bean class="org.apache.shiro.spring.remoting.SecureRemoteInvocationExecutor"/>
         </property>
