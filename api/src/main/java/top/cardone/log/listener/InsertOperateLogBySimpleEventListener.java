@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.postgresql.util.PGobject;
@@ -55,7 +56,7 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
         ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             Map<String, Object> insert = Maps.newHashMap();
 
-            String typeCode = StringUtils.defaultString(top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleEvent.getFlags()[1]), "other");
+            String typeCode = StringUtils.defaultString(MapUtils.getString(typeCodeMap, top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleEvent.getFlags()[1])), "other");
 
             insert.put("typeCode", typeCode);
             insert.put("createdByCode", createdByCode);
