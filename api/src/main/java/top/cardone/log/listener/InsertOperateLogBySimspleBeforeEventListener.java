@@ -58,7 +58,7 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
 
             insert.put("typeCode", typeCode);
             insert.put("createdByCode", createdByCode);
-            insert.put("objectTypeCode", "interface");
+            insert.put("objectTypeCode", "userLog");
 
             Map<String, Object> jsonData = Maps.newHashMap();
 
