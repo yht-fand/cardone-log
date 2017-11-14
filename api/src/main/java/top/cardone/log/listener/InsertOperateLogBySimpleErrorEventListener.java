@@ -29,6 +29,20 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
     @Setter
     private boolean skipCreatedByCodeBlank = true;
 
+    @Setter
+    private Map<String, String> typeCodeMap;
+
+    public InsertOperateLogBySimpleErrorEventListener() {
+        typeCodeMap = Maps.newHashMap();
+
+        typeCodeMap.put("insert*", "insert");
+        typeCodeMap.put("update*", "update");
+        typeCodeMap.put("delete*", "delete");
+        typeCodeMap.put("save*", "save");
+        typeCodeMap.put("find*", "find");
+        typeCodeMap.put("read*", "read");
+    }
+
     @Override
     public void onApplicationEvent(SimpleErrorEvent simpleErrorEvent) {
         String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
@@ -40,10 +54,11 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
         ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             Map<String, Object> insert = Maps.newHashMap();
 
-            insert.put("createdByCode", createdByCode);
+            String typeCode = StringUtils.defaultString(top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleErrorEvent.getFlags()[1]), "other");
 
-            insert.put("typeCode", "interface");
-            insert.put("message", simpleErrorEvent.getThrowable().getMessage());
+            insert.put("typeCode", typeCode);
+            insert.put("createdByCode", createdByCode);
+            insert.put("objectTypeCode", "interface");
 
             Map<String, Object> jsonData = Maps.newHashMap();
 
