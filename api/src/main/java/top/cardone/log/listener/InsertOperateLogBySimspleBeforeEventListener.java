@@ -3,15 +3,18 @@ package top.cardone.log.listener;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.postgresql.util.PGobject;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.support.TaskUtils;
 import top.cardone.context.ApplicationContextHolder;
 import top.cardone.context.event.SimpleBeforeEvent;
+import top.cardone.core.util.func.Func0;
 import top.cardone.log.service.OperateLogService;
 
 import java.io.Serializable;
@@ -23,10 +26,21 @@ import java.util.Map;
  */
 @Log4j2
 public class InsertOperateLogBySimspleBeforeEventListener implements ApplicationListener<SimpleBeforeEvent> {
+    @Setter
+    private boolean skipCreatedByCodeBlank = true;
+
     @Override
     public void onApplicationEvent(SimpleBeforeEvent simpleBeforeEvent) {
+        String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
+
+        if (skipCreatedByCodeBlank && StringUtils.isBlank(createdByCode)) {
+            return;
+        }
+
         ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             Map<String, Object> insert = Maps.newHashMap();
+
+            insert.put("createdByCode", createdByCode);
 
             insert.put("typeCode", "interface");
 
@@ -66,8 +80,6 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
                 jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
 
                 insert.put("jsonData", jsonObject);
-
-                Thread.sleep(100);
             } catch (Exception e) {
                 log.error(e);
             }
