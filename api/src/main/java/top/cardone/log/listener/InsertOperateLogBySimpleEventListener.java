@@ -39,6 +39,7 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
         typeCodeMap.put("update*", "update");
         typeCodeMap.put("delete*", "delete");
         typeCodeMap.put("save*", "save");
+        typeCodeMap.put("page*", "page");
         typeCodeMap.put("find*", "find");
         typeCodeMap.put("read*", "read");
     }

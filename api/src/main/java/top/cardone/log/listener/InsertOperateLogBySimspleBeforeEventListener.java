@@ -38,7 +38,9 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
         typeCodeMap.put("insert*", "insert");
         typeCodeMap.put("update*", "update");
         typeCodeMap.put("delete*", "delete");
+        typeCodeMap.put("generate*","generate");
         typeCodeMap.put("save*", "save");
+        typeCodeMap.put("page*", "page");
         typeCodeMap.put("find*", "find");
         typeCodeMap.put("read*", "read");
     }
