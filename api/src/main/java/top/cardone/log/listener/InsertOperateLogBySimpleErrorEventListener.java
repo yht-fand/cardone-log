@@ -60,6 +60,7 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
             insert.put("typeCode", typeCode);
             insert.put("createdByCode", createdByCode);
             insert.put("objectTypeCode", "userLog");
+            insert.put("objectCode", createdByCode);
 
             Map<String, Object> jsonData = Maps.newHashMap();
 
