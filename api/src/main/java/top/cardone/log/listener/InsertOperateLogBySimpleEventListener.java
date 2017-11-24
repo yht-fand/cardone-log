@@ -60,6 +60,7 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
 
             insert.put("typeCode", typeCode);
             insert.put("createdByCode", createdByCode);
+            insert.put("personalCode", createdByCode);
             insert.put("objectTypeCode", "userLog");
             insert.put("objectCode", createdByCode);
 
