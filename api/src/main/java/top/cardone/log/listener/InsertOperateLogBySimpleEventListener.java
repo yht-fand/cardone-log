@@ -90,9 +90,9 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
                 }
             }
 
-            if (simpleEvent.getOutput() instanceof Serializable) {
-                jsonData.put("output", simpleEvent.getOutput());
-            }
+//            if (simpleEvent.getOutput() instanceof Serializable) {
+//                jsonData.put("output", simpleEvent.getOutput());
+//            }
 
             jsonData.put("configs", simpleEvent.getConfigs());
 
