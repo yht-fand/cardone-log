@@ -16,6 +16,7 @@ import org.springframework.scheduling.support.TaskUtils;
 import top.cardone.context.ApplicationContextHolder;
 import top.cardone.context.event.SimpleEvent;
 import top.cardone.core.util.func.Func0;
+import top.cardone.core.util.func.Func1;
 import top.cardone.log.service.OperateLogService;
 
 import java.io.Serializable;
@@ -33,6 +34,12 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
     @Setter
     private Map<String, String> typeCodeMap;
 
+    @Setter
+    private String findListDictionaryFuncName = "findListDictionaryFunc";
+
+    @Setter
+    private Map<String, Object> findListDictionaryMap;
+
     public InsertOperateLogBySimpleEventListener() {
         typeCodeMap = Maps.newHashMap();
 
@@ -43,6 +50,31 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
         typeCodeMap.put("page*", "page");
         typeCodeMap.put("find*", "find");
         typeCodeMap.put("read*", "read");
+
+        findListDictionaryMap = Maps.newHashMap();
+
+        findListDictionaryMap.put("dictionaryTypeCode", "serviceName");
+
+        findListDictionaryMap.put("stateCode", "1");
+        findListDictionaryMap.put("dataStateCode", "1");
+    }
+
+    private String getMessage(String className) {
+        List<Map<String, Object>> serviceNameList = (List<Map<String, Object>>) ApplicationContextHolder.getBean(Func1.class, this.findListDictionaryFuncName).func(this.findListDictionaryMap);
+
+        if (CollectionUtils.isEmpty(serviceNameList)) {
+            return StringUtils.EMPTY;
+        }
+
+        for (Map<String, Object> serviceName : serviceNameList) {
+            String dictionaryCode = top.cardone.context.util.MapUtils.getString(serviceName, "dictionary_code");
+
+            if (StringUtils.isNotBlank(top.cardone.context.util.StringUtils.getPathForMatch(Lists.newArrayList(dictionaryCode), className))) {
+                return top.cardone.context.util.MapUtils.getString(serviceName, "name");
+            }
+        }
+
+        return StringUtils.EMPTY;
     }
 
     @Override
@@ -63,6 +95,7 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
             insert.put("personalCode", createdByCode);
             insert.put("objectTypeCode", "userLog");
             insert.put("objectCode", createdByCode);
+            insert.put("message", this.getMessage(simpleEvent.getFlags()[0]));
 
             Map<String, Object> jsonData = Maps.newHashMap();
 
