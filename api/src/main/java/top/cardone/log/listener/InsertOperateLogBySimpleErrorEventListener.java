@@ -85,6 +85,12 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
             return;
         }
 
+        String message = this.getMessage(simpleErrorEvent.getFlags()[0]);
+
+        if (StringUtils.isBlank(message)) {
+            return;
+        }
+
         ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             Map<String, Object> insert = Maps.newHashMap();
 
@@ -95,7 +101,7 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
             insert.put("personalCode", createdByCode);
             insert.put("objectTypeCode", "userLog");
             insert.put("objectCode", createdByCode);
-            insert.put("message", this.getMessage(simpleErrorEvent.getFlags()[0]));
+            insert.put("message", message);
 
             Map<String, Object> jsonData = Maps.newHashMap();
 
