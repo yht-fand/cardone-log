@@ -51,8 +51,6 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
         typeCodeMap.put("delete*", "delete");
         typeCodeMap.put("save*", "save");
         typeCodeMap.put("page*", "page");
-        typeCodeMap.put("find*", "find");
-        typeCodeMap.put("read*", "read");
 
         findListDictionaryMap = Maps.newHashMap();
 
@@ -86,6 +84,12 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
             return;
         }
 
+        String typeCode = StringUtils.defaultString(top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleErrorEvent.getFlags()[1]), "other");
+
+        if (StringUtils.isBlank(typeCode)) {
+            return;
+        }
+
         String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
 
         if (skipCreatedByCodeBlank && StringUtils.isBlank(createdByCode)) {
@@ -100,8 +104,6 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
             }
 
             Map<String, Object> insert = Maps.newHashMap();
-
-            String typeCode = StringUtils.defaultString(top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleErrorEvent.getFlags()[1]), "other");
 
             insert.put("typeCode", typeCode);
             insert.put("createdByCode", createdByCode);
