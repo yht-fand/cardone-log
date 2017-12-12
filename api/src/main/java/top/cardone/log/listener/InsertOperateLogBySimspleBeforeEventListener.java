@@ -40,6 +40,9 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
     @Setter
     private Map<String, Object> findListDictionaryMap;
 
+    @Setter
+    private List<String> skipClassNameList = Lists.newArrayList("*Log*", "*Error*");
+
     public InsertOperateLogBySimspleBeforeEventListener() {
         typeCodeMap = Maps.newHashMap();
 
@@ -80,19 +83,23 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
 
     @Override
     public void onApplicationEvent(SimpleBeforeEvent simpleBeforeEvent) {
+        if (StringUtils.isNotBlank(top.cardone.context.util.StringUtils.getPathForMatch(Lists.newArrayList(skipClassNameList), simpleBeforeEvent.getFlags()[0]))) {
+            return;
+        }
+
         String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
 
         if (skipCreatedByCodeBlank && StringUtils.isBlank(createdByCode)) {
             return;
         }
 
-        String message = this.getMessage(simpleBeforeEvent.getFlags()[0]);
-
-        if (StringUtils.isBlank(message)) {
-            return;
-        }
-
         ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
+            String message = this.getMessage(simpleBeforeEvent.getFlags()[0]);
+
+            if (StringUtils.isBlank(message)) {
+                return;
+            }
+
             Map<String, Object> insert = Maps.newHashMap();
 
             String typeCode = StringUtils.defaultString(top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleBeforeEvent.getFlags()[1]), "other");
