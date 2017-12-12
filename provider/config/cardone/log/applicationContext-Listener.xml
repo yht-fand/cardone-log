@@ -5,13 +5,14 @@
     <bean class="top.cardone.log.listener.InsertOperateLogBySimspleBeforeEventListener">
         <property name="skipClassNameList">
             <list>
-                <value>"*Log*"</value>
-                <value>"*Error*"</value>
-                <value>"*Count*"</value>
-                <value>"*RolePermission*"</value>
-                <value>"*UserPermission*"</value>
-                <value>"*I18nInfo*"</value>
-                <value>"*Navigation*"</value>
+                <value>*.Log*</value>
+                <value>*.Error*</value>
+                <value>*.Count*</value>
+                <value>*.RolePermission*</value>
+                <value>*.UserPermission*</value>
+                <value>*.I18nInfo*</value>
+                <value>*.Navigation*</value>
+                <value>*.Dictionary*</value>
             </list>
         </property>
     </bean>
@@ -19,13 +20,14 @@
     <bean class="top.cardone.log.listener.InsertOperateLogBySimpleEventListener">
         <property name="skipClassNameList">
             <list>
-                <value>"*Log*"</value>
-                <value>"*Error*"</value>
-                <value>"*Count*"</value>
-                <value>"*RolePermission*"</value>
-                <value>"*UserPermission*"</value>
-                <value>"*I18nInfo*"</value>
-                <value>"*Navigation*"</value>
+                <value>*.Log*</value>
+                <value>*.Error*</value>
+                <value>*.Count*</value>
+                <value>*.RolePermission*</value>
+                <value>*.UserPermission*</value>
+                <value>*.I18nInfo*</value>
+                <value>*.Navigation*</value>
+                <value>*.Dictionary*</value>
             </list>
         </property>
     </bean>
@@ -33,13 +35,14 @@
     <bean class="top.cardone.log.listener.InsertOperateLogBySimpleErrorEventListener">
         <property name="skipClassNameList">
             <list>
-                <value>"*Log*"</value>
-                <value>"*Error*"</value>
-                <value>"*Count*"</value>
-                <value>"*RolePermission*"</value>
-                <value>"*UserPermission*"</value>
-                <value>"*I18nInfo*"</value>
-                <value>"*Navigation*"</value>
+                <value>*.Log*</value>
+                <value>*.Error*</value>
+                <value>*.Count*</value>
+                <value>*.RolePermission*</value>
+                <value>*.UserPermission*</value>
+                <value>*.I18nInfo*</value>
+                <value>*.Navigation*</value>
+                <value>*.Dictionary*</value>
             </list>
         </property>
     </bean>

@@ -85,7 +85,7 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
             return;
         }
 
-        String typeCode = StringUtils.defaultString(top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleBeforeEvent.getFlags()[1]), "other");
+        String typeCode = top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleBeforeEvent.getFlags()[1]);
 
         if (StringUtils.isBlank(typeCode)) {
             return;

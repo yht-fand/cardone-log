@@ -84,7 +84,7 @@ public class InsertOperateLogBySimpleEventListener implements ApplicationListene
             return;
         }
 
-        String typeCode = StringUtils.defaultString(MapUtils.getString(typeCodeMap, top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleEvent.getFlags()[1])), "other");
+        String typeCode = MapUtils.getString(typeCodeMap, top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), simpleEvent.getFlags()[1]));
 
         if (StringUtils.isBlank(typeCode)) {
             return;
