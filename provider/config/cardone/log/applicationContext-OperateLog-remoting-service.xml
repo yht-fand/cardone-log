@@ -21,7 +21,7 @@
         <property name="service" ref="top.cardone.log.service.OperateLogService"/>
     </bean>
 
-    <rabbit:listener-container acknowledge="none" concurrency="128" prefetch="10">
+    <rabbit:listener-container acknowledge="none" concurrency="100" prefetch="10">
         <rabbit:listener ref="top.cardone.log.service.OperateLogServiceExporter"
                          queue-names="queue:cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
     </rabbit:listener-container>
