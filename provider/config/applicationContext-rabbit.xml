@@ -14,7 +14,7 @@
 
 
 
-            />
+            executor="${spring.rabbitmq.executor:org.springframework.core.task.TaskExecutor}"/>
 
     <bean id="amqpMessageConverter" class="org.springframework.amqp.support.converter.SimpleMessageConverter"/>
 

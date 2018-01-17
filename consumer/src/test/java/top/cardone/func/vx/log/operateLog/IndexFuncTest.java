@@ -42,8 +42,6 @@ public class IndexFuncTest {
 
     private int pressure = 10000;
 
-    private int pressured = 0;
-
     @Before
     public void setup() throws Exception {
         HttpHeaders headers = new HttpHeaders();
@@ -74,38 +72,22 @@ public class IndexFuncTest {
 
     @Test
     public void pressureFunc() throws Exception {
-        List<Runnable> runnableList = Lists.newArrayList();
-
         for (int i = 0; i < pressure; i++) {
-            runnableList.add(() -> {
-                val sw = new StopWatch();
+            val sw = new StopWatch();
 
-                sw.start(funcUrl);
+            sw.start(funcUrl);
 
-                this.func();
+            new org.springframework.boot.test.web.client.TestRestTemplate().postForObject(funcUrl, httpEntity, String.class);
 
-                sw.stop();
+            sw.stop();
 
-                if (sw.getTotalTimeMillis() > 500) {
-                    log.error(sw.prettyPrint());
-                } else if (log.isDebugEnabled()) {
-                    log.debug(sw.prettyPrint());
-                }
-
-                this.pressured++;
-            });
-        }
-
-        for (Runnable runnable : runnableList) {
-            ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(runnable, null, false));
-        }
-
-        while (true) {
-            if (this.pressured >= this.pressure) {
-                break;
+            if (sw.getTotalTimeMillis() > 500) {
+                log.error(sw.prettyPrint());
+            } else if (log.isDebugEnabled()) {
+                log.debug(sw.prettyPrint());
             }
 
-            Thread.sleep(1000);
+            log.debug("pressured:" + (i + 1));
         }
     }
 }

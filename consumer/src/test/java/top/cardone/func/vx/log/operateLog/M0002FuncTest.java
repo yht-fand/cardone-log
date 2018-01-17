@@ -42,8 +42,6 @@ public class M0002FuncTest {
 
     private int pressure = 10000;
 
-    private int pressured = 0;
-
     @Before
     public void setup() throws Exception {
         HttpHeaders headers = new HttpHeaders();
@@ -97,7 +95,7 @@ public class M0002FuncTest {
         }
 
         for (Runnable runnable : runnableList) {
-            ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(runnable, null, false));
+            ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(runnable, null, true));
         }
 
         while (true) {
