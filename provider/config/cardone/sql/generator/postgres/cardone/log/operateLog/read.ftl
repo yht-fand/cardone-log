@@ -87,5 +87,5 @@ SELECT
 <#default>
 COUNT(*) AS COUNT_
 </#switch>
-FROM c1_operate_log
+FROM "c1_operate_log"
 <#include "where.ftl">

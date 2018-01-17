@@ -4,13 +4,44 @@
        xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
-    <rabbit:connection-factory id="rabbitConnectionFactory" host="${spring.rabbitmq.host:127.0.0.1}" port="${spring.rabbitmq.port:5672}"
-                               username="${spring.rabbitmq.username:cardone}" password="${spring.rabbitmq.password:cardone.123}"
-                               virtual-host="${spring.rabbitmq.virtualHost:cardone}"/>
+    <rabbit:connection-factory
+            id="rabbitConnectionFactory"
+            host="${spring.rabbitmq.host:127.0.0.1}"
+            port="${spring.rabbitmq.port:5672}"
+            username="${spring.rabbitmq.username:cardone}"
+            password="${spring.rabbitmq.password:cardone.123}"
+            virtual-host="${spring.rabbitmq.virtualHost:cardone}"
+
+
+
+            />
 
     <bean id="amqpMessageConverter" class="org.springframework.amqp.support.converter.SimpleMessageConverter"/>
 
-    <rabbit:template id="org.springframework.amqp.core.AmqpTemplate" connection-factory="rabbitConnectionFactory" message-converter="amqpMessageConverter"/>
+    <bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
+        <property name="backOffPolicy">
+            <bean class="org.springframework.retry.backoff.ExponentialBackOffPolicy">
+                <property name="initialInterval" value="500"/>
+                <property name="multiplier" value="10.0"/>
+                <property name="maxInterval" value="10000"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean name="rabbitTemplateParnet" class="org.springframework.amqp.rabbit.core.RabbitTemplate" abstract="true">
+        <property name="connectionFactory" ref="rabbitConnectionFactory"/>
+        <property name="messageConverter" ref="amqpMessageConverter"/>
+        <property name="retryTemplate" ref="retryTemplate"/>
+        <property name="replyTimeout" value="${spring.rabbitmq.replyTimeout:600000}"/>
+        <property name="receiveTimeout" value="${spring.rabbitmq.receiveTimeout:600000}"/>
+    </bean>
+
+    <rabbit:template id="org.springframework.amqp.core.AmqpTemplate"
+                     connection-factory="rabbitConnectionFactory"
+                     message-converter="amqpMessageConverter"
+                     retry-template="retryTemplate"
+                     reply-timeout="${spring.rabbitmq.replyTimeout:600000}"
+                     receive-timeout="${spring.rabbitmq.receiveTimeout:600000}"/>
 
     <rabbit:admin connection-factory="rabbitConnectionFactory"/>
 </beans>

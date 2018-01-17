@@ -1,5 +1,5 @@
 INSERT
-INTO c1_operate_log
+INTO "c1_operate_log"
 (<#assign prefixName = true>
 <#if (insert_batchNo??) && (insert_batchNo_value??)>
 ${prefixName?string('  ', ', ')}"batch_no"
