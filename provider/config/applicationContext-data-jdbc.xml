@@ -50,7 +50,7 @@
     </bean>
 
     <!-- 使用annotation定义事务 -->
-    <tx:annotation-driven/>
+    <tx:annotation-driven order="100"/>
 
     <bean name="org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations"
           class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
