@@ -28,7 +28,7 @@
         <property name="cacheBuilderSpec">
             <bean class="com.google.common.cache.CacheBuilderSpec" factory-method="parse">
                 <constructor-arg>
-                    <value>maximumSize=6000,expireAfterAccess=1s,expireAfterWrite=6s</value>
+                    <value>maximumSize=6000,expireAfterAccess=6s,expireAfterWrite=60s</value>
                 </constructor-arg>
             </bean>
         </property>
