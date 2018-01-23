@@ -16,7 +16,7 @@
                 </bean>
             </list>
         </property>
-        <property name="initialSize" value="3"/>
+        <property name="initialSize" value="0"/>
         <property name="maxWait" value="3000"/>
         <property name="timeBetweenEvictionRunsMillis" value="60000"/>
         <property name="minEvictableIdleTimeMillis" value="180000"/>
