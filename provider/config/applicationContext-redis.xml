@@ -69,7 +69,7 @@
                         <property name="maxWaitMillis" value="${cache.redis.maxWaitMillis:3000}"/>
                         <property name="maxTotal" value="${cache.redis.maxTotal:60000}"/>
                         <property name="testOnBorrow" value="${cache.redis.testOnBorrow:true}"/>
-                        <property name="testOnReturn" value="${cache.redis.testOnReturn:true}"/>
+                        <property name="testOnReturn" value="${cache.redis.testOnReturn:false}"/>
                     </bean>
                 </property>
             </bean>
