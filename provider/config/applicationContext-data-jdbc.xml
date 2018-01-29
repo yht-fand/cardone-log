@@ -17,8 +17,8 @@
             </list>
         </property>
         <property name="initialSize" value="0"/>
-        <property name="maxWait" value="3000"/>
-        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="maxWait" value="10000"/>
+        <property name="timeBetweenEvictionRunsMillis" value="30000"/>
         <property name="minEvictableIdleTimeMillis" value="180000"/>
         <property name="validationQuery" value="SELECT 'x'"/>
         <property name="testWhileIdle" value="true"/>
