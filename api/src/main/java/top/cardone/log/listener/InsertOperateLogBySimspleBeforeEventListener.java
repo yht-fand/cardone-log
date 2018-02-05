@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by cardo on 2017/7/18 0018.
+ * @author cardo on 2017/7/18 0018.
  */
 @Log4j2
 public class InsertOperateLogBySimspleBeforeEventListener implements ApplicationListener<SimpleBeforeEvent> {

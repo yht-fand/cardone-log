@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 /**
- * Created by cardone-home-001 on 2016/1/4.
+ * @author cardone-home-001 on 2016/1/4.
  */
 @Controller
 class CommonController {

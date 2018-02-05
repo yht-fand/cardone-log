@@ -9,7 +9,7 @@ import top.cardone.web.support.WebSupport
 import javax.servlet.http.HttpServletRequest
 
 /**
- * Created by cardone-home-001 on 2016/1/4.
+ * @author cardone-home-001 on 2016/1/4.
  */
 @Controller
 class CommonController {

@@ -10,7 +10,7 @@ import top.cardone.web.support.WebSupport
 import javax.servlet.http.HttpServletRequest
 
 /**
- * Created by yht
+ * @author yht
  */
 @Controller
 @RequestMapping("/vx/log/operateLog")
