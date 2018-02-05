@@ -43,6 +43,9 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
     @Setter
     private List<String> skipClassNameList = Lists.newArrayList("*Log*", "*Error*");
 
+    @Setter
+    private String taskExecutorBeanName = "logTaskExecutor";
+
     public InsertOperateLogBySimpleErrorEventListener() {
         typeCodeMap = Maps.newHashMap();
 
@@ -96,7 +99,7 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
             return;
         }
 
-        ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
+        ApplicationContextHolder.getBean(TaskExecutor.class, this.taskExecutorBeanName).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             String message = this.getMessage(simpleErrorEvent.getFlags()[0]);
 
             if (StringUtils.isBlank(message)) {

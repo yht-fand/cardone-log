@@ -43,6 +43,9 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
     @Setter
     private List<String> skipClassNameList = Lists.newArrayList("*Log*", "*Error*");
 
+    @Setter
+    private String taskExecutorBeanName = "logTaskExecutor";
+
     public InsertOperateLogBySimspleBeforeEventListener() {
         typeCodeMap = Maps.newHashMap();
 
@@ -97,7 +100,7 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
             return;
         }
 
-        ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
+        ApplicationContextHolder.getBean(TaskExecutor.class, this.taskExecutorBeanName).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             String message = this.getMessage(simpleBeforeEvent.getFlags()[0]);
 
             if (StringUtils.isBlank(message)) {
