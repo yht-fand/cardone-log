@@ -44,7 +44,7 @@ public class InsertOperateLogBySimpleErrorEventListener implements ApplicationLi
     private List<String> skipClassNameList = Lists.newArrayList("*Log*", "*Error*");
 
     @Setter
-    private String taskExecutorBeanName = "logTaskExecutor";
+    private String taskExecutorBeanName = "slowTaskExecutor";
 
     public InsertOperateLogBySimpleErrorEventListener() {
         typeCodeMap = Maps.newHashMap();

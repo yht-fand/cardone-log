@@ -44,7 +44,7 @@ public class InsertOperateLogBySimspleBeforeEventListener implements Application
     private List<String> skipClassNameList = Lists.newArrayList("*Log*", "*Error*");
 
     @Setter
-    private String taskExecutorBeanName = "logTaskExecutor";
+    private String taskExecutorBeanName = "slowTaskExecutor";
 
     public InsertOperateLogBySimspleBeforeEventListener() {
         typeCodeMap = Maps.newHashMap();
