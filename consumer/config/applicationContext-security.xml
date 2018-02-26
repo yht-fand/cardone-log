@@ -5,7 +5,7 @@
 
     <bean name="shiroCacheManager" class="top.cardone.security.shiro.cache.impl.CacheManagerImpl"/>
 
-    <bean id="shiroDbRealm" class="top.cardone.security.shiro.realm.impl.OAuth2RealmImpl">
+    <bean id="shiroDbRealm" class="top.cardone.security.shiro.realm.impl.StatelessRealmImpl">
         <property name="cacheManager" ref="shiroCacheManager"/>
         <property name="cachingEnabled" value="false"/>
         <property name="authenticationCachingEnabled" value="true"/>
@@ -83,8 +83,8 @@
                         <property name="redirectUrl" value="/login.html"/>
                     </bean>
                 </entry>
-                <entry key="oauth2">
-                    <bean class="top.cardone.security.shiro.web.filter.authc.impl.OAuth2FilterImpl">
+                <entry key="stateless">
+                    <bean class="top.cardone.security.shiro.web.filter.authc.impl.StatelessAuthcFilterImpl">
                     </bean>
                 </entry>
             </map>
@@ -92,7 +92,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /logout.html = logout
-                /**/*.json = oauth2
+                /**/*.json = stateless
             </value>
         </property>
     </bean>

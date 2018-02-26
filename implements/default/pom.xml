@@ -35,7 +35,7 @@
 
         <dependency>
             <groupId>top.cardone</groupId>
-            <artifactId>cardone-security-implements-shiro-oauth2-core</artifactId>
+            <artifactId>cardone-security-implements-shiro-core</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -47,7 +47,7 @@ public class R0001FuncTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         headers.set("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
-        headers.set("token", (String) ApplicationContextHolder.getBean(Func1.class, "readCredentialsForAesFunc").func("admin"));
+        headers.set("token", ApplicationContextHolder.getBean(org.apache.shiro.authc.credential.PasswordService.class).encryptPassword("admin"));
         headers.set("username", "admin");
 
         if (!funcInputResource.exists()) {

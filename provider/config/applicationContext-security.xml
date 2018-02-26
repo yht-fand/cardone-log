@@ -5,7 +5,7 @@
 
     <bean name="shiroCacheManager" class="top.cardone.security.shiro.cache.impl.CacheManagerImpl"/>
 
-    <bean id="shiroDbRealm" class="top.cardone.security.shiro.realm.impl.OAuth2RealmImpl">
+    <bean id="shiroDbRealm" class="top.cardone.security.shiro.realm.impl.StatelessRealmImpl">
         <property name="cacheManager" ref="shiroCacheManager"/>
         <property name="cachingEnabled" value="false"/>
         <property name="authenticationCachingEnabled" value="true"/>

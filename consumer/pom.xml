@@ -79,7 +79,7 @@
 
         <dependency>
             <groupId>top.cardone</groupId>
-            <artifactId>cardone-security-implements-shiro-oauth2-web</artifactId>
+            <artifactId>cardone-security-implements-shiro-web</artifactId>
         </dependency>
     </dependencies>
 
