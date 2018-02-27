@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * 主执行端
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Import;
         org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration.class,
         org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration.class
 })
+@ImportResource({"${app.root}/config/applicationContext.xml"})
 public class ConsumerApplication {
     /**
      * 主方法
