@@ -96,6 +96,4 @@
             </value>
         </property>
     </bean>
-
-    <bean id="authorityFunc" class="top.cardone.security.shiro.func.AuthorityFunc"/>
 </beans>
