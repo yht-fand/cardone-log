@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.cardone.context.ApplicationContextHolder;
-import top.cardone.core.CodeException;
 import top.cardone.web.support.WebSupport;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +31,7 @@ public class CommonController {
     @RequestMapping(value = "/**/*")
     @ResponseBody
     public Object allJson(HttpServletRequest request) throws IOException {
-        return ApplicationContextHolder.getBean(WebSupport.class).func(request, !log.isDebugEnabled(), request.getServletPath());
+        return ApplicationContextHolder.getBean(WebSupport.class).func(request, request.getServletPath(), !log.isDebugEnabled());
     }
 
     @RequestMapping("/")

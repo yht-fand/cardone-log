@@ -24,6 +24,6 @@ class CommonController {
     @RequestMapping(value = "/**/*")
     @ResponseBody
     def allJson(HttpServletRequest request) throws IOException {
-        ApplicationContextHolder.getBean(WebSupport.class).func(request, !log.isDebugEnabled(), request.getServletPath())
+        ApplicationContextHolder.getBean(WebSupport.class).func(request, request.getServletPath(), !log.isDebugEnabled())
     }
 }
