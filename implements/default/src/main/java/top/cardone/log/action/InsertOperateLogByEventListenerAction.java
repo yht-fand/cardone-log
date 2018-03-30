@@ -44,7 +44,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private int insertOperateLogLowerLimit = 1000;
 
     @Setter
-    private int insertOperateLogLowerLimitTime = 1000 * 600;
+    private int insertOperateLogLowerLimitTime = 1000 * 60 * 15;
 
     @Setter
     private boolean skipCreatedByCodeBlank = true;
