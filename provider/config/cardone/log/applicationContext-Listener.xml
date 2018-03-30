@@ -2,48 +2,9 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean class="top.cardone.log.listener.InsertOperateLogBySimspleBeforeEventListener">
-        <property name="skipClassNameList">
-            <list>
-                <value>*.Log*</value>
-                <value>*.Error*</value>
-                <value>*.Count*</value>
-                <value>*.RolePermission*</value>
-                <value>*.UserPermission*</value>
-                <value>*.I18nInfo*</value>
-                <value>*.Navigation*</value>
-                <value>*.Dictionary*</value>
-            </list>
-        </property>
-    </bean>
+    <bean class="top.cardone.log.listener.InsertOperateLogBySimspleBeforeEventListener"/>
 
-    <bean class="top.cardone.log.listener.InsertOperateLogBySimpleEventListener">
-        <property name="skipClassNameList">
-            <list>
-                <value>*.Log*</value>
-                <value>*.Error*</value>
-                <value>*.Count*</value>
-                <value>*.RolePermission*</value>
-                <value>*.UserPermission*</value>
-                <value>*.I18nInfo*</value>
-                <value>*.Navigation*</value>
-                <value>*.Dictionary*</value>
-            </list>
-        </property>
-    </bean>
+    <bean class="top.cardone.log.listener.InsertOperateLogBySimpleEventListener"/>
 
-    <bean class="top.cardone.log.listener.InsertOperateLogBySimpleErrorEventListener">
-        <property name="skipClassNameList">
-            <list>
-                <value>*.Log*</value>
-                <value>*.Error*</value>
-                <value>*.Count*</value>
-                <value>*.RolePermission*</value>
-                <value>*.UserPermission*</value>
-                <value>*.I18nInfo*</value>
-                <value>*.Navigation*</value>
-                <value>*.Dictionary*</value>
-            </list>
-        </property>
-    </bean>
+    <bean class="top.cardone.log.listener.InsertOperateLogBySimpleErrorEventListener"/>
 </beans>

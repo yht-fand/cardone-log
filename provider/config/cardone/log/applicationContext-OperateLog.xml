@@ -19,8 +19,6 @@
                         <entry key="operateLogId" value="readRandomUUIDFunc"/>
                         <entry key="createdByCode" value="readPrincipalFunc"/>
                         <entry key="createdDate" value="readOneDateFunc"/>
-                        <entry key="beginDate" value="readOneDateFunc"/>
-                        <entry key="endDate" value="endDateDefaultValueFunc"/>
                     </map>
                 </entry>
                 <entry key="update">
