@@ -165,6 +165,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             insert.put("objectCode", createdByCode);
             insert.put("createdDate", new Date(timestamp));
             insert.put("createdTimestamp", timestamp);
+            insert.put("flags", flags);
 
             if (throwable != null) {
                 Map<String, Object> jsonData = Maps.newHashMap();
