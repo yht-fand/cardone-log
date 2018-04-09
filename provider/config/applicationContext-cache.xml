@@ -5,7 +5,11 @@
    		http://www.springframework.org/schema/beans/spring-beans.xsd
      	http://www.springframework.org/schema/cache
      	http://www.springframework.org/schema/cache/spring-cache.xsd">
-    <cache:annotation-driven cache-manager="top.cardone.cache.CardOneCacheManager"/>
+    <cache:annotation-driven cache-resolver="cardoneCacheResolver"/>
+
+    <bean id="cardoneCacheResolver" class="top.cardone.cache.interceptor.CardoneCacheResolver">
+        <property name="cacheManager" ref="top.cardone.cache.CardOneCacheManager"/>
+    </bean>
 
     <bean id="top.cardone.cache.CardOneCacheManager"
           class="top.cardone.cache.impl.CardOneCacheManagerImpl" lazy-init="true">
