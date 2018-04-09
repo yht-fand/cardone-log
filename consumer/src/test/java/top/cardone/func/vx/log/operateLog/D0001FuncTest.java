@@ -32,10 +32,10 @@ public class D0001FuncTest {
     @Value("http://localhost:${server.port:8765}${server.context-path:}/vx/log/operateLog/d0001.json")
     private String funcUrl;
 
-    @Value("${app.root}/src/test/resources/top/cardone/func/vx/log/operateLog/D0001FuncTest.func.input.json")
+    @Value("file:src/test/resources/top/cardone/func/vx/log/operateLog/D0001FuncTest.func.input.json")
     private Resource funcInputResource;
 
-    @Value("${app.root}/src/test/resources/top/cardone/func/vx/log/operateLog/D0001FuncTest.func.output.json")
+    @Value("file:src/test/resources/top/cardone/func/vx/log/operateLog/D0001FuncTest.func.output.json")
     private Resource funcOutputResource;
 
     private HttpEntity<String> httpEntity;

@@ -21,7 +21,7 @@ import org.springframework.context.annotation.ImportResource;
         org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration.class,
         org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration.class
 })
-@ImportResource({"${app.root}/config/applicationContext.xml", "${app.root}/config/applicationContext.groovy"})
+@ImportResource({"file:config/applicationContext.xml", "file:config/applicationContext.groovy"})
 public class ConsumerApplication {
     /**
      * 主方法

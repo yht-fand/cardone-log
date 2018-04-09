@@ -5,5 +5,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
     <!--<lang:groovy-->
-            <!--script-source="${app.root}/config/api/vx/log/OperateLogController.groovy"/>-->
+            <!--script-source="file:config/api/vx/log/OperateLogController.groovy"/>-->
 </beans>
