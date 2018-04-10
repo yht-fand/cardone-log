@@ -5,11 +5,11 @@
    		http://www.springframework.org/schema/beans/spring-beans.xsd
      	http://www.springframework.org/schema/cache
      	http://www.springframework.org/schema/cache/spring-cache.xsd">
-    <cache:annotation-driven cache-resolver="cardoneCacheResolver" key-generator="cardoneKeyGenerator"/>
+    <cache:annotation-driven cache-resolver="cardOneCacheResolver" key-generator="cardOneKeyGenerator"/>
 
-    <bean id="cardoneKeyGenerator" class="top.cardone.cache.interceptor.CardoneKeyGenerator"/>
+    <bean id="cardOneKeyGenerator" class="top.cardone.cache.interceptor.CardOneKeyGenerator"/>
 
-    <bean id="cardoneCacheResolver" class="top.cardone.cache.interceptor.CardoneCacheResolver">
+    <bean id="cardOneCacheResolver" class="top.cardone.cache.interceptor.CardOneCacheResolver">
         <property name="cacheManager" ref="top.cardone.cache.CardOneCacheManager"/>
     </bean>
 

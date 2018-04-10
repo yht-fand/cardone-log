@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import top.cardone.context.annotation.CardOneAnnotationBeanNameGenerator;
 
 /**
  * 主执行端
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.ImportResource;
  * @author yao hai tao
  */
 @Configuration
-@ComponentScan(basePackages = {"top.cardone"})
+@ComponentScan(basePackages = {"top.cardone"}, nameGenerator = CardOneAnnotationBeanNameGenerator.class)
 @Import({
         org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.class,
         org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration.class,
