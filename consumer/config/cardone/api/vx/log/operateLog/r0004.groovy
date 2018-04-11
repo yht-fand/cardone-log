@@ -28,7 +28,7 @@ class r0004 implements java.io.Serializable {
     }
 
     def func(input) {
-		ApplicationContextHolder.getBean(OperateLogService.class).page(input)
+        ApplicationContextHolder.getBean(OperateLogService.class).page(input)
     }
 
     def output(output) {
@@ -64,7 +64,7 @@ class r0004 implements java.io.Serializable {
         newOutput.datas = []
 
         for (def contentItem : output.getContent()) {
-			def data = [:]
+            def data = [:]
 
             data['batchNo'] = contentItem['batch_no']
 
@@ -122,13 +122,13 @@ class r0004 implements java.io.Serializable {
 
             data['version'] = contentItem['version_']
 
-            data['flagName'] = ApplicationContextHolder.getBean(DictionaryService.class).readOneByDictionaryTypeCodesCache(['dictionaryTypeCodes': 'operateLogFlag,flag', 'dictionaryCode': contentItem['flag_code'], 'stateCode': '1', 'dataStateCode': '1',  'object_id': 'name'])
+            data['flagName'] = ApplicationContextHolder.getBean(DictionaryService.class).readOneByDictionaryTypeCodesCache(['dictionaryTypeCodes': 'operateLogFlag,flag', 'dictionaryCode': contentItem['flag_code'], 'stateCode': '1', 'dataStateCode': '1', 'object_id': 'name'])
 
-            data['stateName'] = ApplicationContextHolder.getBean(DictionaryService.class).readOneByDictionaryTypeCodesCache(['dictionaryTypeCodes': 'operateLogState,state', 'dictionaryCode': contentItem['state_code'], 'stateCode': '1', 'dataStateCode': '1',  'object_id': 'name'])
+            data['stateName'] = ApplicationContextHolder.getBean(DictionaryService.class).readOneByDictionaryTypeCodesCache(['dictionaryTypeCodes': 'operateLogState,state', 'dictionaryCode': contentItem['state_code'], 'stateCode': '1', 'dataStateCode': '1', 'object_id': 'name'])
 
-            data['dataStateName'] = ApplicationContextHolder.getBean(DictionaryService.class).readOneByDictionaryTypeCodesCache(['dictionaryTypeCodes': 'operateLogDataState,dataState', 'dictionaryCode': contentItem['data_state_code'], 'stateCode': '1', 'dataStateCode': '1',  'object_id': 'name'])
+            data['dataStateName'] = ApplicationContextHolder.getBean(DictionaryService.class).readOneByDictionaryTypeCodesCache(['dictionaryTypeCodes': 'operateLogDataState,dataState', 'dictionaryCode': contentItem['data_state_code'], 'stateCode': '1', 'dataStateCode': '1', 'object_id': 'name'])
 
-			newOutput.datas.add(data)
+            newOutput.datas.add(data)
         }
 
         newOutput

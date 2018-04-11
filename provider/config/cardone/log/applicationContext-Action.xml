@@ -4,18 +4,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
     <!-- 操作日志 -->
-   <bean name="top.cardone.log.action.InsertOperateLogByEventListenerAction" class="top.cardone.log.action.InsertOperateLogByEventListenerAction">
-       <property name="skipClassNameList">
-           <list>
-               <value>*.Log*</value>
-               <value>*.Error*</value>
-               <value>*.Count*</value>
-               <value>*.RolePermission*</value>
-               <value>*.UserPermission*</value>
-               <value>*.I18nInfo*</value>
-               <value>*.Navigation*</value>
-               <value>*.Dictionary*</value>
-           </list>
-       </property>
-   </bean>
+    <bean name="top.cardone.log.action.InsertOperateLogByEventListenerAction"
+          class="top.cardone.log.action.InsertOperateLogByEventListenerAction">
+        <property name="skipClassNameList">
+            <list>
+                <value>*.Log*</value>
+                <value>*.Error*</value>
+                <value>*.Count*</value>
+                <value>*.RolePermission*</value>
+                <value>*.UserPermission*</value>
+                <value>*.I18nInfo*</value>
+                <value>*.Navigation*</value>
+                <value>*.Dictionary*</value>
+            </list>
+        </property>
+    </bean>
 </beans>

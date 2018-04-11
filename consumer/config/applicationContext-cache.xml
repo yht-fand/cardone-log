@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:cache="http://www.springframework.org/schema/cache"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
    		http://www.springframework.org/schema/beans/spring-beans.xsd
      	http://www.springframework.org/schema/cache
      	http://www.springframework.org/schema/cache/spring-cache.xsd">
-	<cache:annotation-driven cache-resolver="cardOneCacheResolver" key-generator="cardOneKeyGenerator"/>
+    <cache:annotation-driven cache-resolver="cardOneCacheResolver" key-generator="cardOneKeyGenerator"/>
 
-	<bean id="cardOneKeyGenerator" class="top.cardone.cache.interceptor.CardOneKeyGenerator"/>
+    <bean id="cardOneKeyGenerator" class="top.cardone.cache.interceptor.CardOneKeyGenerator"/>
 
-	<bean id="cardOneCacheResolver" class="top.cardone.cache.interceptor.CardOneCacheResolver">
-		<property name="cacheManager" ref="top.cardone.cache.CardOneCacheManager"/>
-	</bean>
+    <bean id="cardOneCacheResolver" class="top.cardone.cache.interceptor.CardOneCacheResolver">
+        <property name="cacheManager" ref="top.cardone.cache.CardOneCacheManager"/>
+    </bean>
 
-	<bean id="top.cardone.cache.CardOneCacheManager"
-		  class="top.cardone.cache.impl.CardOneCacheManagerImpl" lazy-init="true">
-		<property name="cache" ref="top.cardone.cache.Cache"/>
-	</bean>
+    <bean id="top.cardone.cache.CardOneCacheManager"
+          class="top.cardone.cache.impl.CardOneCacheManagerImpl" lazy-init="true">
+        <property name="cache" ref="top.cardone.cache.Cache"/>
+    </bean>
 
-	<bean id="top.cardone.cache.Cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true">
-		<property name="appGroupName" value="${app.group.name:cardone}"/>
-		<property name="cacheManagerList">
+    <bean id="top.cardone.cache.Cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true">
+        <property name="appGroupName" value="${app.group.name:cardone}"/>
+        <property name="cacheManagerList">
             <list>
                 <ref bean="org.springframework.cache.guava.GuavaCacheManager"/>
-				<ref bean="org.springframework.data.redis.cache.RedisCacheManager"/>
-			</list>
-		</property>
-	</bean>
+                <ref bean="org.springframework.data.redis.cache.RedisCacheManager"/>
+            </list>
+        </property>
+    </bean>
 
-	<!-- guavaCacheManager -->
-	<bean id="org.springframework.cache.guava.GuavaCacheManager"
-		  class="org.springframework.cache.guava.GuavaCacheManager" lazy-init="true">
-		<property name="cacheBuilderSpec">
-			<bean class="com.google.common.cache.CacheBuilderSpec" factory-method="parse">
-				<constructor-arg>
-					<value>maximumSize=6000,expireAfterAccess=900s</value>
-				</constructor-arg>
-			</bean>
-		</property>
-	</bean>
+    <!-- guavaCacheManager -->
+    <bean id="org.springframework.cache.guava.GuavaCacheManager"
+          class="org.springframework.cache.guava.GuavaCacheManager" lazy-init="true">
+        <property name="cacheBuilderSpec">
+            <bean class="com.google.common.cache.CacheBuilderSpec" factory-method="parse">
+                <constructor-arg>
+                    <value>maximumSize=6000,expireAfterAccess=900s</value>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
 
-	<!-- redisCacheManager -->
-	<bean id="org.springframework.data.redis.cache.RedisCacheManager"
-		  class="org.springframework.data.redis.cache.RedisCacheManager" lazy-init="true">
-		<constructor-arg ref="org.springframework.data.redis.core.RedisTemplate"/>
-		<property name="usePrefix" value="true"/>
-		<property name="defaultExpiration" value="18000"/>
-	</bean>
+    <!-- redisCacheManager -->
+    <bean id="org.springframework.data.redis.cache.RedisCacheManager"
+          class="org.springframework.data.redis.cache.RedisCacheManager" lazy-init="true">
+        <constructor-arg ref="org.springframework.data.redis.core.RedisTemplate"/>
+        <property name="usePrefix" value="true"/>
+        <property name="defaultExpiration" value="18000"/>
+    </bean>
 </beans>

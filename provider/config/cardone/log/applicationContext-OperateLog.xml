@@ -24,15 +24,15 @@
                 <entry key="update">
                     <map>
                         <entry key="lastModifiedByCode" value="readPrincipalFunc"/>
-                       <entry key="lastModifiedDate" value="readOneDateFunc"/>
+                        <entry key="lastModifiedDate" value="readOneDateFunc"/>
                     </map>
                 </entry>
             </map>
         </property>
     </bean>
-	
+
     <bean id="top.cardone.log.service.OperateLogService"
           class="top.cardone.log.service.impl.OperateLogServiceImpl">
-		<property name="dao" ref="top.cardone.log.dao.OperateLogDao"/>
-	</bean>
+        <property name="dao" ref="top.cardone.log.dao.OperateLogDao"/>
+    </bean>
 </beans>
