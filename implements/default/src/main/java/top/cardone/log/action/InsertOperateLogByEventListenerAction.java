@@ -243,7 +243,8 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         }
 
         ApplicationContextHolder.getBean(TaskExecutor.class, "slowTaskExecutor").execute(
-                TaskUtils.decorateTaskWithErrorHandler(() -> ApplicationContextHolder.getBean(OperateLogService.class).insertList(newInsertOperateLogList),
+                TaskUtils.decorateTaskWithErrorHandler(
+                        () -> ApplicationContextHolder.getBean(OperateLogService.class).insertList(newInsertOperateLogList),
                         e -> insertOperateLogList.addAll(newInsertOperateLogList),
                         true));
     }
