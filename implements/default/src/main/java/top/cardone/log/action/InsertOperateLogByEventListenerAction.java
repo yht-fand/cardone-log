@@ -35,7 +35,7 @@ import java.util.Map;
 @Log4j2
 public class InsertOperateLogByEventListenerAction implements Action0, Action1<Object> {
     @Getter
-    private List<Map<String, Object>> insertOperateLogList = Collections.synchronizedList(Lists.newArrayList());
+    private List<Object> insertOperateLogList = Collections.synchronizedList(Lists.newArrayList());
 
     @Setter
     private int insertOperateLogUpperLimit = Integer.MAX_VALUE / 8;
@@ -211,7 +211,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             }
 
             insertOperateLogList.add(insert);
-        }, null, false));
+        }, null, true));
     }
 
     @Override
@@ -221,7 +221,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         }
 
         if (insertOperateLogList.size() < insertOperateLogLowerLimit) {
-            long time = System.currentTimeMillis() - MapUtils.getLongValue(insertOperateLogList.get(0), "createdTimestamp", 0);
+            long time = System.currentTimeMillis() - MapUtils.getLongValue((Map) insertOperateLogList.get(0), "createdTimestamp", 0);
 
             if (time < insertOperateLogLowerLimitTime) {
                 return;
@@ -231,7 +231,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         List<Object> newInsertOperateLogList = Lists.newArrayList();
 
         while (insertOperateLogList.size() > 0) {
-            Map<String, Object> insertOperateLog = insertOperateLogList.get(0);
+            Map<String, Object> insertOperateLog = (Map<String, Object>) insertOperateLogList.get(0);
 
             String message = this.getMessage(((String[]) MapUtils.getObject(insertOperateLog, "flags"))[0]);
 
@@ -242,6 +242,9 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             insertOperateLogList.remove(0);
         }
 
-        ApplicationContextHolder.getBean(OperateLogService.class).insertList(newInsertOperateLogList);
+        ApplicationContextHolder.getBean(TaskExecutor.class, "slowTaskExecutor").execute(
+                TaskUtils.decorateTaskWithErrorHandler(() -> ApplicationContextHolder.getBean(OperateLogService.class).insertList(newInsertOperateLogList),
+                        e -> insertOperateLogList.addAll(newInsertOperateLogList),
+                        true));
     }
 }
