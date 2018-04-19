@@ -23,6 +23,7 @@ import top.cardone.context.annotation.CardOneAnnotationBeanNameGenerator;
         org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration.class
 })
 @ImportResource({"file:config/applicationContext.xml", "file:config/applicationContext.groovy"})
+@org.springframework.scheduling.annotation.EnableAsync
 public class ConsumerApplication {
     /**
      * 主方法
