@@ -107,55 +107,55 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             return;
         }
 
-        String[] flags;
-        String[] configs;
-        Object[] args;
-        Throwable throwable;
-        long timestamp;
-
-        if (o instanceof SimpleBeforeEvent) {
-            SimpleBeforeEvent simpleBeforeEvent = (SimpleBeforeEvent) o;
-
-            flags = simpleBeforeEvent.getFlags();
-            configs = simpleBeforeEvent.getConfigs();
-            args = simpleBeforeEvent.getArgs();
-            throwable = null;
-            timestamp = simpleBeforeEvent.getTimestamp();
-        } else if (o instanceof SimpleEvent) {
-            SimpleEvent simpleEvent = (SimpleEvent) o;
-
-            flags = simpleEvent.getFlags();
-            configs = simpleEvent.getConfigs();
-            args = simpleEvent.getArgs();
-            throwable = null;
-            timestamp = simpleEvent.getTimestamp();
-        } else {
-            SimpleErrorEvent simpleErrorEvent = (SimpleErrorEvent) o;
-
-            flags = simpleErrorEvent.getFlags();
-            configs = simpleErrorEvent.getConfigs();
-            args = simpleErrorEvent.getArgs();
-            throwable = simpleErrorEvent.getThrowable();
-            timestamp = simpleErrorEvent.getTimestamp();
-        }
-
-        if (StringUtils.isNotBlank(top.cardone.context.util.StringUtils.getPathForMatch(Lists.newArrayList(skipClassNameList), flags[0]))) {
-            return;
-        }
-
-        String typeCode = MapUtils.getString(typeCodeMap, top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), flags[1]));
-
-        if (StringUtils.isBlank(typeCode)) {
-            return;
-        }
-
-        String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
-
-        if (skipCreatedByCodeBlank && StringUtils.isBlank(createdByCode)) {
-            return;
-        }
-
         ApplicationContextHolder.getBean(TaskExecutor.class, this.taskExecutorBeanName).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
+            String[] flags;
+            String[] configs;
+            Object[] args;
+            Throwable throwable;
+            long timestamp;
+
+            if (o instanceof SimpleBeforeEvent) {
+                SimpleBeforeEvent simpleBeforeEvent = (SimpleBeforeEvent) o;
+
+                flags = simpleBeforeEvent.getFlags();
+                configs = simpleBeforeEvent.getConfigs();
+                args = simpleBeforeEvent.getArgs();
+                throwable = null;
+                timestamp = simpleBeforeEvent.getTimestamp();
+            } else if (o instanceof SimpleEvent) {
+                SimpleEvent simpleEvent = (SimpleEvent) o;
+
+                flags = simpleEvent.getFlags();
+                configs = simpleEvent.getConfigs();
+                args = simpleEvent.getArgs();
+                throwable = null;
+                timestamp = simpleEvent.getTimestamp();
+            } else {
+                SimpleErrorEvent simpleErrorEvent = (SimpleErrorEvent) o;
+
+                flags = simpleErrorEvent.getFlags();
+                configs = simpleErrorEvent.getConfigs();
+                args = simpleErrorEvent.getArgs();
+                throwable = simpleErrorEvent.getThrowable();
+                timestamp = simpleErrorEvent.getTimestamp();
+            }
+
+            if (StringUtils.isNotBlank(top.cardone.context.util.StringUtils.getPathForMatch(Lists.newArrayList(skipClassNameList), flags[0]))) {
+                return;
+            }
+
+            String typeCode = MapUtils.getString(typeCodeMap, top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), flags[1]));
+
+            if (StringUtils.isBlank(typeCode)) {
+                return;
+            }
+
+            String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
+
+            if (skipCreatedByCodeBlank && StringUtils.isBlank(createdByCode)) {
+                return;
+            }
+
             Map<String, Object> insert = Maps.newHashMap();
 
             insert.put("typeCode", typeCode);
