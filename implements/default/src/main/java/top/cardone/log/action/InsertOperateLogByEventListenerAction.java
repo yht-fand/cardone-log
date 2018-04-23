@@ -47,9 +47,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private int insertOperateLogLowerLimitTime = 1000 * 60 * 15;
 
     @Setter
-    private boolean skipCreatedByCodeBlank = true;
-
-    @Setter
     private Map<String, String> typeCodeMap;
 
     @Setter
@@ -107,6 +104,12 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             return;
         }
 
+        String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
+
+        if (StringUtils.isBlank(createdByCode) || StringUtils.endsWithIgnoreCase(createdByCode, "empty-user-code")) {
+            return;
+        }
+
         String[] flags;
         String[] configs;
         Object[] args;
@@ -146,12 +149,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         String typeCode = MapUtils.getString(typeCodeMap, top.cardone.context.util.StringUtils.getPathForMatch(typeCodeMap.keySet(), flags[1]));
 
         if (StringUtils.isBlank(typeCode)) {
-            return;
-        }
-
-        String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
-
-        if (skipCreatedByCodeBlank && StringUtils.isBlank(createdByCode)) {
             return;
         }
 
