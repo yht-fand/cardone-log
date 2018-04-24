@@ -77,9 +77,9 @@ public class QuartzJobListener implements JobListener, InitializingBean {
         if (MapUtils.isEmpty(typeNameMap)) {
             typeNameMap = Maps.newHashMap();
 
-            typeNameMap.put("jobToBeExecuted", "将要被执行");
-            typeNameMap.put("jobExecutionVetoed", "即将被执行，但又被TriggerListerner否决");
-            typeNameMap.put("jobWasExecuted", "被执行之后");
+            typeNameMap.put("jobToBeExecuted", "开始");
+            typeNameMap.put("jobExecutionVetoed", "被否决");
+            typeNameMap.put("jobWasExecuted", "完成");
         }
     }
 }
