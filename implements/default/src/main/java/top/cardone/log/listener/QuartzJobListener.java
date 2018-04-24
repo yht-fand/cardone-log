@@ -27,6 +27,9 @@ public class QuartzJobListener implements JobListener, InitializingBean {
     @Setter
     private Map<String, String> typeNameMap;
 
+    @Setter
+    private boolean isInsertOperateLog = true;
+
     @Override
     public String getName() {
         return StringUtils.defaultIfBlank(this.name, this.getClass().getName());
@@ -47,10 +50,20 @@ public class QuartzJobListener implements JobListener, InitializingBean {
         addInsertOperateLogList(context, "jobWasExecuted");
     }
 
-    private String[] skipTriggers = new String[]{"batch-insert-log", "record-data-change"};
+    private String[] skipTriggers = new String[]{"batch-insert-log", "record-data-change", "reading-the-data-authorization-of-the-acquisition-station"};
 
     private void addInsertOperateLogList(JobExecutionContext context, String typeCode) {
         if (ArrayUtils.contains(skipTriggers, context.getTrigger().getKey().getName())) {
+            return;
+        }
+
+        String message = context.getTrigger().getDescription() + "：" + typeNameMap.get(typeCode);
+
+        if (log.isDebugEnabled()) {
+            log.debug(message);
+        }
+
+        if (!isInsertOperateLog) {
             return;
         }
 
@@ -60,13 +73,6 @@ public class QuartzJobListener implements JobListener, InitializingBean {
         insert.put("objectTypeCode", "quartz");
         insert.put("objectCode", context.getTrigger().getKey().getName());
         insert.put("createdDate", new Date());
-
-        String message = context.getTrigger().getDescription() + "：" + typeNameMap.get(typeCode);
-
-        if (log.isDebugEnabled()) {
-            log.debug(message);
-        }
-
         insert.put("message", message);
 
         ApplicationContextHolder.getBean(InsertOperateLogByEventListenerAction.class).action(insert);
