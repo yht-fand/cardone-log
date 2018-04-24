@@ -104,6 +104,12 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             return;
         }
 
+        if (o instanceof Map) {
+            this.insertOperateLogList.add(o);
+
+            return;
+        }
+
         String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
 
         if (StringUtils.isBlank(createdByCode) || StringUtils.endsWithIgnoreCase(createdByCode, "empty-user-code")) {
@@ -164,47 +170,48 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             insert.put("createdTimestamp", timestamp);
             insert.put("flags", flags);
 
+
+            Map<String, Object> jsonData = Maps.newHashMap();
+
+            jsonData.put("flags", flags);
+            jsonData.put("configs", configs);
+
+            if (ArrayUtils.isNotEmpty(args)) {
+                List<Object> newArgs = Lists.newArrayList();
+
+                for (Object arg : args) {
+                    if (arg == null) {
+                        continue;
+                    }
+
+                    if (arg instanceof Class) {
+                        newArgs.add(arg.toString());
+                    } else if (arg instanceof Serializable) {
+                        newArgs.add(arg);
+                    } else {
+                        newArgs.add(arg.toString());
+                    }
+                }
+
+                if (CollectionUtils.isNotEmpty(newArgs)) {
+                    jsonData.put("input", newArgs);
+                }
+            }
+
             if (throwable != null) {
-                Map<String, Object> jsonData = Maps.newHashMap();
-
-                jsonData.put("flags", flags);
-                jsonData.put("configs", configs);
-
-                if (ArrayUtils.isNotEmpty(args)) {
-                    List<Object> newArgs = Lists.newArrayList();
-
-                    for (Object arg : args) {
-                        if (arg == null) {
-                            continue;
-                        }
-
-                        if (arg instanceof Class) {
-                            newArgs.add(arg.toString());
-                        } else if (arg instanceof Serializable) {
-                            newArgs.add(arg);
-                        } else {
-                            newArgs.add(arg.toString());
-                        }
-                    }
-
-                    if (CollectionUtils.isNotEmpty(newArgs)) {
-                        jsonData.put("input", newArgs);
-                    }
-                }
-
                 jsonData.put("throwable", throwable);
+            }
 
-                PGobject jsonObject = new PGobject();
+            PGobject jsonObject = new PGobject();
 
-                jsonObject.setType("json");
+            jsonObject.setType("json");
 
-                try {
-                    jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
+            try {
+                jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
 
-                    insert.put("jsonData", jsonObject);
-                } catch (Exception e) {
-                    log.error(e);
-                }
+                insert.put("jsonData", jsonObject);
+            } catch (Exception e) {
+                log.error(e);
             }
 
             insertOperateLogList.add(insert);
@@ -230,9 +237,11 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         while (insertOperateLogList.size() > 0) {
             Map<String, Object> insertOperateLog = (Map<String, Object>) insertOperateLogList.get(0);
 
-            String message = this.getMessage(((String[]) MapUtils.getObject(insertOperateLog, "flags"))[0]);
+            if (StringUtils.isBlank(MapUtils.getString(insertOperateLog, "message"))) {
+                String message = this.getMessage(((String[]) MapUtils.getObject(insertOperateLog, "flags"))[0]);
 
-            insertOperateLog.put("message", message);
+                insertOperateLog.put("message", message);
+            }
 
             newInsertOperateLogList.add(insertOperateLog);
 
