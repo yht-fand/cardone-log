@@ -204,7 +204,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
             PGobject jsonObject = new PGobject();
 
-            jsonObject.setType("json");
+            jsonObject.setType("jsonb");
 
             try {
                 jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
