@@ -38,11 +38,11 @@
 
     <bean name="top.cardone.template.support.TemplateSupport"
           class="top.cardone.template.support.impl.TemplateSupportImpl">
-        <property name="configurationMap">
+        <property name="targetConfigurations">
             <map>
-                <entry key="configuration1" value-ref="top.cardone.template.support.TemplateSupport.configuration1"/>
+                <entry key="default" value-ref="top.cardone.template.support.TemplateSupport.configuration1"/>
             </map>
         </property>
-        <property name="defaultConfigurationKey" value="configuration1"/>
+        <property name="defaultTargetConfiguration" ref="top.cardone.template.support.TemplateSupport.configuration1"/>
     </bean>
 </beans>
