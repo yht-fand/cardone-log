@@ -112,10 +112,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
         String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
 
-        if (StringUtils.isBlank(createdByCode) || StringUtils.endsWithIgnoreCase(createdByCode, "empty-user-code")) {
-            return;
-        }
-
         String[] flags;
         String[] configs;
         Object[] args;
