@@ -110,6 +110,12 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             return;
         }
 
+        if (o instanceof List) {
+            this.insertOperateLogList.addAll((List) o);
+
+            return;
+        }
+
         String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
 
         String[] flags;
