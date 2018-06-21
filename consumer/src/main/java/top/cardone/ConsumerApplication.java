@@ -1,6 +1,7 @@
 package top.cardone;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -18,20 +19,18 @@ import top.cardone.context.annotation.CardOneAnnotationBeanNameGenerator;
         org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.class,
         org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration.class,
         org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration.class,
-        org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration.class,
-        org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration.class,
-        org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration.class
+        org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration.class,
+        org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration.class
 })
 @ImportResource({"file:config/applicationContext.xml", "file:config/applicationContext.groovy"})
-@org.springframework.scheduling.annotation.EnableAsync
+@EnableAutoConfiguration
 public class ConsumerApplication {
     /**
      * 主方法
      *
      * @param args 参数
-     * @throws Exception 异常
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(ConsumerApplication.class, args);
     }
 }
