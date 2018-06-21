@@ -1,7 +1,6 @@
 package top.cardone;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -21,7 +20,6 @@ import top.cardone.context.annotation.CardOneAnnotationBeanNameGenerator;
         org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration.class
 })
 @ImportResource({"file:config/applicationContext.xml", "file:config/applicationContext.groovy"})
-@EnableAutoConfiguration
 public class ProviderApplication {
     /**
      * 主方法
