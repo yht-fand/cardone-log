@@ -16,7 +16,6 @@ import top.cardone.context.annotation.CardOneAnnotationBeanNameGenerator;
 @ComponentScan(basePackages = {"top.cardone"}, nameGenerator = CardOneAnnotationBeanNameGenerator.class, lazyInit = true)
 @Import({
         org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.class,
-        org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration.class,
         org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration.class,
         org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration.class,
         org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration.class
