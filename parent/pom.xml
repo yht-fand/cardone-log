@@ -6,7 +6,7 @@
     <parent>
         <groupId>top.cardone</groupId>
         <artifactId>cardone-parent</artifactId>
-        <version>BURNING-SUN-SNAPSHOT</version>
+        <version>MINT-SNAPSHOT</version>
         <relativePath/>
     </parent>
 
