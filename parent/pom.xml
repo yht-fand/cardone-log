@@ -54,21 +54,5 @@
             <url>http://39.108.9.136:9191/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>top.cardone</groupId>
-                <artifactId>cardone-log-api</artifactId>
-                <version>MANGO-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
-                <groupId>top.cardone</groupId>
-                <artifactId>cardone-log-implements-default</artifactId>
-                <version>MANGO-SNAPSHOT</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
 
