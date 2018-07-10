@@ -21,6 +21,7 @@
         <property name="timeBetweenEvictionRunsMillis" value="30000"/>
         <property name="minEvictableIdleTimeMillis" value="180000"/>
         <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="validationQueryTimeout" value="30000"/>
         <property name="testWhileIdle" value="true"/>
         <property name="testOnBorrow" value="true"/>
         <property name="testOnReturn" value="false"/>
@@ -28,6 +29,7 @@
         <property name="sharePreparedStatements" value="true"/>
         <property name="maxOpenPreparedStatements" value="100"/>
         <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
         <property name="logAbandoned" value="true"/>
         <property name="defaultReadOnly" value="false"/>
         <property name="defaultAutoCommit" value="true"/>
