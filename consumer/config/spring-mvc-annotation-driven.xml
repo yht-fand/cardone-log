@@ -13,6 +13,6 @@
                 <property name="gson" ref="com.google.gson.Gson"/>
             </bean>
         </mvc:message-converters>
-        <mvc:async-support default-timeout="60000"/>
+        <mvc:async-support default-timeout="600000"/>
     </mvc:annotation-driven>
 </beans>
