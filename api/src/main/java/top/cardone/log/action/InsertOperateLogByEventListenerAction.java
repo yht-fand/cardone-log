@@ -55,8 +55,15 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     @Setter
     private Map<String, Object> findListDictionaryMap;
 
+    public void setBlacklist(List<String> skipClassNameList) {
+        this.skipClassNameList = skipClassNameList;
+    }
+
     @Setter
     private List<String> skipClassNameList = Lists.newArrayList("*Log*", "*Error*");
+
+    @Setter
+    private List<String> whiteList = Lists.newArrayList();
 
     @Setter
     private String taskExecutorBeanName = "slowTaskExecutor";
@@ -69,6 +76,8 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         typeCodeMap.put("delete*", "delete");
         typeCodeMap.put("save*", "save");
         typeCodeMap.put("page*", "page");
+        typeCodeMap.put("action", "action");
+        typeCodeMap.put("func", "func");
 
         findListDictionaryMap = Maps.newHashMap();
 
@@ -151,6 +160,10 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         }
 
         if (StringUtils.isNotBlank(top.cardone.context.util.StringUtils.getPathForMatch(Lists.newArrayList(skipClassNameList), flags[0]))) {
+            return;
+        }
+
+        if (!CollectionUtils.isEmpty(whiteList) && StringUtils.isBlank(top.cardone.context.util.StringUtils.getPathForMatch(Lists.newArrayList(whiteList), flags[0]))) {
             return;
         }
 
