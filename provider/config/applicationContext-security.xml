@@ -21,7 +21,7 @@
         <property name="sessionManager">
             <bean class="org.apache.shiro.session.mgt.DefaultSessionManager">
                 <property name="globalSessionTimeout" value="1800000"/>
-                <property name="deleteInvalidSessions" value="true"/>
+                <property name="deleteInvalidSessions" value="false"/>
                 <property name="sessionValidationSchedulerEnabled" value="false"/>
                 <property name="sessionDAO">
                     <bean class="top.cardone.security.shiro.session.mgt.eis.impl.SessionDaoImpl">

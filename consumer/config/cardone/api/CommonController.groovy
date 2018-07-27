@@ -23,9 +23,7 @@ class CommonController {
      */
     @RequestMapping(value = "/**/*")
     @ResponseBody
-    java.util.concurrent.Callable<Object> allJson(HttpServletRequest request) throws IOException {
-        def servletPath = request.getServletPath()
-
-        return { -> ApplicationContextHolder.getBean(WebSupport.class).func(request, servletPath, !log.isDebugEnabled()) }
+    Object allJson(HttpServletRequest request) {
+        ApplicationContextHolder.getBean(WebSupport.class).func(request, request.getServletPath(), !log.isDebugEnabled())
     }
 }
