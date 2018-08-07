@@ -74,6 +74,7 @@ public class QuartzJobListener implements JobListener, InitializingBean {
         insert.put("objectCode", context.getTrigger().getKey().getName());
         insert.put("createdDate", new Date());
         insert.put("message", message);
+        insert.put("createdTimestamp", System.currentTimeMillis());
 
         ApplicationContextHolder.getBean(InsertOperateLogByEventListenerAction.class).action(insert);
     }

@@ -1,5 +1,6 @@
 package top.cardone.log.func
 
+import org.apache.commons.collections.MapUtils
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate
 import org.springframework.data.elasticsearch.core.query.IndexQuery
 import top.cardone.context.ApplicationContextHolder
@@ -26,7 +27,7 @@ class InsertListFunc implements Func1<Object, List<Object>> {
             indexQuery.setId(UUID.randomUUID().toString())
             indexQuery.setObject(object)
             indexQuery.setIndexName("operate-log")
-            indexQuery.setType("string")
+            indexQuery.setType(MapUtils.getString((Map) object, "objectTypeCode", "default"))
 
             queries.add(indexQuery)
 
