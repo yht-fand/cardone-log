@@ -41,10 +41,10 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private int insertOperateLogUpperLimit = Integer.MAX_VALUE / 8;
 
     @Setter
-    private int insertOperateLogLowerLimit = 1000;
+    private int insertOperateLogLowerLimit = 100;
 
     @Setter
-    private int insertOperateLogLowerLimitTime = 1000 * 60 * 15;
+    private int insertOperateLogLowerLimitTime = 1000 * 60 * 5;
 
     @Setter
     private Map<String, String> typeCodeMap;
@@ -191,43 +191,11 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             jsonData.put("flags", flags);
             jsonData.put("configs", configs);
 
-            if (ArrayUtils.isNotEmpty(args)) {
-                List<Object> newArgs = Lists.newArrayList();
-
-                for (Object arg : args) {
-                    if (arg == null) {
-                        continue;
-                    }
-
-                    if (arg instanceof Class) {
-                        newArgs.add(arg.toString());
-                    } else if (arg instanceof Serializable) {
-                        newArgs.add(arg);
-                    } else {
-                        newArgs.add(arg.toString());
-                    }
-                }
-
-                if (CollectionUtils.isNotEmpty(newArgs)) {
-                    jsonData.put("input", newArgs);
-                }
-            }
-
             if (throwable != null) {
-                jsonData.put("throwable", throwable);
+                jsonData.put("throwable-message", throwable.getMessage());
             }
 
-            PGobject jsonObject = new PGobject();
-
-            jsonObject.setType("jsonb");
-
-            try {
-                jsonObject.setValue(ApplicationContextHolder.getBean(Gson.class).toJson(jsonData));
-
-                insert.put("jsonData", jsonObject);
-            } catch (Exception e) {
-                log.error(e);
-            }
+            insert.put("jsonData", jsonData);
 
             insertOperateLogList.add(insert);
         }, null, true));
@@ -265,7 +233,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
         ApplicationContextHolder.getBean(TaskExecutor.class, "slowTaskExecutor").execute(
                 TaskUtils.decorateTaskWithErrorHandler(
-                        () -> ApplicationContextHolder.getBean(OperateLogService.class).insertList(newInsertOperateLogList),
+                        () -> ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList),
                         e -> insertOperateLogList.addAll(newInsertOperateLogList),
                         true));
     }
