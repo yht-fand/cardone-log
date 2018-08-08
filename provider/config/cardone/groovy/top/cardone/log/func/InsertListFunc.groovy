@@ -1,6 +1,7 @@
 package top.cardone.log.func
 
 import org.apache.commons.collections.MapUtils
+import org.assertj.core.util.Sets
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate
 import org.springframework.data.elasticsearch.core.query.IndexQuery
 import top.cardone.context.ApplicationContextHolder
@@ -15,23 +16,29 @@ class InsertListFunc implements Func1<Object, List<Object>> {
             new Integer[0]
         }
 
-        if (!elasticsearchTemplate.indexExists("operate-log")) {
-            elasticsearchTemplate.createIndex("operate-log")
-        }
-
         List<IndexQuery> queries = []
+
+        Set<String> indexNames = Sets.newHashSet()
 
         for (Object object : objects) {
             IndexQuery indexQuery = new IndexQuery()
 
             indexQuery.setId(UUID.randomUUID().toString())
             indexQuery.setObject(object)
-            indexQuery.setIndexName("operate-log")
-            indexQuery.setType(MapUtils.getString((Map) object, "objectTypeCode", "default"))
+            indexQuery.setIndexName("operate-log-" + MapUtils.getString((Map) object, "objectTypeCode", "default"))
+            indexQuery.setType("default")
 
             queries.add(indexQuery)
 
+            indexNames.add(indexQuery.getIndexName())
+
             if (queries.size() >= 50) {
+                for (def indexName : indexNames) {
+                    if (!elasticsearchTemplate.indexExists(indexName)) {
+                        elasticsearchTemplate.createIndex(indexName)
+                    }
+                }
+
                 elasticsearchTemplate.bulkIndex(queries)
 
                 queries.clear()
@@ -39,6 +46,12 @@ class InsertListFunc implements Func1<Object, List<Object>> {
         }
 
         if (queries.size() > 0) {
+            for (def indexName : indexNames) {
+                if (!elasticsearchTemplate.indexExists(indexName)) {
+                    elasticsearchTemplate.createIndex(indexName)
+                }
+            }
+
             elasticsearchTemplate.bulkIndex(queries)
         }
 

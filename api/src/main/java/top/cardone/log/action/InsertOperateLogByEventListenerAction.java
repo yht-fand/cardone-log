@@ -231,10 +231,12 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             insertOperateLogList.remove(0);
         }
 
-        ApplicationContextHolder.getBean(TaskExecutor.class, "slowTaskExecutor").execute(
-                TaskUtils.decorateTaskWithErrorHandler(
-                        () -> ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList),
-                        e -> insertOperateLogList.addAll(newInsertOperateLogList),
-                        true));
+        try {
+            ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList);
+        } catch (Exception ex) {
+            insertOperateLogList.addAll(newInsertOperateLogList);
+
+            log.error(ex);
+        }
     }
 }
