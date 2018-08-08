@@ -1,10 +1,11 @@
 package top.cardone.log.func
 
+import com.google.common.collect.Sets
 import org.apache.commons.collections.MapUtils
-import org.assertj.core.util.Sets
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate
 import org.springframework.data.elasticsearch.core.query.IndexQuery
 import top.cardone.context.ApplicationContextHolder
+import top.cardone.context.util.StringUtils
 import top.cardone.core.util.func.Func1
 
 class InsertListFunc implements Func1<Object, List<Object>> {
@@ -25,7 +26,7 @@ class InsertListFunc implements Func1<Object, List<Object>> {
 
             indexQuery.setId(UUID.randomUUID().toString())
             indexQuery.setObject(object)
-            indexQuery.setIndexName("operate-log-" + MapUtils.getString((Map) object, "objectTypeCode", "default"))
+            indexQuery.setIndexName(StringUtils.lowerCase("operate-log-" + MapUtils.getString((Map) object, "objectTypeCode", "default")))
             indexQuery.setType("default")
 
             queries.add(indexQuery)
