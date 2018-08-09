@@ -2,15 +2,13 @@ package top.cardone.log.action;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.postgresql.util.PGobject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.support.TaskUtils;
 import top.cardone.context.ApplicationContextHolder;
@@ -23,7 +21,6 @@ import top.cardone.core.util.func.Func0;
 import top.cardone.core.util.func.Func1;
 import top.cardone.log.service.OperateLogService;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -67,6 +64,10 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
     @Setter
     private String taskExecutorBeanName = "slowTaskExecutor";
+
+    @Setter
+    @Value("${app.isStoreToDatabase:false}")
+    private boolean isStoreToDatabase = false;
 
     public InsertOperateLogByEventListenerAction() {
         typeCodeMap = Maps.newHashMap();
@@ -232,7 +233,11 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         }
 
         try {
-            ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList);
+            if (isStoreToDatabase) {
+                ApplicationContextHolder.getBean(OperateLogService.class).insertList(newInsertOperateLogList);
+            } else {
+                ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList);
+            }
         } catch (Exception ex) {
             insertOperateLogList.addAll(newInsertOperateLogList);
 
