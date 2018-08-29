@@ -40,6 +40,8 @@ class InsertListFunc implements Func1<Object, List<Object>> {
                     }
                 }
 
+                indexNames.clear()
+
                 elasticsearchTemplate.bulkIndex(queries)
 
                 queries.clear()
