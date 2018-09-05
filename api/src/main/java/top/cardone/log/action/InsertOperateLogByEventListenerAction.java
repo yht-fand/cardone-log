@@ -180,7 +180,13 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             insert.put("typeCode", typeCode);
             insert.put("createdByCode", createdByCode);
             insert.put("personalCode", createdByCode);
-            insert.put("objectTypeCode", "userLog");
+
+            if (StringUtils.contains(createdByCode, "empty-user-code")) {
+                insert.put("objectTypeCode", "userLog");
+            } else {
+                insert.put("objectTypeCode", "sysLog");
+            }
+
             insert.put("objectCode", createdByCode);
             insert.put("createdDate", new Date(timestamp));
             insert.put("createdTimestamp", timestamp);
