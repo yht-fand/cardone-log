@@ -182,9 +182,9 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             insert.put("personalCode", createdByCode);
 
             if (StringUtils.contains(createdByCode, "empty-user-code")) {
-                insert.put("objectTypeCode", "userLog");
-            } else {
                 insert.put("objectTypeCode", "sysLog");
+            } else {
+                insert.put("objectTypeCode", "userLog");
             }
 
             insert.put("objectCode", createdByCode);
