@@ -7,8 +7,8 @@
 
     <bean id="shiroDbRealm" class="top.cardone.security.shiro.realm.impl.StatelessRealmImpl">
         <property name="cacheManager" ref="shiroCacheManager"/>
-       <property name="cachingEnabled" value="false"/>
-        <property name="authenticationCachingEnabled" value="true"/>
+        <property name="cachingEnabled" value="true"/>
+        <property name="authenticationCachingEnabled" value="false"/>
         <property name="authenticationCacheName" value="authenticationCache"/>
         <property name="authorizationCachingEnabled" value="true"/>
         <property name="authorizationCacheName" value="authorizationCache"/>
@@ -20,24 +20,12 @@
         <property name="realm" ref="shiroDbRealm"/>
         <property name="sessionManager">
             <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-                <property name="globalSessionTimeout" value="1800000"/>
-                <property name="deleteInvalidSessions" value="false"/>
                 <property name="sessionValidationSchedulerEnabled" value="false"/>
                 <property name="sessionDAO">
                     <bean class="top.cardone.security.shiro.session.mgt.eis.impl.SessionDaoImpl">
                         <property name="sessionIdGenerator">
                             <bean class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
                         </property>
-                    </bean>
-                </property>
-                <property name="sessionIdCookieEnabled" value="true"/>
-                <property name="sessionIdCookie">
-                    <bean class="org.apache.shiro.web.servlet.SimpleCookie">
-                        <constructor-arg value="c1Platform"/>
-                        <property name="httpOnly" value="true"/>
-                        <property name="maxAge" value="-1"/>
-                        <property name="domain" value=""/>
-                        <property name="path" value="/"/>
                     </bean>
                 </property>
             </bean>
