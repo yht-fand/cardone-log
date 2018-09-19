@@ -17,7 +17,9 @@
         <property name="realm" ref="shiroDbRealm"/>
         <property name="sessionManager">
             <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+                <property name="deleteInvalidSessions" value="false"/>
                 <property name="sessionValidationSchedulerEnabled" value="false"/>
+                <property name="sessionIdCookieEnabled" value="false"/>
                 <property name="sessionDAO">
                     <bean class="top.cardone.security.shiro.session.mgt.eis.impl.SessionDaoImpl">
                         <property name="sessionIdGenerator">

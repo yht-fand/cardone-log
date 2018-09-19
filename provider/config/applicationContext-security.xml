@@ -17,7 +17,6 @@
         <property name="realm" ref="shiroDbRealm"/>
         <property name="sessionManager">
             <bean class="org.apache.shiro.session.mgt.DefaultSessionManager">
-                <property name="globalSessionTimeout" value="1800000"/>
                 <property name="deleteInvalidSessions" value="false"/>
                 <property name="sessionValidationSchedulerEnabled" value="false"/>
                 <property name="sessionDAO">
