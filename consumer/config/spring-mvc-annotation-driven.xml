@@ -10,7 +10,7 @@
                 <constructor-arg value="UTF-8"/>
             </bean>
             <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
-                <property name="gson" ref="com.google.gson.Gson"/>
+                <constructor-arg ref="com.google.gson.Gson"/>
             </bean>
         </mvc:message-converters>
         <mvc:async-support default-timeout="600000"/>
