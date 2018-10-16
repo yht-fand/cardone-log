@@ -41,7 +41,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private int insertOperateLogLowerLimit = 100;
 
     @Setter
-    private int insertOperateLogLowerLimitTime = 1000 * 60 * 5;
+    private int insertOperateLogLowerLimitTime = 1000 * 6;
 
     @Setter
     private Map<String, String> typeCodeMap;
@@ -182,7 +182,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             insert.put("personalCode", createdByCode);
 
             if (StringUtils.contains(createdByCode, "empty-user-code")) {
-                insert.put("objectTypeCode", "sysLog");
+                insert.put("objectTypeCode", "systemLog");
             } else {
                 insert.put("objectTypeCode", "userLog");
             }
@@ -227,7 +227,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
         while (insertOperateLogList.size() > 0) {
             Map<String, Object> insertOperateLog = (Map<String, Object>) insertOperateLogList.get(0);
 
-            if (StringUtils.isBlank(MapUtils.getString(insertOperateLog, "message"))) {
+            if (StringUtils.isBlank(MapUtils.getString(insertOperateLog, "message")) && insertOperateLog.containsKey("flags")) {
                 String message = this.getMessage(((String[]) MapUtils.getObject(insertOperateLog, "flags"))[0]);
 
                 insertOperateLog.put("message", message);
