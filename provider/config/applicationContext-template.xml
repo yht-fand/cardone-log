@@ -5,13 +5,7 @@
     <bean name="freemarker.ext.beans.BeansWrapper" class="freemarker.ext.beans.BeansWrapper"/>
 
     <bean id="top.cardone.template.support.TemplateSupport.default"
-          class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-        <property name="templateLoaderPaths">
-            <list>
-                <value>file:config/cardone/sql/generator/mysql/</value>
-                <value>file:config/cardone/sql/custom/mysql/</value>
-            </list>
-        </property>
+          class="top.cardone.ui.freemarker.FreeMarkerConfigurationFactoryBean">
         <property name="freemarkerSettings">
             <props>
                 <prop key="template_update_delay">${freemarkerSettings.template_update_delay:60}</prop>
