@@ -57,7 +57,8 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     }
 
     @Setter
-    private List<String> skipClassNameList = Lists.newArrayList("*Log*", "*Error*");
+    @Value("#{'${top.cardone.log.action.InsertOperateLogByEventListenerAction.skipClassNameList:}'.split(',')}")
+    private List<String> skipClassNameList = Lists.newArrayList("*.Log*", "*.Error*", "*.Count*", "*.RolePermission*", "*.UserPermission*", "*.I18nInfo*", "*.Navigation*", "*.Dictionary*", "*.Variable*");
 
     @Setter
     private List<String> whiteList = Lists.newArrayList();
@@ -126,8 +127,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             return;
         }
 
-        String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
-
         String[] flags;
         String[] configs;
         Object[] args;
@@ -174,6 +173,8 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             return;
         }
 
+        String createdByCode = ApplicationContextHolder.func(Func0.class, func -> (String) func.func(), "readPrincipalFunc");
+
         ApplicationContextHolder.getBean(TaskExecutor.class, this.taskExecutorBeanName).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             Map<String, Object> insert = Maps.newHashMap();
 
@@ -197,6 +198,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
             jsonData.put("flags", flags);
             jsonData.put("configs", configs);
+            jsonData.put("args", org.springframework.util.StringUtils.arrayToCommaDelimitedString(args));
 
             if (throwable != null) {
                 jsonData.put("throwable-message", throwable.getMessage());
