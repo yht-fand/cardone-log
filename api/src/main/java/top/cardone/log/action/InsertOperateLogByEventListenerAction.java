@@ -35,13 +35,13 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private List<Object> insertOperateLogList = Collections.synchronizedList(Lists.newArrayList());
 
     @Setter
-    private int insertOperateLogUpperLimit = Integer.MAX_VALUE / 8;
+    private int insertOperateLogUpperLimit = 10000;
 
     @Setter
     private int insertOperateLogLowerLimit = 100;
 
     @Setter
-    private int insertOperateLogLowerLimitTime = 1000 * 6;
+    private int insertOperateLogLowerLimitTime = 1000;
 
     @Setter
     private Map<String, String> typeCodeMap;
