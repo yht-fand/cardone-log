@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.support.TaskUtils;
@@ -30,7 +31,7 @@ import java.util.Map;
  * Created by cardo on 2018/3/30 0030.
  */
 @Log4j2
-public class InsertOperateLogByEventListenerAction implements Action0, Action1<Object> {
+public class InsertOperateLogByEventListenerAction implements Action0, Action1<Object>, InitializingBean {
     @Getter
     private List<Object> insertOperateLogList = Collections.synchronizedList(Lists.newArrayList());
 
@@ -52,10 +53,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     @Setter
     private Map<String, Object> findListDictionaryMap;
 
-    public void setBlacklist(List<String> skipClassNameList) {
-        this.skipClassNameList = skipClassNameList;
-    }
-
     @Setter
     @Value("#{'${top.cardone.log.action.InsertOperateLogByEventListenerAction.skipClassNameList:}'.split(',')}")
     private List<String> skipClassNameList = Lists.newArrayList("*.Log*", "*.Error*", "*.Count*", "*.RolePermission*", "*.UserPermission*", "*.I18nInfo*", "*.Navigation*", "*.Dictionary*", "*.Variable*");
@@ -69,6 +66,9 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     @Setter
     @Value("${app.isStoreToDatabase:false}")
     private boolean isStoreToDatabase = false;
+
+    @Setter
+    private List<Map<String, Object>> serviceNameList;
 
     public InsertOperateLogByEventListenerAction() {
         typeCodeMap = Maps.newHashMap();
@@ -90,8 +90,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     }
 
     private String getMessage(String className) {
-        List<Map<String, Object>> serviceNameList = (List<Map<String, Object>>) ApplicationContextHolder.getBean(Func1.class, this.findListDictionaryFuncName).func(this.findListDictionaryMap);
-
         if (CollectionUtils.isEmpty(serviceNameList)) {
             return StringUtils.EMPTY;
         }
@@ -247,9 +245,14 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
                 ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList);
             }
         } catch (Exception ex) {
-//            insertOperateLogList.addAll(newInsertOperateLogList);
+            insertOperateLogList.addAll(newInsertOperateLogList);
 
             log.error(ex);
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        serviceNameList = (List<Map<String, Object>>) ApplicationContextHolder.getBean(Func1.class, this.findListDictionaryFuncName).func(this.findListDictionaryMap);
     }
 }
