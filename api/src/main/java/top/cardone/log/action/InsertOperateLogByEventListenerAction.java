@@ -247,7 +247,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
                 ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList);
             }
         } catch (Exception ex) {
-            insertOperateLogList.addAll(newInsertOperateLogList);
+//            insertOperateLogList.addAll(newInsertOperateLogList);
 
             log.error(ex);
         }
