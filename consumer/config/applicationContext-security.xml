@@ -72,7 +72,7 @@
                 </entry>
                 <entry key="stateless">
                     <bean class="top.cardone.security.shiro.web.filter.authc.impl.StatelessAuthcFilterImpl">
-                        <property name="countUpperLimit" value="200"/>
+                       <property name="countUpperLimit" value="${app.countUpperLimit:500}"/>
                     </bean>
                 </entry>
             </map>
