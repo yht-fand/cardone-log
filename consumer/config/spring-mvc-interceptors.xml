@@ -12,5 +12,5 @@
     <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->
 
-    <bean class="top.cardone.web.servlet.HandlerExceptionResolver"/>
+    <bean name="top.cardone.web.servlet.HandlerExceptionResolver" class="top.cardone.web.servlet.HandlerExceptionResolver"/>
 </beans>
