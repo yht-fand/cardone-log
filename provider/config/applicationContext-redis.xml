@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:redis="http://www.springframework.org/schema/redis"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/redis
-        http://www.springframework.org/schema/redis/spring-redis.xsd">
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/redis
+        http://www.springframework.org/schema/redis/spring-redis.xsd
+       http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+    <lang:groovy id="org.springframework.data.redis.connection.lettuce.LettucePoolingClient">
+        <lang:inline-script>
+            <![CDATA[
+            def environment = top.cardone.context.ApplicationContextHolder.applicationContext.environment
+
+            def genericObjectPoolConfig = new org.apache.commons.pool2.impl.GenericObjectPoolConfig(
+                    maxTotal: environment.getProperty("spring.redis.lettuce.pool.max-total", Integer.class, 200),
+                    maxIdle: environment.getProperty("spring.redis.lettuce.pool.max-idle", Integer.class, 10),
+                    minIdle: environment.getProperty("spring.redis.lettuce.pool.min-idle", Integer.class, 0)
+            )
+
+            org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration.builder().
+                    poolConfig(genericObjectPoolConfig).build()
+            ]]>
+        </lang:inline-script>
+    </lang:groovy>
+
     <bean id="lettuceConnectionFactory"
           class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory" lazy-init="true">
         <constructor-arg>
             <bean class="org.springframework.data.redis.connection.RedisClusterConfiguration">
                 <constructor-arg>
-
                     <bean class="org.springframework.core.env.MapPropertySource">
                         <constructor-arg>
                             <value>RedisClusterConfiguration</value>
@@ -29,6 +46,7 @@
                 </constructor-arg>
             </bean>
         </constructor-arg>
+        <constructor-arg ref="org.springframework.data.redis.connection.lettuce.LettucePoolingClient"/>
     </bean>
 
     <bean id="org.springframework.data.redis.core.RedisTemplate"
