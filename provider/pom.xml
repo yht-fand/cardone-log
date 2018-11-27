@@ -53,8 +53,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
+            <groupId>top.cardone</groupId>
+            <artifactId>cardone-amqp</artifactId>
         </dependency>
     </dependencies>
 

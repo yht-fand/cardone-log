@@ -19,7 +19,7 @@
             connection-factory="com.rabbitmq.client.ConnectionFactory"
             executor="${spring.rabbitmq.executor:org.springframework.core.task.TaskExecutor}"/>
 
-    <bean id="amqpMessageConverter" class="org.springframework.amqp.support.converter.SimpleMessageConverter"/>
+    <bean id="amqpMessageConverter" class="top.cardone.amqp.support.converter.RpcMessageConverter"/>
 
     <bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
         <property name="backOffPolicy">
