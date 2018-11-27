@@ -52,6 +52,9 @@
     <bean id="org.springframework.data.redis.core.RedisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate" lazy-init="true">
         <property name="connectionFactory" ref="lettuceConnectionFactory"/>
+        <property name="defaultSerializer">
+            <bean class="top.cardone.cache.serializer.KryoRedisSerializer"/>
+        </property>
     </bean>
 
     <bean id="redisPubAction" class="top.cardone.cache.action.RedisPubAction" lazy-init="true">
