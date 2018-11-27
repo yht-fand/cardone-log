@@ -6,6 +6,7 @@
         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
     <bean name="com.rabbitmq.client.ConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
         <property name="automaticRecoveryEnabled" value="true"/>
+        <property name="topologyRecoveryEnabled" value="true"/>
     </bean>
 
     <rabbit:connection-factory

@@ -81,3 +81,11 @@
 --create index IF NOT EXISTS idx_c1_operate_log_type_code ON c1_operate_log ("type_code" varchar_pattern_ops);
 
 
+
+
+ALTER TABLE "c1_operate_log" ALTER COLUMN "json_data" TYPE jsonb;
+
+--- sql end ---
+
+
+
