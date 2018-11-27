@@ -254,6 +254,8 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     @Override
     public void afterPropertiesSet() {
         ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
+            Thread.sleep(3000);
+
             serviceNameList = (List<Map<String, Object>>) ApplicationContextHolder.getBean(Func1.class, this.findListDictionaryFuncName).func(this.findListDictionaryMap);
         }, null, true));
     }
