@@ -25,9 +25,14 @@
     <bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
         <property name="backOffPolicy">
             <bean class="org.springframework.retry.backoff.ExponentialBackOffPolicy">
-                <property name="initialInterval" value="5000"/>
-                <property name="multiplier" value="2.0"/>
-                <property name="maxInterval" value="50000"/>
+                <property name="initialInterval" value="1000"/>
+                <property name="multiplier" value="3"/>
+                <property name="maxInterval" value="3000"/>
+            </bean>
+        </property>
+        <property name="retryPolicy">
+            <bean class="org.springframework.retry.policy.SimpleRetryPolicy">
+                <property name="maxAttempts" value="1"/>
             </bean>
         </property>
     </bean>
