@@ -53,7 +53,7 @@
           class="org.springframework.data.redis.core.RedisTemplate" lazy-init="true">
         <property name="connectionFactory" ref="lettuceConnectionFactory"/>
         <property name="defaultSerializer">
-            <bean class="top.cardone.cache.serializer.KryoRedisSerializer"/>
+           <bean class="top.cardone.cache.serializer.FstRedisSerializer"/>
         </property>
     </bean>
 

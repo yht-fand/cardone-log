@@ -64,8 +64,14 @@
     <lang:groovy id="defaultCacheConfiguration">
         <lang:inline-script>
             <![CDATA[
+            import org.springframework.data.redis.serializer.RedisSerializationContext
+
+            RedisSerializationContext.SerializationPair<Object> serializeValuesWith = RedisSerializationContext.SerializationPair
+                    .fromSerializer(new top.cardone.cache.serializer.FstRedisSerializer())
+
+
             org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig().
-                    entryTtl(java.time.Duration.ofSeconds(18000L))
+                    entryTtl(java.time.Duration.ofSeconds(18000L)).serializeValuesWith(serializeValuesWith)
             ]]>
         </lang:inline-script>
     </lang:groovy>
