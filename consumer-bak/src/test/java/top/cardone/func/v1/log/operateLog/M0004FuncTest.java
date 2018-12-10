@@ -56,7 +56,7 @@ public class M0004FuncTest {
 
             headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
             headers.set("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
-            headers.set("collectionStationCodeForToken", "XATAC29");
+            headers.set("collectionStationCodeForToken", parametersEntry.getKey().split(":")[0]);
             headers.set("token", ApplicationContextHolder.getBean(org.apache.shiro.authc.credential.PasswordService.class).encryptPassword(headers.get("collectionStationCodeForToken").get(0)));
 
             val httpEntity = new HttpEntity<>(body, headers);
