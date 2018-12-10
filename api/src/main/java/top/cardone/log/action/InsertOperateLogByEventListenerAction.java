@@ -32,6 +32,8 @@ import java.util.Map;
  */
 @Log4j2
 public class InsertOperateLogByEventListenerAction implements Action0, Action1<Object>, InitializingBean {
+    private final Object $lock = new Object[0];
+
     @Getter
     private List<Object> insertOperateLogList = Collections.synchronizedList(Lists.newArrayList());
 
@@ -224,7 +226,15 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
         List<Object> newInsertOperateLogList = Lists.newArrayList();
 
-        while (insertOperateLogList.size() > 0) {
+        while (true) {
+            if (this.insertOperateLogList.size() < 1) {
+                synchronized ($lock) {
+                    if (this.insertOperateLogList.size() < 1) {
+                        break;
+                    }
+                }
+            }
+
             Map<String, Object> insertOperateLog = (Map<String, Object>) insertOperateLogList.get(0);
 
             if (StringUtils.isBlank(MapUtils.getString(insertOperateLog, "message")) && insertOperateLog.containsKey("flags")) {
