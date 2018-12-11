@@ -18,6 +18,7 @@
             virtual-host="${spring.rabbitmq.virtualHost:cardone}"
             channel-cache-size="${spring.rabbitmq.channel.cache.size:100}"
             connection-factory="com.rabbitmq.client.ConnectionFactory"
+            publisher-confirms="true"
             executor="${spring.rabbitmq.executor:org.springframework.core.task.TaskExecutor}"/>
 
     <bean id="amqpMessageConverter" class="top.cardone.amqp.support.converter.RpcMessageConverter"/>

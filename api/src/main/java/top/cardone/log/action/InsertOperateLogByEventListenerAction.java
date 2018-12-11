@@ -22,10 +22,8 @@ import top.cardone.core.util.func.Func0;
 import top.cardone.core.util.func.Func1;
 import top.cardone.log.service.OperateLogService;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * Created by cardo on 2018/3/30 0030.
@@ -35,7 +33,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private final Object $lock = new Object[0];
 
     @Getter
-    private List<Object> insertOperateLogList = Collections.synchronizedList(Lists.newArrayList());
+    private Deque<Map<String, Object>> insertOperateLogDeque = new ConcurrentLinkedDeque<>();
 
     @Setter
     private int insertOperateLogUpperLimit = 10000;
@@ -109,20 +107,20 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
     @Override
     public void action(Object o) {
-        if (insertOperateLogList.size() > insertOperateLogUpperLimit) {
-            log.error("日志记录队列超出大小上限：" + insertOperateLogList.size());
+        if (insertOperateLogDeque.size() > insertOperateLogUpperLimit) {
+            log.error("日志记录队列超出大小上限：" + insertOperateLogDeque.size());
 
             return;
         }
 
         if (o instanceof Map) {
-            this.insertOperateLogList.add(o);
+            this.insertOperateLogDeque.offerLast((Map<String, Object>) o);
 
             return;
         }
 
         if (o instanceof List) {
-            this.insertOperateLogList.addAll((List) o);
+            ((List) o).forEach(m -> this.insertOperateLogDeque.offerLast((Map<String, Object>) m));
 
             return;
         }
@@ -206,37 +204,29 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
             insert.put("jsonData", jsonData);
 
-            insertOperateLogList.add(insert);
+            insertOperateLogDeque.addLast(insert);
         }, null, true));
     }
 
     @Override
     public void action() {
-        if (insertOperateLogList.isEmpty()) {
+        Map<String, Object> insertOperateLog = insertOperateLogDeque.pollFirst();
+
+        if (insertOperateLog == null) {
             return;
         }
 
-        if (insertOperateLogList.size() < insertOperateLogLowerLimit) {
-            long time = System.currentTimeMillis() - MapUtils.getLongValue((Map) insertOperateLogList.get(0), "createdTimestamp", 0);
+        if (insertOperateLogDeque.size() < insertOperateLogLowerLimit) {
+            long time = System.currentTimeMillis() - MapUtils.getLongValue(insertOperateLog, "createdTimestamp", 0);
 
             if (time < insertOperateLogLowerLimitTime) {
                 return;
             }
         }
 
-        List<Object> newInsertOperateLogList = Lists.newArrayList();
+        List<Map<String, Object>> newInsertOperateLogList = Lists.newArrayList();
 
-        while (true) {
-            if (this.insertOperateLogList.size() < 1) {
-                synchronized ($lock) {
-                    if (this.insertOperateLogList.size() < 1) {
-                        break;
-                    }
-                }
-            }
-
-            Map<String, Object> insertOperateLog = (Map<String, Object>) insertOperateLogList.get(0);
-
+        do {
             if (StringUtils.isBlank(MapUtils.getString(insertOperateLog, "message")) && insertOperateLog.containsKey("flags")) {
                 String message = this.getMessage(((String[]) MapUtils.getObject(insertOperateLog, "flags"))[0]);
 
@@ -245,17 +235,17 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
             newInsertOperateLogList.add(insertOperateLog);
 
-            insertOperateLogList.remove(0);
-        }
+            insertOperateLog = insertOperateLogDeque.pollFirst();
+        } while (insertOperateLog != null);
 
         try {
             if (isStoreToDatabase) {
-                ApplicationContextHolder.getBean(OperateLogService.class).insertList(newInsertOperateLogList);
+                ApplicationContextHolder.getBean(OperateLogService.class).insertList(Collections.singletonList(newInsertOperateLogList));
             } else {
                 ApplicationContextHolder.getBean(Func1.class, "top/cardone/log/func/InsertListFunc").func(newInsertOperateLogList);
             }
         } catch (Exception ex) {
-            insertOperateLogList.addAll(newInsertOperateLogList);
+            insertOperateLogDeque.addAll(newInsertOperateLogList);
 
             log.error(ex);
         }
