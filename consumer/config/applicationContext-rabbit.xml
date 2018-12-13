@@ -23,25 +23,9 @@
 
     <bean id="amqpMessageConverter" class="top.cardone.amqp.support.converter.RpcMessageConverter"/>
 
-    <bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
-        <property name="backOffPolicy">
-            <bean class="org.springframework.retry.backoff.ExponentialBackOffPolicy">
-                <property name="initialInterval" value="1000"/>
-                <property name="multiplier" value="3"/>
-                <property name="maxInterval" value="3000"/>
-            </bean>
-        </property>
-        <property name="retryPolicy">
-            <bean class="org.springframework.retry.policy.SimpleRetryPolicy">
-                <property name="maxAttempts" value="1"/>
-            </bean>
-        </property>
-    </bean>
-
     <bean name="rabbitTemplateParnet" class="org.springframework.amqp.rabbit.core.RabbitTemplate" abstract="true">
         <property name="connectionFactory" ref="rabbitConnectionFactory"/>
         <property name="messageConverter" ref="amqpMessageConverter"/>
-        <property name="retryTemplate" ref="retryTemplate"/>
         <property name="replyTimeout" value="${spring.rabbitmq.replyTimeout:3000000}"/>
         <property name="receiveTimeout" value="${spring.rabbitmq.receiveTimeout:3000000}"/>
     </bean>
@@ -49,7 +33,6 @@
     <rabbit:template id="org.springframework.amqp.core.AmqpTemplate"
                      connection-factory="rabbitConnectionFactory"
                      message-converter="amqpMessageConverter"
-                     retry-template="retryTemplate"
                      reply-timeout="${spring.rabbitmq.replyTimeout:3000000}"
                      receive-timeout="${spring.rabbitmq.receiveTimeout:3000000}"/>
 
