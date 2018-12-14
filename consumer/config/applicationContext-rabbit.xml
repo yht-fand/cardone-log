@@ -28,7 +28,6 @@
     <rabbit:template id="org.springframework.amqp.core.AmqpTemplate"
                      connection-factory="rabbitConnectionFactory"
                      message-converter="amqpMessageConverter"
-                     retry-template="retryTemplate"
                      reply-timeout="${spring.rabbitmq.replyTimeout:3000000}"
                      receive-timeout="${spring.rabbitmq.receiveTimeout:3000000}"/>
 
