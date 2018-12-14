@@ -13,8 +13,8 @@
             def environment = top.cardone.context.ApplicationContextHolder.applicationContext.environment
 
             def genericObjectPoolConfig = new org.apache.commons.pool2.impl.GenericObjectPoolConfig(
-                    maxTotal: environment.getProperty("spring.redis.lettuce.pool.max-total", Integer.class, 200),
-                    maxIdle: environment.getProperty("spring.redis.lettuce.pool.max-idle", Integer.class, 10),
+                    maxTotal: environment.getProperty("spring.redis.lettuce.pool.max-total", Integer.class, 16),
+                    maxIdle: environment.getProperty("spring.redis.lettuce.pool.max-idle", Integer.class, 16),
                     minIdle: environment.getProperty("spring.redis.lettuce.pool.min-idle", Integer.class, 0)
             )
 
