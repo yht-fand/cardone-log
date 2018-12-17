@@ -4,8 +4,14 @@
        xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+    <bean name="com.rabbitmq.client.ConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
+        <property name="automaticRecoveryEnabled" value="true"/>
+        <property name="networkRecoveryInterval" value="10000"/>
+    </bean>
+
     <rabbit:connection-factory
             id="rabbitConnectionFactory"
+            connection-factory="com.rabbitmq.client.ConnectionFactory"
             host="${spring.rabbitmq.host:127.0.0.1}"
             port="${spring.rabbitmq.port:5672}"
             username="${spring.rabbitmq.username:cardone}"
