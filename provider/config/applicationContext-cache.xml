@@ -12,9 +12,7 @@
         <property name="appGroupName" value="${app.group.name:cardone}"/>
         <property name="cacheManagerList">
             <list>
-                <bean class="org.springframework.cache.caffeine.CaffeineCacheManager" lazy-init="true">
-                    <property name="cacheSpecification" value="expireAfterWrite=300000s"/>
-                </bean>
+                <bean class="org.springframework.cache.caffeine.CaffeineCacheManager" lazy-init="true"/>
             </list>
         </property>
     </bean>
