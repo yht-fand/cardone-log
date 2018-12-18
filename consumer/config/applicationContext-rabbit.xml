@@ -13,7 +13,7 @@
         <property name="automaticRecoveryEnabled" value="true"/>
         <property name="networkRecoveryInterval" value="10000"/>
         <property name="connectionTimeout" value="15000"/>
-        <property name="requestedHeartbeat" value="60"/>
+        <property name="requestedHeartbeat" value="120"/>
         <property name="sharedExecutor" ref="rabbitmqExecutorService"/>
     </bean>
 
@@ -32,15 +32,15 @@
     <bean name="rabbitTemplateParnet" class="org.springframework.amqp.rabbit.core.RabbitTemplate" abstract="true">
         <property name="connectionFactory" ref="rabbitConnectionFactory"/>
         <property name="messageConverter" ref="amqpMessageConverter"/>
-        <property name="replyTimeout" value="${spring.rabbitmq.replyTimeout:60000}"/>
-        <property name="receiveTimeout" value="${spring.rabbitmq.receiveTimeout:60000}"/>
+        <property name="replyTimeout" value="${spring.rabbitmq.replyTimeout:600000}"/>
+        <property name="receiveTimeout" value="${spring.rabbitmq.receiveTimeout:600000}"/>
     </bean>
 
     <rabbit:template id="org.springframework.amqp.core.AmqpTemplate"
                      connection-factory="rabbitConnectionFactory"
                      message-converter="amqpMessageConverter"
-                     reply-timeout="${spring.rabbitmq.replyTimeout:60000}"
-                     receive-timeout="${spring.rabbitmq.receiveTimeout:60000}"/>
+                     reply-timeout="${spring.rabbitmq.replyTimeout:600000}"
+                     receive-timeout="${spring.rabbitmq.receiveTimeout:600000}"/>
 
     <rabbit:admin connection-factory="rabbitConnectionFactory"/>
 </beans>
