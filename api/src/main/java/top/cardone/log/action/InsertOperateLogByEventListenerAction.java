@@ -107,6 +107,10 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
     @Override
     public void action(Object o) {
+        if (o == null) {
+            return;
+        }
+
         if (insertOperateLogDeque.size() > insertOperateLogUpperLimit) {
             log.error("日志记录队列超出大小上限：" + insertOperateLogDeque.size());
 
