@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
     <bean name="rabbitmqExecutorService" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod" value="java.util.concurrent.Executors.newFixedThreadPool"/>
-        <property name="arguments" value="100"/>
+        <property name="arguments" value="200"/>
     </bean>
 
     <bean name="com.rabbitmq.client.ConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
@@ -39,8 +39,8 @@
     <rabbit:template id="org.springframework.amqp.core.AmqpTemplate"
                      connection-factory="rabbitConnectionFactory"
                      message-converter="amqpMessageConverter"
-                     reply-timeout="${spring.rabbitmq.replyTimeout:3000000}"
-                     receive-timeout="${spring.rabbitmq.receiveTimeout:3000000}"/>
+                     reply-timeout="${spring.rabbitmq.replyTimeout:60000}"
+                     receive-timeout="${spring.rabbitmq.receiveTimeout:60000}"/>
 
     <rabbit:admin connection-factory="rabbitConnectionFactory"/>
 </beans>
