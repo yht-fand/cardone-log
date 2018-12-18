@@ -21,7 +21,7 @@
         <property name="service" ref="top.cardone.log.service.OperateLogService"/>
     </bean>
 
-    <rabbit:listener-container message-converter="amqpMessageConverter" connection-factory="rabbitConnectionFactory" concurrency="1" max-concurrency="1">
+    <rabbit:listener-container message-converter="amqpMessageConverter" connection-factory="rabbitConnectionFactory" concurrency="1" max-concurrency="10">
         <rabbit:listener ref="top.cardone.log.service.OperateLogServiceExporter"
                          queue-names="queue:cardone-log-${cardone-log-version}:top.cardone.log.service.OperateLogService"/>
     </rabbit:listener-container>
