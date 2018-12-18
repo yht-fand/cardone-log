@@ -4,7 +4,7 @@
        xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
-    <bean name="executorService" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+    <bean name="rabbitmqExecutorService" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod" value="java.util.concurrent.Executors.newFixedThreadPool"/>
         <property name="arguments" value="200"/>
     </bean>
