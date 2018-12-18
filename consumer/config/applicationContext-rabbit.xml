@@ -4,9 +4,17 @@
        xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+    <bean name="executorService" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="java.util.concurrent.Executors.newFixedThreadPool"/>
+        <property name="arguments" value="200"/>
+    </bean>
+
     <bean name="com.rabbitmq.client.ConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
         <property name="automaticRecoveryEnabled" value="true"/>
         <property name="networkRecoveryInterval" value="10000"/>
+        <property name="connectionTimeout" value="15000"/>
+        <property name="requestedHeartbeat" value="60"/>
+        <property name="sharedExecutor" ref="executorService"/>
     </bean>
 
     <rabbit:connection-factory
@@ -17,16 +25,15 @@
             username="${spring.rabbitmq.username:cardone}"
             password="${spring.rabbitmq.password:cardone.123}"
             virtual-host="${spring.rabbitmq.virtualHost:cardone}"
-            publisher-confirms="true"
-            executor="${spring.rabbitmq.executor:org.springframework.core.task.TaskExecutor}"/>
+            publisher-confirms="true"/>
 
     <bean id="amqpMessageConverter" class="top.cardone.amqp.support.converter.RpcMessageConverter"/>
 
     <bean name="rabbitTemplateParnet" class="org.springframework.amqp.rabbit.core.RabbitTemplate" abstract="true">
         <property name="connectionFactory" ref="rabbitConnectionFactory"/>
         <property name="messageConverter" ref="amqpMessageConverter"/>
-        <property name="replyTimeout" value="${spring.rabbitmq.replyTimeout:3000000}"/>
-        <property name="receiveTimeout" value="${spring.rabbitmq.receiveTimeout:3000000}"/>
+        <property name="replyTimeout" value="${spring.rabbitmq.replyTimeout:60000}"/>
+        <property name="receiveTimeout" value="${spring.rabbitmq.receiveTimeout:60000}"/>
     </bean>
 
     <rabbit:template id="org.springframework.amqp.core.AmqpTemplate"
