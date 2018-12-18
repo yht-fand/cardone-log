@@ -14,7 +14,7 @@
         <property name="networkRecoveryInterval" value="10000"/>
         <property name="connectionTimeout" value="15000"/>
         <property name="requestedHeartbeat" value="60"/>
-        <property name="sharedExecutor" ref="executorService"/>
+        <property name="sharedExecutor" ref="rabbitmqExecutorService"/>
     </bean>
 
     <rabbit:connection-factory
