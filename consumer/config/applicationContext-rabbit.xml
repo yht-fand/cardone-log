@@ -34,13 +34,14 @@
         <property name="connectionFactory" ref="rabbitConnectionFactory"/>
         <property name="messageConverter" ref="amqpMessageConverter"/>
         <property name="replyTimeout" value="${spring.rabbitmq.replyTimeout:120000}"/>
+        <property name="receiveTimeout" value="${spring.rabbitmq.receiveTimeout:120000}"/>
     </bean>
 
     <rabbit:template id="org.springframework.amqp.core.AmqpTemplate"
                      connection-factory="rabbitConnectionFactory"
                      message-converter="amqpMessageConverter"
                      reply-timeout="${spring.rabbitmq.replyTimeout:120000}"
-                     receive-timeout="${spring.rabbitmq.receiveTimeout:3000000}"/>
+                     receive-timeout="${spring.rabbitmq.receiveTimeout:120000}"/>
 
     <rabbit:admin connection-factory="rabbitConnectionFactory"/>
 </beans>
