@@ -240,6 +240,12 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
             newInsertOperateLogList.add(insertOperateLog);
 
             insertOperateLog = insertOperateLogDeque.pollFirst();
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                log.error(e);
+            }
         } while (insertOperateLog != null);
 
         try {
