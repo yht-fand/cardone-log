@@ -32,7 +32,7 @@
 
     <bean name="top.cardone.template.support.TemplateSupport"
           class="top.cardone.template.support.impl.TemplateSupportImpl">
-       <property name="countUpperLimit" value="${app.countUpperLimit:500}"/>
+       <property name="countUpperLimit" value="${app.countUpperLimit:1000}"/>
         <property name="targetConfigurations">
             <map>
                 <entry key="default" value-ref="top.cardone.template.support.TemplateSupport.default"/>

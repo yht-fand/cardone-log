@@ -8,7 +8,7 @@
      	http://www.springframework.org/schema/cache/spring-cache.xsd
        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
     <bean id="cardone.bean.cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true">
-        <property name="countUpperLimit" value="${app.countUpperLimit:500}"/>
+        <property name="countUpperLimit" value="${app.countUpperLimit:1000}"/>
         <property name="appGroupName" value="${app.group.name:cardone}"/>
         <property name="cacheManagerList">
             <list>
@@ -18,7 +18,7 @@
     </bean>
 
     <bean id="cardone.web.cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true">
-        <property name="countUpperLimit" value="${app.countUpperLimit:500}"/>
+        <property name="countUpperLimit" value="${app.countUpperLimit:1000}"/>
         <property name="appGroupName" value="${app.group.name:cardone}"/>
         <property name="cacheManagerList">
             <list>
@@ -43,7 +43,7 @@
     </bean>
 
     <bean id="top.cardone.cache.Cache" class="top.cardone.cache.impl.CacheImpl" lazy-init="true">
-        <property name="countUpperLimit" value="${app.countUpperLimit:500}"/>
+        <property name="countUpperLimit" value="${app.countUpperLimit:1000}"/>
         <property name="appGroupName" value="${app.group.name:cardone}"/>
         <property name="cacheManagerList">
             <list>
