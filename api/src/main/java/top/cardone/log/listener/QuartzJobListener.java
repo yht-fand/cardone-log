@@ -47,7 +47,9 @@ public class QuartzJobListener implements JobListener, InitializingBean {
 
     @Override
     public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) {
-        log.error(jobException);
+        if (jobException != null) {
+            log.error(jobException);
+        }
 
         addInsertOperateLogList(context, "jobWasExecuted");
     }
