@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest
  */
 @Controller
 class CommonController {
-    static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(CommonController.class)
+    static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CommonController.class)
 
     /**
      * 所有json文件
