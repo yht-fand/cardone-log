@@ -30,8 +30,6 @@ import java.util.concurrent.ConcurrentLinkedDeque;
  */
 @Log4j2
 public class InsertOperateLogByEventListenerAction implements Action0, Action1<Object>, InitializingBean {
-    private final Object $lock = new Object[0];
-
     @Getter
     private Deque<Map<String, Object>> insertOperateLogDeque = new ConcurrentLinkedDeque<>();
 
