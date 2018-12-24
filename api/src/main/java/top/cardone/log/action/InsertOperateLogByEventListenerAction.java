@@ -37,12 +37,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private int insertOperateLogUpperLimit = 10000;
 
     @Setter
-    private int insertOperateLogLowerLimit = 100;
-
-    @Setter
-    private int insertOperateLogLowerLimitTime = 1000;
-
-    @Setter
     private Map<String, String> typeCodeMap;
 
     @Setter
@@ -216,14 +210,6 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
         if (insertOperateLog == null) {
             return;
-        }
-
-        if (insertOperateLogDeque.size() < insertOperateLogLowerLimit) {
-            long time = System.currentTimeMillis() - MapUtils.getLongValue(insertOperateLog, "createdTimestamp", 0);
-
-            if (time < insertOperateLogLowerLimitTime) {
-                return;
-            }
         }
 
         List<Map<String, Object>> newInsertOperateLogList = Lists.newArrayList();
