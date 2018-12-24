@@ -18,7 +18,8 @@ import top.cardone.context.annotation.CardOneAnnotationBeanNameGenerator;
         org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.class,
         org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration.class
 })
-@ImportResource({"file:config/applicationContext.xml", "file:config/applicationContext.groovy"})
+@ImportResource(value = {"file:config/applicationContext.xml", "file:config/applicationContext.groovy"},
+        reader = org.springframework.beans.factory.groovy.GroovyBeanDefinitionReader.class)
 public class ProviderApplication {
     /**
      * 主方法
