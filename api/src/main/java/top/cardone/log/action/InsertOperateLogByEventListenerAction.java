@@ -247,7 +247,7 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
     @Override
     public void afterPropertiesSet() {
-        ApplicationContextHolder.getBean(TaskExecutor.class).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
+        ApplicationContextHolder.getBean(TaskExecutor.class, taskExecutorBeanName).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
