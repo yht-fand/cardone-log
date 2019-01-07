@@ -8,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.support.TaskUtils;
@@ -29,7 +28,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
  * Created by cardo on 2018/3/30 0030.
  */
 @Log4j2
-public class InsertOperateLogByEventListenerAction implements Action0, Action1<Object>, InitializingBean {
+public class InsertOperateLogByEventListenerAction implements Action0, Action1<Object> {
     @Getter
     private Deque<Map<String, Object>> insertOperateLogDeque = new ConcurrentLinkedDeque<>();
 
@@ -60,7 +59,8 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     private boolean isStoreToDatabase = false;
 
     @Setter
-    private List<Map<String, Object>> serviceNameList;
+    @Getter(lazy = true)
+    private final List<Map<String, Object>> serviceNameList = (List<Map<String, Object>>) ApplicationContextHolder.getBean(Func1.class, this.findListDictionaryFuncName).func(this.findListDictionaryMap);
 
     public InsertOperateLogByEventListenerAction() {
         typeCodeMap = Maps.newHashMap();
@@ -82,11 +82,11 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
     }
 
     private String getMessage(String className) {
-        if (CollectionUtils.isEmpty(serviceNameList)) {
+        if (CollectionUtils.isEmpty(this.getServiceNameList())) {
             return StringUtils.EMPTY;
         }
 
-        for (Map<String, Object> serviceName : serviceNameList) {
+        for (Map<String, Object> serviceName : this.getServiceNameList()) {
             String dictionaryCode = top.cardone.context.util.MapUtils.getString(serviceName, "dictionary_code");
 
             if (StringUtils.isNotBlank(top.cardone.context.util.StringUtils.getPathForMatch(Lists.newArrayList(dictionaryCode), className))) {
@@ -243,18 +243,5 @@ public class InsertOperateLogByEventListenerAction implements Action0, Action1<O
 
             log.error(ex);
         }
-    }
-
-    @Override
-    public void afterPropertiesSet() {
-        ApplicationContextHolder.getBean(TaskExecutor.class, taskExecutorBeanName).execute(TaskUtils.decorateTaskWithErrorHandler(() -> {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                log.error(e.getMessage(), e);
-            }
-
-            serviceNameList = (List<Map<String, Object>>) ApplicationContextHolder.getBean(Func1.class, this.findListDictionaryFuncName).func(this.findListDictionaryMap);
-        }, null, true));
     }
 }
